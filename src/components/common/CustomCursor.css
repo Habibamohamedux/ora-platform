@@ -1,0 +1,61 @@
+html, body {
+cursor: none !important;
+}
+
+a, button, .hover-target {
+cursor: none !important;
+}
+
+.cursor-wrapper {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+pointer-events: none;
+z-index: 10000;
+mix-blend-mode: difference;
+}
+
+/* --- THE CIRCLE --- */
+.cursor-outline {
+position: absolute;
+top: 0;
+left: 0;
+width: 42px;
+height: 42px;
+border: 1px solid rgba(255, 255, 255, 0.6);
+border-radius: 50%;
+transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+border-color 0.4s ease;
+will-change: transform;
+}
+
+/* --- THE DOT --- */
+.cursor-dot {
+position: absolute;
+top: 0;
+left: 0;
+width: 6px;
+height: 6px;
+background-color: #FFFFFF;
+border-radius: 50%;
+transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+will-change: transform;
+}
+
+/* --- HOVER STATES --- */
+
+.cursor-outline.hovered {
+width: 60px;
+height: 60px;
+border-color: #00FFFF;
+}
+
+.cursor-dot.animating {
+background-color: #00FFFF;
+width: 4px;
+height: 4px;
+/* Removed animation to keep dot centered */
+}
