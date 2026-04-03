@@ -1,0 +1,170 @@
+/* --- SECTION CONTAINER --- */
+.ora-gap-section {
+  position: relative;
+  width: 100%;
+  padding: 0px 8% 120px 8%; 
+  background-color: var(--white);
+  overflow: hidden;
+  z-index: 5;
+}
+
+.ora-gap-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* --- INTRO LAYOUT --- */
+.ora-gap-intro {
+  margin-bottom: 100px;
+  max-width: 800px;
+}
+
+/* Normal, clean title spacing */
+.ora-gap-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.2; 
+  margin-bottom: 2rem;
+}
+
+/* Simple block display so the lines stack cleanly */
+.simple-reveal {
+  display: block;
+}
+
+.ora-gap-paragraph {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: var(--ink-mid);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* --- GRID & CARDS --- */
+.ora-gap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.ora-gap-card {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 45px 40px;
+  border-radius: 16px;
+  border: 1px solid rgba(26, 8, 16, 0.05);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.ora-gap-card.reveal-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-top-accent {
+  position: absolute;
+  top: 0; left: 0; width: 0; height: 4px;
+  background-color: var(--pink);
+  transition: width 0.5s ease;
+}
+
+.ora-gap-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  background-color: #fff;
+  box-shadow: 0 20px 50px rgba(201, 64, 96, 0.08);
+  border-color: rgba(201, 64, 96, 0.15);
+  z-index: 10;
+}
+
+.ora-gap-card:hover .card-top-accent {
+  width: 100%;
+}
+
+/* --- ANIMATED SVGs & ICONS --- */
+.ora-icon-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pink);
+}
+
+/* The continuous floating animation for the SVGs */
+.animated-svg {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  z-index: 2;
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+
+/* Stagger the floating so they don't move at the exact same time */
+.delay-1 { animation-delay: 0.5s; }
+.delay-2 { animation-delay: 1s; }
+.delay-3 { animation-delay: 1.5s; }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+/* The subtle rotating glow ring behind the icon */
+.icon-glow-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 64, 96, 0.15) 0%, transparent 70%);
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+/* What happens to the icon on hover */
+.ora-gap-card:hover .animated-svg {
+  transform: scale(1.15) translateY(-5px);
+  color: #a32b48; /* Darker pink */
+}
+
+.ora-gap-card:hover .icon-glow-ring {
+  width: 70px; height: 70px;
+  background: radial-gradient(circle, rgba(201, 64, 96, 0.25) 0%, transparent 70%);
+}
+
+/* --- TEXT --- */
+.card-gap-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 15px;
+  letter-spacing: -0.02em;
+}
+
+.card-gap-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .ora-gap-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .ora-gap-section { padding: 100px 5%; }
+  .ora-gap-intro { text-align: center; margin: 0 auto 60px auto; }
+  .ora-gap-grid { grid-template-columns: 1fr; }
+}

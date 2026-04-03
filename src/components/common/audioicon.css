@@ -1,0 +1,84 @@
+.audio-btn {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Clips the long wave path */
+  transition: all 0.3s ease;
+  outline: none;
+  color: white;
+}
+
+/* 1. HOVER: Circle fills white, icon turns dark */
+.audio-btn:hover {
+  background-color: white;
+  border-color: white;
+  color: #1a1a1a;
+}
+
+/* 2. ACTIVE: Lines turn pink and glow */
+.audio-btn.active {
+  border-color: #ff2d55;
+}
+
+.audio-btn.active .icon-svg {
+  color: #ff2d55;
+  filter: drop-shadow(0 0 4px rgba(255, 45, 85, 0.6));
+}
+
+/* Keep the pink color even when hovering while active */
+.audio-btn.active:hover .icon-svg {
+  color: #ff2d55;
+}
+
+/* 3. WAVE ANIMATION */
+.wave-path {
+  /* This moves the wave horizontally */
+  animation: wave-flow 1.2s linear infinite;
+}
+
+@keyframes wave-flow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Moves by exactly half the path length to loop perfectly */
+    transform: translateX(-12px); 
+  }
+}
+
+/* 4. CLICK FEEDBACK */
+.audio-btn:active {
+  transform: scale(0.92);
+}
+
+/* SVG Size & Centering */
+.icon-svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+/* Optional: Subtle ripple when active */
+.audio-btn.active::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid #ff2d55;
+  animation: ripple 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.6); opacity: 0; }
+}

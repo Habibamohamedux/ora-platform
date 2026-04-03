@@ -1,0 +1,183 @@
+.ora-hero-root {
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #e47eb1 0%, #cc3982 100%);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+.vibrant-orb {
+  width: 440px;
+  height: 440px;
+  /* Soft white with a very faint inner pink tint — matches Image 1 */
+  background: radial-gradient(circle at 40% 40%, rgba(255,255,255,0.98) 0%, rgba(255, 235, 240, 0.92) 100%);
+  border-radius: 50%;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* Soft outer glow to lift it off the background */
+  box-shadow:
+    0 0 60px rgba(255, 255, 255, 0.25),
+    0 0 120px rgba(255, 255, 255, 0.12),
+    inset 0 0 60px rgba(255, 255, 255, 0.6);
+  /* Never go transparent — opacity is controlled only via scale breathe */
+  will-change: transform;
+}
+
+/* LIQUID — very subtle tint, not the dominant visual */
+.liquid-container {
+  position: absolute;
+  inset: 0;
+  filter: blur(55px);
+  /* KEY FIX: was 0.7 — that made the orb look fully pink */
+  opacity: 0.18;
+}
+
+.liquid-blob {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+}
+
+/* Lighter, less saturated colors so the orb stays white-dominant */
+.pink-liquid {
+  background: #f472a8;
+  top: -10%;
+  left: -5%;
+}
+
+.peach-liquid {
+  background: #ffd6c2;
+  bottom: -10%;
+  right: -5%;
+}
+
+/* EYES — white ovals with a subtle shadow for depth */
+.eyes-layer {
+  display: flex;
+  gap: 35px;
+  z-index: 20;
+}
+
+.eye-oval {
+  width: 65px;
+  height: 95px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(180, 50, 90, 0.15);
+}
+
+.wink-svg {
+  width: 85px;
+  transform: translateY(20px);
+}
+
+/* UI OVERLAY */
+.ui-text-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.ui-text-layer * { pointer-events: auto; }
+
+.left-group { position: absolute; 
+    left: 8%; 
+    bottom: 15%;
+ display: flex;
+ flex-direction: column;
+ width: 25%;
+ gap: 48px;
+     align-items: flex-start;
+ }
+
+
+.right-group { position: absolute; right: 8%; bottom: 15%; width: 280px; text-align: right; }
+
+.roboto-p {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.6;
+  margin-bottom: 25px;
+}
+
+.bebas-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 12px 35px;
+  border-radius: 30px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.plus-action {
+  width: 45px; height: 45px;
+  background: white;
+  color: #ea3e7e;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* BACKGROUND CIRCLES */
+.bg-circles-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-line {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  opacity: 0.08;
+}
+
+.l-1 { width: 500px; height: 500px; }
+.l-2 { width: 800px; height: 800px; }
+.l-3 { width: 1100px; height: 1100px; }
+.l-4 { width: 1400px; height: 1400px; }
+.l-5 { width: 1700px; height: 1700px; }
+.l-6 { width: 2000px; height: 2000px; }
+
+.hero-footer01 {
+  position: absolute;
+  bottom: 40px;
+  left: 8%;
+  right: 8%;
+  
+  /* Layout logic */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Ensures vertical centering for text and icon */
+  
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  opacity: 0.8; /* Slightly increased for better visibility */
+}
+
+.music-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,64 @@
+.scroll-container {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.scroll-text {
+  font-family: 'League Gothic', 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between text and arrow */
+  
+  /* The "Moving Light" Effect */
+  color: rgba(255, 255, 255, 0.4); /* Base dimmed color */
+  background: linear-gradient(
+    to right, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,1) 50%, 
+    rgba(255,255,255,0) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  animation: shine 3s linear infinite;
+}
+
+.arrow {
+  /* Ensuring the arrow is aligned with text baseline/center */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  /* Applying the same transparent/gradient logic to the arrow */
+  -webkit-text-fill-color: transparent;
+  background: inherit;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Hover: Slight scale and the light gets brighter */
+.scroll-container:hover {
+  transform: scale(1.05);
+}
+
+.scroll-container:hover .scroll-text {
+  animation-duration: 1.5s; /* Light moves faster on hover */
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4); /* Glow on hover */
+}
+
+/* Moving Light Animation */
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}

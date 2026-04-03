@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CustomCursor from './components/common/CustomCursor';
 import Home from './pages/Home';
 import './pages/Home.css';
+import Invest from './pages/Invest';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,6 +14,7 @@ root.render(
       <CustomCursor />
       <Routes>
         <Route path="/" element={<Home />} />
+ <Route path="/invest" element={<Invest />} />
       </Routes>
     </Router>
   </React.StrictMode>

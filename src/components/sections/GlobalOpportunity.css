@@ -1,0 +1,210 @@
+.ora-opp-section {
+  position: relative;
+  width: 100%;
+  padding: 180px 10%;
+  background-color: var(--white);
+  overflow: hidden;
+}
+
+.ora-opp-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+.reveal-line {
+  display: block;
+  overflow: hidden;
+  height: 1.1em;
+}
+
+.reveal-line::after {
+  content: attr(data-text);
+}
+
+.ora-opp-title span {
+  display: block;
+  transform: translateY(100%);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ora-opp-section.is-visible .ora-opp-title span {
+  transform: translateY(0);
+}
+
+.ora-opp-section.is-visible .ora-opp-description {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s ease 0.4s;
+}
+
+.ora-opp-description {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* --- LAYOUT --- */
+.ora-opp-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 100px;
+}
+
+.ora-opp-content-side { flex: 1; max-width: 500px; }
+
+.ora-opp-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  color: var(--ink);
+  line-height: 0.9;
+  margin-bottom: 40px;
+}
+
+.ora-opp-p-lead {
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  color: var(--ink);
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+.ora-opp-p {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* --- STAT CARDS --- */
+.ora-opp-stats-grid {
+  flex: 1.4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.ora-opp-stat-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  padding: 40px;
+  border: 1px solid rgba(26, 8, 16, 0.04);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+/* --- THE HOVER ANIMATION --- */
+.ora-opp-stat-card:hover {
+  /* 1. Lift and slightly scale the card */
+  transform: translateY(-12px) scale(1.02); 
+    scale: 1.05;
+  /* 2. Transition to solid white for high-end look */
+  background: #ffffff; 
+  
+  /* 3. Soft pink-tinted shadow for a "glow" feel */
+  box-shadow: 0 25px 50px -12px rgba(201, 64, 96, 0.15); 
+  
+  /* 4. Intensify the border color slightly */
+  border-color: rgba(201, 64, 96, 0.2); 
+
+  z-index: 20; /* Ensures hovered card stays on top */
+}
+
+/* Optional: Add a smooth transition to the number inside when hovering the card */
+.ora-opp-stat-card:hover .stat-number {
+  color: var(--pink);
+  transition: color 0.4s ease;
+  
+}
+
+/* Optional: If you want the label to move slightly up too */
+.ora-opp-stat-card:hover .stat-label {
+  color: var(--ink);
+  transform: translateY(-2px);
+  transition: all 0.4s ease;
+  
+}
+
+.ora-opp-section.is-visible .ora-opp-stat-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-number {
+  font-family: var(--font-body);
+  font-size: 4.5rem;
+  font-weight: 200;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: -2px;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- FOOTER & TINY TEXT --- */
+.ora-opp-footer {
+  margin-top: 100px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-cta-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.ecosystem-btn {
+  background: var(--pink);
+  color: white;
+  padding: 18px 45px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.btn-tiny-text {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+}
+
+.ecosystem-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px var(--pink-mid);
+}
+
+.ora-opp-closing {
+  margin-top: 50px;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--ink-mid);
+  font-weight: 300;
+}
+
+.pink-span { color: var(--pink); font-weight: 500; }
+
+@media (max-width: 1024px) {
+  .ora-opp-container { flex-direction: column; gap: 60px; }
+  .ora-opp-stats-grid { grid-template-columns: 1fr 1fr; }
+}

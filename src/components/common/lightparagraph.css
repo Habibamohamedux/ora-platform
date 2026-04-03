@@ -1,0 +1,11 @@
+.roboto-p {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.6;
+  color: white;
+  margin-bottom: 25px;
+  /* Allows the width prop to work correctly */
+  width: 100%; 
+  text-align: inherit; /* Inherits from parent group alignment */
+}

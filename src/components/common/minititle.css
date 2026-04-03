@@ -1,0 +1,11 @@
+.sub-label {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 400; /* Clean and legible */
+  letter-spacing: 3px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  color: white;
+  margin: 0; /* Let the parent groups handle margins */
+  display: block;
+}

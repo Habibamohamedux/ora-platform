@@ -1,0 +1,98 @@
+.glass-btn {
+  position: relative;
+  padding: 16px 45px; /* Adjusting for elegance */
+  background: rgba(255, 255, 255, 0.08); /* Dimmest base for contrast */
+  
+  /* GLASSMorphism Core */
+  backdrop-filter: blur(25px); /* Increased blur for that luxury look */
+  -webkit-backdrop-filter: blur(25px);
+  
+  /* THE SECRECT SPECULAR EDGE: Matches your image 2 reference */
+  /* This creates a bright, sharp edge at the top-left */
+  border-radius: 50px;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)), /* Button Fill */
+    linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.02) 100%); /* Border Specular */
+  border: 1px solid transparent; /* Allows gradient background to show as border */
+  
+  /* MULTI-LAYERED SHADOWS: One for dimension, one for soft glow */
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, 0.08), /* Soft inner diffuse */
+    inset 0 1px 3px rgba(255, 255, 255, 0.5),  /* Hard inner top edge reflection */
+    0 1px 1px rgba(0, 0, 0, 0.05),              /* Soft dimension */
+    0 0 20px rgba(255, 255, 255, 0.05);          /* Ambient glow */
+    
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+/* Text Styling */
+.glass-btn-content {
+  font-family: 'Poppins', sans-serif; /* Poppins for elegance, Bebas for impact */
+  font-size: 17px;
+  font-weight: 500;
+  color: white;
+  letter-spacing: 0.5px; /* Tightened for cleaner look */
+  z-index: 2;
+  transition: transform 0.3s ease, font-weight 0.2s ease, text-shadow 0.3s ease;
+  pointer-events: none;
+}
+
+/* The Glossy Reflection Layer */
+.glass-btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3), /* Reflection opacity matching image 2 */
+    transparent
+  );
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+/* --- INTERACTIVE STATES --- */
+
+/* Hover: Brighten and intensify light effect */
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+  /* The reflections get sharper and brighter on hover */
+  box-shadow:
+    inset 0 0 15px rgba(255, 255, 255, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.7),
+    0 15px 30px rgba(0, 0, 0, 0.12),
+    0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+/* The Shine Sweep */
+.glass-btn:hover .glass-btn-shine {
+  left: 100%;
+}
+
+/* Text interaction */
+.glass-btn:hover .glass-btn-content {
+  transform: scale(1.03); /* Subtle for elegance */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+/* Click: Pressed down effect */
+.glass-btn:active {
+  transform: translateY(1px) scale(0.97);
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.1s ease;
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.3),
+    inset 0 0 8px rgba(0, 0, 0, 0.1);
+}
