@@ -1,0 +1,214 @@
+/* --- SECTION CONTAINER (White Theme) --- */
+.ora-tech-section {
+  position: relative;
+  width: 100%;
+  padding: 150px 8% 120px 8%;
+  background-color: var(--white); 
+  overflow: hidden;
+  z-index: 5;
+}
+
+.ora-tech-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1; pointer-events: none;
+}
+
+.ora-tech-container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+.ora-tech-header {
+  display: flex; justify-content: space-between; gap: 8%; margin-bottom: 80px;
+}
+.ora-tech-header-left { flex: 1; }
+.ora-tech-header-right { flex: 1.2; display: flex; align-items: center; }
+
+.ora-tech-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  color: var(--ink); 
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.ora-tech-intro {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: var(--ink-mid); 
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.ora-tech-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 60px; 
+}
+
+.ora-tech-item-wrapper {
+  aspect-ratio: 1 / 1; 
+  perspective: 1000px;
+}
+
+.ora-tech-item-shape {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 30px; cursor: pointer;
+  
+  /* The Glass Square */
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(26, 8, 16, 0.08);
+  border-radius: 20px; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  
+  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.4s ease;
+}
+
+.shape-title {
+  font-family: var(--font-body); font-size: 1.2rem; font-weight: 400;
+  color: var(--ink); 
+  transition: color 0.3s ease;
+  pointer-events: none; 
+}
+
+/* Hover Physics for Inactive squares */
+.ora-tech-item-shape:hover:not(.active) {
+  border-color: var(--pink-soft);
+  transform: translateY(-5px) scale(1.02); /* Slight scale on hover */
+  border-radius: 35px; /* Starts morphing on hover */
+  box-shadow: 0 15px 35px rgba(201, 64, 96, 0.08);
+}
+
+.ora-tech-item-shape:hover:not(.active) .shape-title { color: var(--pink); }
+
+.ora-tech-item-shape.active {
+  border-radius: 50%; /* Perfect Circle */
+  background: var(--pink);
+  border-color: var(--pink);
+  transform: scale(1.08); /* Pops outward */
+  box-shadow: 0 20px 50px rgba(201, 64, 96, 0.25);
+}
+
+.ora-tech-item-shape.active .shape-title {
+  color: var(--white); 
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* --- DYNAMIC DETAILS DISPLAY --- */
+.ora-tech-active-display {
+  display: flex; align-items: flex-start; gap: 50px;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(26, 8, 16, 0.05);
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.active-display-left {
+  flex: 0 0 auto;
+  border-right: 2px solid var(--pink-soft);
+  padding-right: 50px;
+}
+
+.active-number {
+  font-family: var(--font-body);
+  font-size: 6rem;
+  color: var(--pink);
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.active-display-right {
+  flex: 1; display: flex; flex-direction: column; gap: 15px;
+}
+
+.active-item-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.active-item-desc {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.ora-tech-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(26, 8, 16, 0.08); /* Clean divider */
+}
+
+.fact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(26, 8, 16, 0.03);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+}
+
+.fact-icon {
+  flex: 0 0 auto;
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background-color: var(--pink-soft);
+  color: var(--pink);
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.fact-icon svg { width: 100%; height: 100%; }
+
+.fact-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1024px) {
+  .ora-tech-header { flex-direction: column; gap: 30px; }
+  .ora-tech-items { grid-template-columns: repeat(2, 1fr); }
+  .ora-tech-active-display {
+    flex-direction: column; align-items: flex-start; gap: 30px; padding: 40px;
+  }
+  .active-display-left {
+    border-right: none; border-bottom: 2px solid var(--pink-soft);
+    padding-right: 0; padding-bottom: 20px; width: 100%;
+  }
+  .ora-tech-facts-grid { grid-template-columns: 1fr; gap: 15px; } /* Stacks facts on iPad */
+}
+
+@media (max-width: 600px) {
+  .ora-tech-section { padding: 100px 5%; }
+  .ora-tech-title { font-size: 2.5rem; }
+  .ora-tech-items { grid-template-columns: 1fr; gap: 15px; }
+  .ora-tech-item-wrapper { aspect-ratio: auto; height: 120px; }
+  .ora-tech-item-shape { padding: 20px; }
+  .ora-tech-item-shape.active { border-radius: 20px; transform: scale(1.02); }
+  .ora-tech-active-display { padding: 30px 20px; }
+  .active-number { font-size: 4.5rem; }
+}

@@ -6,7 +6,10 @@ import Navbar from '../components/layout/Navbar';
 import HeroInvest from '../components/sections/HeroInvest';
 import GlobalOpportunity from '../components/sections/GlobalOpportunity';
 import TheGap from '../components/sections/TheGap';
-
+import TheSolution from '../components/sections/TheSolution';
+import ProductTechnology from '../components/sections/ProductTechnology';
+import MarketPotential from '../components/sections/MarketPotential';
+import BusinessModel from '../components/sections/BusinessModel';
 gsap.registerPlugin(ScrollTrigger);
 
 const Invest = () => {
@@ -41,9 +44,14 @@ const Invest = () => {
             {/* GSAP is now correctly targeting this div */}
             <div className="global-opportunity-wrapper2">
                 <GlobalOpportunity />
+                
             </div>
             
             <TheGap />
+            <TheSolution />
+            <ProductTechnology />
+            <MarketPotential />
+            <BusinessModel />
         </div>
     );
 }

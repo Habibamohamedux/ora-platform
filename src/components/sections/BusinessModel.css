@@ -1,0 +1,262 @@
+.ora-biz-section {
+  position: relative;
+  width: 100%;
+  background-color: var(--white);
+  overflow: hidden;
+  z-index: 5;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.ora-biz-intro-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 8% 80px 8%;
+}
+
+.ora-biz-badge {
+  display: inline-block;
+  background: rgba(201, 64, 96, 0.08);
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--pink);
+  margin-bottom: 30px;
+}
+
+.ora-biz-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  color: var(--ink);
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  letter-spacing: 0.02em;
+}
+
+.ora-biz-text-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.ora-biz-para {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: var(--ink-mid);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.ora-biz-para.ora-biz-lead {
+  font-size: 1.4rem;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.ora-biz-para-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ora-biz-layers-pin {
+  position: relative;
+  width: 100%;
+  height: 90vh; 
+  overflow: hidden;
+  background: linear-gradient(to bottom, #ffffff, #f7f4f5); 
+  margin-top: 0;
+}
+
+.ora-biz-layer-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 1100px;
+  min-height: 480px;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(26, 8, 16, 0.08);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08);
+  display: flex;
+  overflow: hidden;
+  transform-origin: center bottom;
+}
+
+.ora-layer-content {
+  flex: 1.2;
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ora-layer-num {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--pink);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: 15px;
+}
+
+.ora-layer-title {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--ink);
+  margin-bottom: 20px;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.ora-layer-desc {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 25px;
+}
+
+.ora-layer-micro-data {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ora-layer-micro-data li {
+  position: relative;
+  padding-left: 20px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.ora-layer-micro-data li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--pink);
+  font-weight: bold;
+}
+
+.ora-layer-visual {
+  flex: 0.8;
+  position: relative;
+  background: #faf8f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(26, 8, 16, 0.05);
+}
+
+.data-particles-mock {
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, var(--pink-soft) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: oraFloatMock 4s ease-in-out infinite;
+}
+
+.pulse-ring-mock {
+  width: 100px; height: 100px;
+  border: 2px solid var(--pink);
+  border-radius: 50%;
+  animation: oraPulseMock 2s infinite;
+}
+
+.network-grid-mock {
+  width: 150px; height: 150px;
+  background-image: linear-gradient(var(--pink-soft) 1px, transparent 1px), linear-gradient(90deg, var(--pink-soft) 1px, transparent 1px);
+  background-size: 30px 30px;
+  transform: rotate(15deg);
+}
+
+@keyframes oraFloatMock { 0% { transform: translateY(0); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0); } }
+@keyframes oraPulseMock { 0% { box-shadow: 0 0 0 0 rgba(201, 64, 96, 0.4); } 100% { box-shadow: 0 0 0 40px rgba(201, 64, 96, 0); } }
+
+.ora-biz-final-summary {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.ora-final-title {
+  font-family: var(--font-display);
+  font-size: 3.8rem;
+  color: var(--ink);
+  margin-bottom: 25px;
+  letter-spacing: 0.02em;
+}
+
+.ora-final-desc {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+.ora-biz-cta {
+  background: var(--ink);
+  color: var(--white);
+  padding: 18px 45px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.ora-biz-cta .arrow { transition: transform 0.3s ease; }
+.ora-biz-cta:hover { background: var(--pink); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(201, 64, 96, 0.2); }
+.ora-biz-cta:hover .arrow { transform: translateX(5px); }
+
+.ora-final-closing {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--pink);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .ora-biz-text-grid { grid-template-columns: 1fr; gap: 30px; }
+  .ora-biz-layer-card { 
+    flex-direction: column; 
+    height: 80vh; 
+    max-height: 700px;
+    overflow-y: auto; 
+  }
+  .ora-layer-visual { min-height: 200px; border-right: none; border-bottom: 1px solid rgba(26, 8, 16, 0.05); }
+  .ora-layer-content { padding: 30px 20px; }
+}
+
+@media (max-width: 600px) {
+  .ora-biz-intro-container { padding: 80px 5% 40px 5%; }
+  .ora-biz-title { font-size: 2.8rem; }
+  .ora-layer-title { font-size: 2rem; }
+  .ora-final-title { font-size: 2.5rem; }
+  .ora-biz-layers-pin { height: 80vh; }
+}

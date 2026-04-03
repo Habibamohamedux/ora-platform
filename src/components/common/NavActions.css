@@ -363,7 +363,7 @@
 }
 .mf span {
   font-family: var(--font-body);
-  font-size: 9px; letter-spacing: 0.16em;
+  font-size: 12px; letter-spacing: 0.16em;
   color: var(--ink-soft);
 }
 

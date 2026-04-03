@@ -1,0 +1,319 @@
+/* --- SECTION CONTAINER --- */
+.ora-market-section {
+  position: relative;
+  width: 100%;
+  padding: 150px 8%;
+  background-color: var(--white);
+  overflow: hidden;
+  z-index: 5;
+}
+
+.ora-market-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* --- TOP INTRO --- */
+.ora-market-top {
+  margin-bottom: 80px;
+}
+
+.ora-market-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(201, 64, 96, 0.08); /* Soft pink tint */
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--pink);
+  margin-bottom: 30px;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--pink);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201, 64, 96, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(201, 64, 96, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 64, 96, 0); }
+}
+
+.ora-market-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  color: var(--ink);
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.ora-market-text-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.ora-market-para {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--ink-mid);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.ora-market-para.lead {
+  font-size: 1.3rem;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+/* --- MIDDLE: BIG NUMBERS UI --- */
+.ora-market-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: 80px;
+}
+
+.ora-market-stat-card {
+  position: relative;
+  background: #ffffff;
+  padding: 50px 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(26, 8, 16, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  overflow: hidden;
+}
+
+.ora-market-stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(201, 64, 96, 0.08);
+  border-color: rgba(201, 64, 96, 0.15);
+}
+
+.stat-big-number {
+  font-family: var(--font-body);
+  font-size: 4rem;
+  font-weight: 200;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: -2px;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+.stat-hover-line {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0%; height: 4px;
+  background: var(--pink);
+  transition: width 0.5s ease;
+}
+
+.ora-market-stat-card:hover .stat-hover-line {
+  width: 100%;
+}
+
+/* --- BOTTOM: ECOSYSTEM & GROWTH LOOP --- */
+.ora-market-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.ora-market-network-box,
+.ora-market-growth-box {
+  background: #ffffff;
+  border: 1px solid rgba(26, 8, 16, 0.05);
+  border-radius: 20px;
+  padding: 60px;
+}
+
+.box-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--ink);
+  margin-bottom: 40px;
+  letter-spacing: 0.02em;
+}
+
+/* Network Nodes (Left Side) */
+.network-nodes-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.network-connection-line {
+  position: absolute;
+  top: 10px; left: 7px;
+  width: 2px; height: calc(100% - 20px);
+  background: linear-gradient(to bottom, var(--pink), rgba(201, 64, 96, 0.1));
+  z-index: 0;
+}
+
+.network-node {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.node-point {
+  width: 16px; height: 16px;
+  background: var(--white);
+  border: 3px solid var(--pink);
+  border-radius: 50%;
+  margin-top: 3px;
+  box-shadow: 0 0 0 4px rgba(201, 64, 96, 0.1);
+}
+
+.node-title {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.node-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  font-weight: 300;
+}
+
+/* AI Growth Loop (Right Side) */
+.growth-intro {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.growth-loop-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.loop-step {
+  background: rgba(26, 8, 16, 0.02);
+  border: 1px solid rgba(26, 8, 16, 0.05);
+  padding: 18px 25px;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink-mid);
+  transition: all 0.3s ease;
+}
+
+.loop-step span {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.loop-step.highlight {
+  background: rgba(201, 64, 96, 0.08);
+  border-color: rgba(201, 64, 96, 0.2);
+}
+
+.loop-step.highlight span {
+  color: var(--pink);
+}
+
+.loop-arrow {
+  text-align: center;
+  color: var(--pink);
+  font-size: 1.2rem;
+  opacity: 0.5;
+}
+
+.ora-market-growth-box:hover .loop-step {
+  transform: translateX(10px);
+}
+
+/* --- CTA & CLOSING --- */
+.ora-market-footer {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.ora-market-cta {
+  background: var(--ink);
+  color: var(--white);
+  padding: 18px 45px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.ora-market-cta .arrow {
+  transition: transform 0.3s ease;
+}
+
+.ora-market-cta:hover {
+  background: var(--pink);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(201, 64, 96, 0.2);
+}
+
+.ora-market-cta:hover .arrow {
+  transform: translateX(5px);
+}
+
+.ora-market-closing {
+  margin-top: 40px;
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: var(--ink-mid);
+  font-weight: 300;
+}
+
+.pink-text {
+  color: var(--pink);
+  font-weight: 500;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1024px) {
+  .ora-market-text-grid { grid-template-columns: 1fr; gap: 30px; }
+  .ora-market-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .ora-market-bottom-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .ora-market-section { padding: 100px 5%; }
+  .ora-market-stats-grid { grid-template-columns: 1fr; }
+  .stat-big-number { font-size: 3.5rem; }
+  .ora-market-network-box, .ora-market-growth-box { padding: 40px 20px; }
+}
