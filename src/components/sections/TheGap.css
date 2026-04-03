@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   padding: 0px 8% 120px 8%; 
-  background-color: var(--white);
+background-color: transparent;
   overflow: hidden;
   z-index: 5;
 }

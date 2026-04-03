@@ -9,9 +9,10 @@
   position: relative;
   width: 100%;
   padding: 150px 8%;
-  background-color: var(--white);
+  background-color: transparent;
   overflow: hidden;
   z-index: 5;
+
 }
 
 .ora-sol-container {

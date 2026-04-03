@@ -1,17 +1,17 @@
 .ora-biz-section {
   position: relative;
   width: 100%;
-  background-color: var(--white);
-  overflow: hidden;
-  z-index: 5;
-  margin-top: 0;
-  padding-top: 0;
+  background-color: transparent;
+  padding-bottom: 120px;
+  /* Use overflow-y: auto with overflow: hidden fallback for sticky support */
+  overflow: hidden; 
 }
 
+/* --- INTRO --- */
 .ora-biz-intro-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 60px 8% 80px 8%;
+  padding: 100px 8% 80px 8%;
 }
 
 .ora-biz-badge {
@@ -19,19 +19,19 @@
   background: rgba(201, 64, 96, 0.08);
   padding: 8px 20px;
   border-radius: 100px;
-  font-family: var(--font-body);
+  font-family: var(--font-body, sans-serif);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--pink);
+  color: var(--pink, #c94060);
   margin-bottom: 30px;
 }
 
 .ora-biz-title {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 6vw, 5rem);
-  color: var(--ink);
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  color: var(--ink, #1a0810);
   line-height: 1.1;
   text-transform: uppercase;
   margin-bottom: 50px;
@@ -45,101 +45,107 @@
 }
 
 .ora-biz-para {
-  font-family: var(--font-body);
+  font-family: var(--font-body, sans-serif);
   font-size: 1.15rem;
-  color: var(--ink-mid);
+  color: var(--ink-mid, #4a3840);
   line-height: 1.8;
-  font-weight: 300;
 }
 
-.ora-biz-para.ora-biz-lead {
+.ora-biz-para.lead {
   font-size: 1.4rem;
-  color: var(--ink);
-  font-weight: 400;
+  color: var(--ink, #1a0810);
 }
 
-.ora-biz-para-stack {
+/* --- THE STACKING MAGIC --- */
+.ora-biz-cards-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.ora-biz-layers-pin {
-  position: relative;
-  width: 100%;
-  height: 90vh; 
-  overflow: hidden;
-  background: linear-gradient(to bottom, #ffffff, #f7f4f5); 
-  margin-top: 0;
+  gap: 60px; /* Space between cards before they stack */
+  padding-bottom: 100px; /* Gives room at the bottom to see the full stack */
 }
 
 .ora-biz-layer-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 90%;
-  max-width: 1100px;
-  min-height: 480px;
-  background: #ffffff;
-  border-radius: 24px;
-  border: 1px solid rgba(26, 8, 16, 0.08);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08);
   display: flex;
+  background: #ffffff;
+  border-radius: 30px;
+  border: 1px solid rgba(26, 8, 16, 0.08);
+  /* The shadow helps visually separate the stacked cards */
+  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.05), 0 20px 60px rgba(0, 0, 0, 0.04);
+  min-height: 450px;
   overflow: hidden;
-  transform-origin: center bottom;
+  
+  /* Make it stick */
+  position: sticky;
+}
+
+/* By incrementing the top value, they stack like a cascaded deck of cards. 
+  Adjust these px values based on the height of your website's navigation bar! 
+*/
+.stack-1 { top: 100px; z-index: 1; }
+.stack-2 { top: 130px; z-index: 2; }
+.stack-3 { top: 160px; z-index: 3; }
+
+.ora-layer-visual {
+  flex: 1;
+  background: #fdfcfc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  border-right: 1px solid rgba(26, 8, 16, 0.04);
 }
 
 .ora-layer-content {
   flex: 1.2;
-  padding: 50px 60px;
+  padding: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+/* Content Details */
 .ora-layer-num {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--pink);
-  font-weight: 600;
+  font-family: var(--font-body, sans-serif);
+  font-size: 1.2rem;
+  color: var(--pink, #c94060);
+  font-weight: 700;
   letter-spacing: 0.1em;
   margin-bottom: 15px;
 }
 
 .ora-layer-title {
-  font-family: var(--font-display);
-  font-size: 2.8rem;
-  color: var(--ink);
+  font-family: var(--font-display, sans-serif);
+  font-size: 2.5rem;
+  color: var(--ink, #1a0810);
   margin-bottom: 20px;
-  line-height: 1.1;
-  letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 
 .ora-layer-desc {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  color: var(--ink-mid);
+  font-family: var(--font-body, sans-serif);
+  font-size: 1.1rem;
+  color: var(--ink-mid, #4a3840);
   line-height: 1.7;
-  font-weight: 300;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .ora-layer-micro-data {
   list-style: none;
   padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .ora-layer-micro-data li {
   position: relative;
-  padding-left: 20px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: var(--ink);
-  font-weight: 400;
+  padding-left: 25px;
+  font-family: var(--font-body, sans-serif);
+  font-size: 1rem;
+  color: var(--ink, #1a0810);
 }
 
 .ora-layer-micro-data li::before {
@@ -147,76 +153,64 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--pink);
+  color: var(--pink, #c94060);
   font-weight: bold;
 }
 
-.ora-layer-visual {
-  flex: 0.8;
-  position: relative;
-  background: #faf8f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 1px solid rgba(26, 8, 16, 0.05);
-}
-
+/* Animations & Mocks */
 .data-particles-mock {
   width: 150px; height: 150px;
-  background: radial-gradient(circle, var(--pink-soft) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 64, 96, 0.15) 0%, transparent 70%);
   border-radius: 50%;
   animation: oraFloatMock 4s ease-in-out infinite;
 }
 
 .pulse-ring-mock {
   width: 100px; height: 100px;
-  border: 2px solid var(--pink);
+  border: 2px solid var(--pink, #c94060);
   border-radius: 50%;
   animation: oraPulseMock 2s infinite;
 }
 
 .network-grid-mock {
   width: 150px; height: 150px;
-  background-image: linear-gradient(var(--pink-soft) 1px, transparent 1px), linear-gradient(90deg, var(--pink-soft) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(201, 64, 96, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 64, 96, 0.15) 1px, transparent 1px);
   background-size: 30px 30px;
   transform: rotate(15deg);
 }
 
-@keyframes oraFloatMock { 0% { transform: translateY(0); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0); } }
-@keyframes oraPulseMock { 0% { box-shadow: 0 0 0 0 rgba(201, 64, 96, 0.4); } 100% { box-shadow: 0 0 0 40px rgba(201, 64, 96, 0); } }
+@keyframes oraFloatMock { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+@keyframes oraPulseMock { 0% { box-shadow: 0 0 0 0 rgba(201, 64, 96, 0.3); } 100% { box-shadow: 0 0 0 40px rgba(201, 64, 96, 0); } }
 
+/* --- FINAL SUMMARY --- */
 .ora-biz-final-summary {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 90%;
   max-width: 800px;
+  margin: 60px auto 0 auto;
   text-align: center;
+  padding: 0 5%;
 }
 
 .ora-final-title {
-  font-family: var(--font-display);
-  font-size: 3.8rem;
-  color: var(--ink);
+  font-family: var(--font-display, sans-serif);
+  font-size: 3.5rem;
+  color: var(--ink, #1a0810);
   margin-bottom: 25px;
-  letter-spacing: 0.02em;
 }
 
 .ora-final-desc {
-  font-family: var(--font-body);
+  font-family: var(--font-body, sans-serif);
   font-size: 1.3rem;
-  color: var(--ink-mid);
+  color: var(--ink-mid, #4a3840);
   line-height: 1.6;
-  font-weight: 300;
   margin-bottom: 40px;
 }
 
 .ora-biz-cta {
-  background: var(--ink);
-  color: var(--white);
+  background: var(--ink, #1a0810);
+  color: #ffffff;
   padding: 18px 45px;
   border-radius: 100px;
-  font-family: var(--font-body);
+  font-family: var(--font-body, sans-serif);
   font-size: 1.05rem;
   font-weight: 500;
   border: none;
@@ -228,35 +222,37 @@
   margin-bottom: 30px;
 }
 
-.ora-biz-cta .arrow { transition: transform 0.3s ease; }
-.ora-biz-cta:hover { background: var(--pink); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(201, 64, 96, 0.2); }
-.ora-biz-cta:hover .arrow { transform: translateX(5px); }
-
-.ora-final-closing {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--pink);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
+.ora-biz-cta:hover { 
+  background: var(--pink, #c94060); 
+  transform: translateY(-3px); 
+  box-shadow: 0 15px 30px rgba(201, 64, 96, 0.2); 
 }
 
-@media (max-width: 1024px) {
+.ora-final-closing {
+  font-family: var(--font-body, sans-serif);
+  color: var(--pink, #c94060);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+/* --- RESPONSIVE FIXES --- */
+@media (max-width: 992px) {
   .ora-biz-text-grid { grid-template-columns: 1fr; gap: 30px; }
-  .ora-biz-layer-card { 
-    flex-direction: column; 
-    height: 80vh; 
-    max-height: 700px;
-    overflow-y: auto; 
-  }
-  .ora-layer-visual { min-height: 200px; border-right: none; border-bottom: 1px solid rgba(26, 8, 16, 0.05); }
-  .ora-layer-content { padding: 30px 20px; }
+  .ora-biz-layer-card { flex-direction: column; }
+  .ora-layer-visual { min-height: 250px; border-right: none; border-bottom: 1px solid rgba(26, 8, 16, 0.04); }
+  .ora-layer-content { padding: 40px 30px; }
+  
+  /* On mobile, adjust the stacking offsets slightly */
+  .stack-1 { top: 80px; }
+  .stack-2 { top: 100px; }
+  .stack-3 { top: 120px; }
 }
 
 @media (max-width: 600px) {
   .ora-biz-intro-container { padding: 80px 5% 40px 5%; }
-  .ora-biz-title { font-size: 2.8rem; }
+  .ora-biz-title { font-size: 2.5rem; }
   .ora-layer-title { font-size: 2rem; }
-  .ora-final-title { font-size: 2.5rem; }
-  .ora-biz-layers-pin { height: 80vh; }
+  .ora-final-title { font-size: 2.2rem; }
+  .ora-biz-cards-container { gap: 40px; }
 }

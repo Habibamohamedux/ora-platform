@@ -1,0 +1,259 @@
+/* --- SECTION CONTAINER --- */
+.ora-join-section {
+  position: relative;
+  width: 100%;
+  padding: 120px 8%;
+  background-color: transparent;
+  border-top: 1px solid rgba(26, 8, 16, 0.05); /* Clean separator line */
+  overflow: hidden;
+  z-index: 5;
+}
+
+.ora-join-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* --- GRID LAYOUT --- */
+.ora-join-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr; /* Left is slightly wider */
+  gap: 80px;
+  align-items: flex-start;
+}
+
+/* --- LEFT SIDE: TEXT --- */
+.ora-join-left {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+}
+
+.ora-join-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 15px;
+  letter-spacing: -0.01em;
+}
+
+.ora-join-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.6rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--pink); /* Accented soft subtitle */
+  margin-bottom: 40px;
+}
+
+.ora-join-para {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--ink-mid);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 25px;
+}
+
+.ora-join-actions {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ora-join-action-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+/* Secondary CTA (Link style) */
+.ora-join-secondary-cta {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: all 0.3s ease;
+}
+
+.ora-join-arrow {
+  transition: transform 0.3s ease;
+}
+
+.ora-join-secondary-cta:hover {
+  color: var(--pink);
+  border-color: var(--pink);
+}
+
+.ora-join-secondary-cta:hover .ora-join-arrow {
+  transform: translateX(5px);
+}
+
+.ora-join-disclaimer {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(26, 8, 16, 0.4); /* Very faint text */
+  line-height: 1.5;
+  font-style: italic;
+  margin-top: auto;
+}
+
+/* --- RIGHT SIDE: FORM CARD --- */
+.ora-join-right {
+  position: relative;
+}
+
+.ora-join-form-card {
+  background-color: #fafbfc;
+  border: 1px solid rgba(26, 8, 16, 0.08);
+  border-radius: 8px; /* Sharp, clean corners like a document */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+  
+  /* 🌟 THE BLUEPRINT GRID BACKGROUND (Adapted to ORA Pink) 🌟 */
+  background-image: 
+    linear-gradient(rgba(201, 64, 96, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 64, 96, 0.04) 1px, transparent 1px);
+  background-size: 25px 25px;
+}
+
+.ora-join-form-content {
+  position: relative;
+  z-index: 2;
+  padding: 50px 40px;
+  background: radial-gradient(circle at center, rgba(250,251,252,0.9) 0%, rgba(250,251,252,0.6) 100%);
+}
+
+.ora-join-form-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.ora-join-form-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink-mid);
+  text-align: center;
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 35px;
+}
+
+/* Form Styles */
+.ora-join-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ora-join-input-group-row {
+  display: flex;
+  gap: 15px;
+}
+
+.ora-join-input {
+  width: 100%;
+  padding: 15px 18px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid rgba(26, 8, 16, 0.15);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ora-join-input::placeholder {
+  color: rgba(26, 8, 16, 0.3);
+}
+
+.ora-join-input:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(201, 64, 96, 0.1);
+}
+
+/* Primary CTA Button */
+.ora-join-submit-btn {
+  width: 100%;
+  padding: 18px;
+  margin-top: 10px;
+  background-color: var(--ink);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ora-join-submit-btn:hover {
+  background-color: var(--pink);
+  box-shadow: 0 10px 20px rgba(201, 64, 96, 0.2);
+  transform: translateY(-2px);
+}
+
+.ora-join-submit-btn:active {
+  transform: translateY(0);
+}
+
+.ora-join-form-footer {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(26, 8, 16, 0.4);
+  margin-top: 25px;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1024px) {
+  .ora-join-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .ora-join-left {
+    padding-right: 0;
+    text-align: center;
+    align-items: center;
+  }
+  .ora-join-secondary-cta {
+    margin: 0 auto;
+  }
+  .ora-join-form-card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .ora-join-section {
+    padding: 80px 5%;
+  }
+  .ora-join-title {
+    font-size: 2.8rem;
+  }
+  .ora-join-input-group-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .ora-join-form-content {
+    padding: 40px 20px;
+  }
+}
