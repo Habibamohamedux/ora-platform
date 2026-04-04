@@ -1,0 +1,49 @@
+.legal-contact-btn {
+  font-family: var(--font-display), 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  padding: 8px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Variant 1: Match Screenshot 1 (Pink Gradient) */
+.legal-contact-btn.pink {
+  background: linear-gradient(90deg, #F971E1 0%, #E851CD 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(232, 81, 205, 0.3);
+}
+
+.legal-contact-btn.pink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 81, 205, 0.4);
+}
+
+/* Variant 2: Match Screenshot 2 (Grey) */
+.legal-contact-btn.grey {
+  background: #CFCFCF; /* A slightly darker grey than the nav bar */
+  color: #444444;
+}
+
+.legal-contact-btn.grey:hover {
+  transform: translateY(-2px);
+  background: #C4C4C4;
+}
+
+.legal-contact-btn:active {
+  transform: translateY(1px);
+}
+
+.legal-contact-btn .contact-icon {
+  transition: transform 0.2s ease-in-out;
+}
+
+.legal-contact-btn:hover .contact-icon {
+  transform: scale(1.1);
+}

@@ -1,0 +1,72 @@
+/* Main Navbar Wrapper */
+.navbar {
+  position: sticky; /* Keeps the navbar at the top while scrolling */
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  background: transparent; /* Lets the background shine through */
+  pointer-events: none; /* Prevents the transparent bar from blocking clicks below it */
+}
+
+/* Inner Container for Flexbox Layout */
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spreads Logo (left), Nav (center), Btn (right) */
+  max-width: 1440px;
+  margin: 0 auto;
+  gap: 20px;
+  pointer-events: auto; /* Re-enables clicks for the actual navbar items */
+}
+
+/* OVERRIDE: If you want the links in the top bar instead of floating at the bottom */
+.navbar-inner .nav-legal-wrapper {
+  position: static;
+  padding: 0;
+  bottom: auto;
+  width: auto;
+  flex: 1; /* Allows it to take up middle space */
+}
+
+/* --- Responsive Design --- */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+}
+
+/* Tablets / Large Phones */
+@media (max-width: 850px) {
+  .navbar-inner {
+    flex-wrap: wrap; /* Allows the center links to drop down if they run out of space */
+    justify-content: space-between;
+  }
+
+  /* Force the links to drop to a new line on medium screens */
+  .navbar-inner .nav-legal-wrapper {
+    order: 3; /* Pushes the nav links to the bottom of the flex container */
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 500px) {
+  .navbar {
+    padding: 15px;
+  }
+  
+  .navbar-inner {
+    flex-direction: column; /* Stacks everything vertically */
+    gap: 15px;
+  }
+
+  /* Adjust the logo wrapper to ensure text isn't cramped */
+  .navbar-inner .logo-wrapper {
+    margin-bottom: 5px;
+  }
+}

@@ -3,6 +3,7 @@
   align-items: center;
   gap: 16px;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  mix-blend-mode: difference;
 }
 
 .logo-text {
@@ -11,6 +12,7 @@
   letter-spacing: 0.15em;
   color: #FFFFFF;
   font-family: "Wix Madefor Display", sans-serif;
+  mix-blend-mode: difference;
 }
 
 .ora-svg {
@@ -45,11 +47,13 @@
 .logo-wrapper:hover .ora-path-liquid {
   /* Rising the white fill from 100% (bottom) to 0% (top) */
   clip-path: inset(0% 0 0 0);
+   filter: drop-shadow(0 0 10px rgba(128, 128, 128, 0.4));
 }
 
 /* Optional: Slight glow when filled */
 .logo-wrapper:hover .ora-svg {
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+   filter: drop-shadow(0 0 10px rgba(128, 128, 128, 0.4));
 }
 
 /* --- ANIMATIONS --- */
@@ -73,4 +77,12 @@
   stroke-width: 1px;
   clip-path: inset(100% 0 0 0); 
   transition: clip-path 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.logo-text2 {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: #FFFFFF;
+  font-family: "Wix Madefor Display", sans-serif;
+  mix-blend-mode: difference;
 }

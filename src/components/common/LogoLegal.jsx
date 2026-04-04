@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Logo.css';
 
-const Logo = ({ name = "ORA", targetPath = "/" }) => {
+const Logolegal = ({ name = "ORA", targetPath = "/" }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -42,9 +42,9 @@ const Logo = ({ name = "ORA", targetPath = "/" }) => {
           strokeWidth="1"
         />
       </svg>
-      <span className="logo-text">{name}</span>
+      <span className="logo-text2">{name}</span>
     </div>
   );
 };
 
-export default Logo;
+export default Logolegal;
