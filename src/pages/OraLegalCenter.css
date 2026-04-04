@@ -2,3 +2,298 @@
     background-color: #F7F7F7;
 
 }
+.legal-title {
+  /* Dimensions & Color */
+  color: #67667C;
+  font-size: 64px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  
+  /* Line Height & Precision Trimming */
+  line-height: normal;
+  leading-trim: both;
+  text-edge: cap;
+
+  /* Layout Resets */
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  display: inline-block; /* Helps with trim rendering */
+}
+.legal-info-container {
+  display: inline-flex;
+  gap: 4px; /* Adjust spacing between label and date */
+  align-items: baseline;
+}
+
+/* Base Typography for both components */
+.legal-label, 
+.legal-value {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  line-height: normal;
+  leading-trim: both;
+  text-edge: cap;
+}
+
+/* Label & Grey Value Style */
+.legal-label,
+.grey-bold {
+  color: #939393;
+}
+
+.grey-bold {
+  font-weight: 700; /* As seen in your screenshot for 'March 2026' */
+}
+
+/* Green Value Style */
+.green-bold {
+  color: #6FA578;
+  font-weight: 700;
+}
+/* Container for the whole section */
+.ora-legal-center {
+  padding: 40px 5%; /* Adjust padding to match your page margins */
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Flex wrapper to push title left and dates right */
+.legal-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically centers the small text with the big title */
+
+}
+
+/* Group the two date components together on the right */
+.legal-meta-group {
+  display: flex;
+  gap: 32px; /* Horizontal space between Effective Date and Last Updated */
+  align-items: center;
+}
+
+/* Ensure the title doesn't have extra bottom margin that breaks alignment */
+.legal-title {
+  margin: 0;
+}
+.legal-paragraph {
+  color: #67667C;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  
+  /* Precision Trimming */
+  leading-trim: both;
+  text-edge: cap;
+
+  /* Document Spacing */
+  margin-top: 0;
+  max-width: 900px;      /* Optimal line length for readability at 24px */
+}
+/* Styling for the bold parts of the paragraph */
+.legal-paragraph strong {
+  font-weight: 700;
+  color: #67667C; /* Keeps color consistent with the paragraph */
+}
+
+/* The Gradient Horizontal Rule */
+.legal-gradient-hr {
+  width: 100%;
+  height: 4px; /* Adjust thickness as needed */
+  margin-top: 24px;
+  opacity: 0.55;
+  border: none;
+  background: linear-gradient(
+    270deg, 
+    #FDBCD6 0%, 
+    #FD74AC 14.9%, 
+    #F77D72 40.38%, 
+    #FBCBC7 50.96%, 
+    #C285F5 67.31%, 
+    #DDBEF7 87.02%
+  );
+}
+
+/* Optional: Ensure the paragraph has a nice width for the screenshot look */
+.legal-paragraph {
+  max-width: 100%; /* Or set a specific max-width like 1100px to match your UI */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+/* --- LAYOUT GRID --- */
+.legal-layout-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr; /* Sidebar is 260px, content takes the rest */
+  gap: 60px;
+  margin-top: 40px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .legal-layout-grid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
+}
+
+/* --- SIDEBAR: TOC --- */
+.legal-sidebar {
+  position: sticky;
+  top: 40px; /* Sticks to top when scrolling */
+}
+
+.toc-title {
+  color: #939393;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+.toc-item {
+  margin-bottom: 4px;
+}
+
+.toc-item a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #939393;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.toc-item.active a {
+  background-color: #F8C3DE; /* Pink background for active */
+  color: #fff; /* Assuming white text based on standard contrast, adjust if needed */
+}
+
+.toc-item:hover a:not(.active) {
+  background-color: #f5f5f5;
+}
+
+/* --- SIDEBAR: DOWNLOAD CARD --- */
+.download-pdf-card {
+  border: 1px solid #EAEAEA;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.pdf-icon {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: #F38CB5; /* Pink icon */
+}
+
+.download-text {
+  font-family: "Bebas Neue", sans-serif;
+  color: #939393;
+  font-size: 16px;
+  margin: 0 0 8px 0;
+}
+
+.download-link {
+  font-family: "Bebas Neue", sans-serif;
+  color: #F38CB5;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+/* --- SIDEBAR: CONTACT INFO --- */
+.legal-contact-info p,
+.legal-contact-info span {
+  font-family: "Bebas Neue", sans-serif;
+  color: #939393;
+  font-size: 14px;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+  display: block;
+}
+
+.contact-block {
+  margin-top: 16px;
+}
+
+.contact-block span {
+  margin: 0;
+}
+
+.contact-block a {
+  font-family: "Bebas Neue", sans-serif;
+  color: #F38CB5; /* Pink text for emails */
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* --- MAIN CONTENT SECTIONS --- */
+.legal-section-block {
+  margin-bottom: 60px;
+}
+
+.section-main-title {
+  font-family: "Bebas Neue", sans-serif;
+  color: #F8C3DE; /* Light Pink */
+  font-size: 32px;
+  margin: 0 0 12px 0;
+  letter-spacing: 1px;
+}
+
+.section-subtitle {
+  font-family: "Bebas Neue", sans-serif;
+  color: #939393;
+  font-size: 16px;
+  margin: 0 0 24px 0;
+}
+
+/* --- POLICY CARDS --- */
+.policy-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.policy-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); /* Soft drop shadow */
+  border: 1px solid #F5F5F5;
+}
+
+.policy-card-title {
+  font-family: "Bebas Neue", sans-serif;
+  color: #F38CB5; /* Pink Title */
+  font-size: 24px;
+  margin: 0 0 16px 0;
+}
+
+.policy-card-content p,
+.policy-card-content li {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #67667C;
+  font-size: 18px; /* Slightly smaller than main header paragraph for hierarchy */
+  line-height: 1.5;
+  margin: 0;
+}
+
+.legal-list {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+.legal-list li {
+  margin-bottom: 4px;
+}

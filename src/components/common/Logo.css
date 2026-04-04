@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  color: #fff;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   mix-blend-mode: difference;
 }
@@ -10,79 +11,52 @@
   font-size: 24px;
   font-weight: 500;
   letter-spacing: 0.15em;
-  color: #FFFFFF;
+  color: currentColor;
   font-family: "Wix Madefor Display", sans-serif;
-  mix-blend-mode: difference;
 }
 
 .ora-svg {
   position: relative;
   overflow: visible;
-  /* Gentle floating animation */
+  color: currentColor;
   animation: logo-breath 4s ease-in-out infinite;
 }
 
-/* BASE LAYER: Stays there constantly */
 .ora-path-base {
-  /* This ensures the logo never disappears */
-  fill: rgba(255, 255, 255, 0.35);
-  stroke: rgba(255, 255, 255, 0.1); /* Subtle outline */
+  fill: currentColor;
+  fill-opacity: 0.35;
+  stroke: currentColor;
+  stroke-opacity: 0.6;
+  stroke-width: 1px;
   transition: opacity 0.4s ease;
 }
 
-/* LIQUID LAYER: The rising overlay */
 .ora-path-liquid {
-  fill: #FFFFFF;
-  /* Start completely clipped out from the bottom */
-  clip-path: inset(100% 0 0 0); 
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1px;
+  clip-path: inset(100% 0 0 0);
   transition: clip-path 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
-
-/* --- THE HOVER ACTION --- */
 
 .logo-wrapper:hover {
   transform: scale(1.08);
 }
 
 .logo-wrapper:hover .ora-path-liquid {
-  /* Rising the white fill from 100% (bottom) to 0% (top) */
   clip-path: inset(0% 0 0 0);
-   filter: drop-shadow(0 0 10px rgba(128, 128, 128, 0.4));
 }
 
-/* Optional: Slight glow when filled */
-.logo-wrapper:hover .ora-svg {
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-   filter: drop-shadow(0 0 10px rgba(128, 128, 128, 0.4));
-}
-
-/* --- ANIMATIONS --- */
 
 @keyframes logo-breath {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
 }
-/* Update these parts in your Logo.css */
 
-.ora-path-base {
-  fill: rgba(255, 255, 255, 0.35);
-  stroke: rgba(255, 255, 255, 0.6);
-  stroke-width: 1px;
-  transition: opacity 0.4s ease;
-}
-
-.ora-path-liquid {
-  fill: #FFFFFF;
-  stroke: #FFFFFF;
-  stroke-width: 1px;
-  clip-path: inset(100% 0 0 0); 
-  transition: clip-path 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-}
 .logo-text2 {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.15em;
-  color: #FFFFFF;
+  color: currentColor;
   font-family: "Wix Madefor Display", sans-serif;
-  mix-blend-mode: difference;
 }
