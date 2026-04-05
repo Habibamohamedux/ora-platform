@@ -14,7 +14,7 @@ const LegalSectionBlock = ({ sectionData }) => {
       {/* Map through the white cards for this section */}
       <div className="policy-cards-container">
         {sectionData.cards.map((card, index) => (
-          <div key={index} className="policy-card">
+          <div key={index} className="policy-card legal-card-container ">
             {card.cardTitle && (
               <h3 className="policy-card-title">{card.cardTitle}</h3>
             )}

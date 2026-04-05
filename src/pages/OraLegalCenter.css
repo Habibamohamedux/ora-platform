@@ -416,3 +416,91 @@
 .legal-list li {
   margin-bottom: 4px;
 }
+/* Inline Cookie Banner Container */
+.cookie-banner-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #fce7f3;
+    border-radius: 20px;
+    padding: 14px 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.cookie-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.cookie-banner-icon {
+    width: 48px;
+    height: 48px;
+    background: #fff5fb;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cookie-banner-text {
+    color: #F38CB5; /* Matching the purple/grey text from ORA */
+    font-size: 15px;
+    margin: 0;
+    font-weight: 450;
+}
+
+.cookie-banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Pink Accept Button */
+.cookie-banner-btn {
+    background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cookie-banner-btn:hover {
+    box-shadow: 0 4px 15px rgba(219, 39, 119, 0.3);
+    opacity: 0.9;
+}
+
+/* Grey X Button */
+.cookie-button-x {
+    background: #f9fafb;
+    border: 1px solid #f3f4f6;
+    color: #9ca3af;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.cookie-button-x:hover {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+.legal-card-container {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Optional: Add this if you want the accept message to look different */
+#cookie-banner-text {
+    transition: all 0.3s ease;
+}

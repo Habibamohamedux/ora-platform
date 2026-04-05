@@ -1,0 +1,107 @@
+.cookie-notification {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px); /* Start hidden below */
+  z-index: 9999;
+  width: 90%;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 12px 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+}
+
+.cookie-notification.slide-up {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.cookie-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cookie-icon-wrapper {
+  background: #fdf2f8; /* Soft pink background */
+  padding: 10px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cookie-icon {
+  width: 24px;
+  height: 24px;
+  color: #ec4899; /* Pink */
+}
+
+.cookie-text {
+  flex: 1;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cookie-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cookie-accept-btn {
+  background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(219, 39, 119, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cookie-accept-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(219, 39, 119, 0.4);
+}
+
+.cookie-close-btn {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  color: #9ca3af;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cookie-close-btn:hover {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .cookie-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .cookie-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

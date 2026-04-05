@@ -60,3 +60,43 @@
   color: currentColor;
   font-family: "Wix Madefor Display", sans-serif;
 }
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  /* 1. Force the base color to pure white */
+  color: #ffffff; 
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* 2. Apply the blend mode */
+  mix-blend-mode: exclusion; 
+  
+  /* 3. Ensure it stays on top to blend with elements below it */
+  position: relative;
+  z-index: 9999; 
+}
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- THEME CONTROLS --- */
+
+/* When the background is WHITE, the logo is DARK */
+.logo-wrapper.theme-dark {
+  color: #67667C; /* Dark charcoal/black */
+}
+
+/* When the background is BLACK, the logo is WHITE */
+.logo-wrapper.theme-light {
+  color: #ffffff; 
+}
+
+/* Keep your currentColor logic so the SVG inherits the theme */
+.ora-path-base, .ora-path-liquid, .logo-text2 {
+  fill: currentColor;
+  stroke: currentColor;
+  color: currentColor;
+}

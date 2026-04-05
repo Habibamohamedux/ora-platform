@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { supabase } from '../supabase'; 
 import "./OraLegalCenter.css"; 
 import NavbarLegal from '../components/layout/NavbarLegal';
+import OraLegalFooter from '../components/layout/OraLegalFooter';
 import LegalTitle from '../components/legal/LegalTitle';
 import LegalDate from '../components/legal/LegalDate';
 import LegalUpdates from '../components/legal/LegalUpdates';
@@ -148,7 +149,9 @@ const OraLegalCenter = () => {
                         ))}
                     </div>
                 </div>
+     
             </section>
+                       <OraLegalFooter />
         </div>
     );
 }

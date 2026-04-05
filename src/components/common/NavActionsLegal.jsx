@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './NavActionsLegal.css';
 
 const NavActionsLegal = () => {
@@ -16,15 +16,23 @@ const NavActionsLegal = () => {
       <div className="nav-legal-container">
         {links.map((link, index) => (
           <React.Fragment key={link.label}>
-            <Link to={link.path} className="nav-legal-link">
+            <NavLink 
+              to={link.path} 
+              className={({ isActive }) => 
+                isActive ? "nav-legal-link active-legal-link" : "nav-legal-link"
+              }
+            >
               {link.label}
-            </Link>
-            <div className="nav-legal-divider"></div>
+            </NavLink>
+            {/* Render divider only if it's not the last link */}
+            {index < links.length - 1 && <div className="nav-legal-divider"></div>}
           </React.Fragment>
         ))}
         
-        {/* Special "BACK TO ORA" link with arrow */}
-        <Link to="/" className="nav-legal-link back-link">
+        {/* Separator for the Back Link */}
+        <div className="nav-legal-divider"></div>
+
+        <NavLink to="/" className="nav-legal-link back-link">
           BACK TO ORA
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
@@ -41,7 +49,7 @@ const NavActionsLegal = () => {
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>
           </svg>
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );

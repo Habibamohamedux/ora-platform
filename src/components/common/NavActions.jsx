@@ -1,50 +1,53 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // 1️⃣ Import useNavigate
 import './NavActions.css';
+
+// 2️⃣ Added 'path' to each item so the router knows where to go
 const menuData = [
   {
     category: 'SYSTEM',
     items: [
-      { title: 'Ecosystem',    desc: 'A unified overview of how ORA connects AI, wearable technology, and clinical care into one seamless system.' },
-      { title: 'Intelligence', desc: 'The AI engine powering predictions, insights, and real-time maternal health analysis.' },
-      { title: 'Clinical',     desc: 'A dedicated layer for doctors to monitor patients, manage risks, and provide informed care.' },
+      { title: 'Ecosystem', path: '/ecosystem', desc: 'A unified overview of how ORA connects AI, wearable technology, and clinical care into one seamless system.' },
+      { title: 'Intelligence', path: '/intelligence', desc: 'The AI engine powering predictions, insights, and real-time maternal health analysis.' },
+      { title: 'Clinical', path: '/clinical', desc: 'A dedicated layer for doctors to monitor patients, manage risks, and provide informed care.' },
     ],
   },
   {
     category: 'EXPERIENCE',
     items: [
-      { title: 'Companion', desc: 'Your everyday interface for tracking, guidance, and personalized pregnancy support.' },
-      { title: 'Pulse',     desc: "Real-time biometric monitoring through ORA's wearable technology, capturing vital health signals." },
+      { title: 'Companion', path: '/companion', desc: 'Your everyday interface for tracking, guidance, and personalized pregnancy support.' },
+      { title: 'Pulse', path: '/pulse', desc: "Real-time biometric monitoring through ORA's wearable technology, capturing vital health signals." },
     ],
   },
   {
     category: 'FOUNDATION',
     items: [
-      { title: 'Origin', desc: "The story, vision, and purpose behind ORA and its mission to redefine maternal care." },
+      { title: 'Origin', path: '/origin', desc: "The story, vision, and purpose behind ORA and its mission to redefine maternal care." },
     ],
   },
   {
     category: 'KNOWLEDGE',
     items: [
-      { title: 'Insights', desc: 'Research, articles, and data-driven content grounded in medical evidence and innovation.' },
-      { title: 'Guidance', desc: 'Practical resources, educational content, and step-by-step support throughout the maternal journey.' },
+      { title: 'Insights', path: '/insights', desc: 'Research, articles, and data-driven content grounded in medical evidence and innovation.' },
+      { title: 'Guidance', path: '/guidance', desc: 'Practical resources, educational content, and step-by-step support throughout the maternal journey.' },
     ],
   },
   {
     category: 'CONNECTION',
     items: [
-      { title: 'Circle', desc: 'A supportive space for shared experiences, community stories, and emotional connection.' },
+      { title: 'Circle', path: '/circle', desc: 'A supportive space for shared experiences, community stories, and emotional connection.' },
     ],
   },
   {
     category: 'TRUST',
     items: [
-      { title: 'Trust', desc: 'Privacy, data protection, and the ethical standards that ensure your information is always secure.' },
+      { title: 'Trust', path: '/Trust', desc: 'Privacy, data protection, and the ethical standards that ensure your information is always secure.' },
     ],
   },
   {
     category: 'BUSINESS',
     items: [
-      { title: 'Invest', desc: 'Opportunities to partner, collaborate, and support the future of maternal health technology.' },
+      { title: 'Invest', path: '/invest', desc: 'Opportunities to partner, collaborate, and support the future of maternal health technology.' },
     ],
   },
 ];
@@ -74,7 +77,8 @@ const StaggeredChars = ({ text, isActive }) => (
   </>
 );
 
-const MenuItem = ({ item, globalIndex, isMenuOpen, onHover }) => {
+// 3️⃣ Added onClick prop to MenuItem
+const MenuItem = ({ item, globalIndex, isMenuOpen, onHover, onClick }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -82,7 +86,9 @@ const MenuItem = ({ item, globalIndex, isMenuOpen, onHover }) => {
       className="menu-item"
       onMouseEnter={() => { setHovered(true); onHover(item); }}
       onMouseLeave={() => setHovered(false)}
+      onClick={() => onClick(item.path)} // Trigger navigation on click
       style={{
+        cursor: 'pointer', // Ensure it looks clickable
         transform:  isMenuOpen ? 'translateX(0)'   : 'translateX(-28px)',
         opacity:    isMenuOpen ? 1                  : 0,
         transition: `transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) ${0.18 + globalIndex * 0.04}s,
@@ -108,6 +114,8 @@ const NavActions = () => {
   const [activeDetail,   setActiveDetail]   = useState(null);
   const [animKey,        setAnimKey]        = useState(0);
 
+  const navigate = useNavigate(); // 4️⃣ Initialize the router navigation
+
   const isActive = isOpen || triggerHovered;
 
   const handleHover = (item) => {
@@ -117,6 +125,14 @@ const NavActions = () => {
 
   const handleOpen  = () => { setIsOpen(true);  setActiveDetail(null); };
   const handleClose = () => { setIsOpen(false); setActiveDetail(null); };
+
+  // 5️⃣ Create a function to handle the click: Close menu, then navigate
+  const handleItemClick = (path) => {
+    handleClose(); // Close the overlay first
+    setTimeout(() => {
+      navigate(path); // Navigate to the new page
+    }, 300); // Optional: tiny delay so the menu closing animation can start before the page swaps
+  };
 
   let globalIndex = 0;
 
@@ -184,6 +200,7 @@ const NavActions = () => {
                         globalIndex={idx}
                         isMenuOpen={isOpen}
                         onHover={handleHover}
+                        onClick={handleItemClick} // 6️⃣ Pass the function down
                       />
                     );
                   })}
@@ -213,7 +230,7 @@ const NavActions = () => {
 
         {/* Footer */}
         <div className="mf">
-          <span>© 2025 ORA Health — All rights reserved</span>
+          <span>© {new Date().getFullYear()} ORA Health — All rights reserved</span>
           <span>Redefining Maternal Care</span>
         </div>
 
