@@ -128,12 +128,34 @@
   }
 }
 
-/* =========================================
+/* /* =========================================
    5. SIDEBAR: TOC & ANIMATIONS
    ========================================= */
 .legal-sidebar {
   position: sticky;
   top: 40px; 
+  /* Vertical Scrolling Logic */
+  max-height: calc(100vh - 80px); 
+  overflow-y: auto; 
+  padding-right: 16px; 
+}
+
+/* Custom Scrollbar for the Sidebar */
+.legal-sidebar::-webkit-scrollbar {
+  width: 4px; 
+}
+
+.legal-sidebar::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.legal-sidebar::-webkit-scrollbar-thumb {
+  background: #EAEAEA; 
+  border-radius: 10px;
+}
+
+.legal-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #F8C3DE; 
 }
 
 .sidebar-divider {
@@ -187,7 +209,6 @@
   color: #67667C;
   transform: translateX(4px); 
 }
-
 /* =========================================
    6. SIDEBAR: DOWNLOAD CARD (REFINED)
    ========================================= */
@@ -314,8 +335,21 @@
 /* =========================================
    8. MAIN CONTENT SECTIONS & CARDS
    ========================================= */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .legal-section-block {
   margin-bottom: 60px;
+  /* Applies the entrance animation to the whole section */
+  animation: fadeSlideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
 
 .section-main-title {
@@ -345,6 +379,17 @@
   padding: 32px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); 
   border: 1px solid #F5F5F5;
+  
+  /* NEW: Smooth transition for the hover effect */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* NEW: Card Lift on Hover */
+.policy-card:hover {
+  transform: translateY(-4px); /* Gently floats up */
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.08); /* Shadow expands naturally */
+  border-color: #F8C3DE; /* Optional: Gives a very faint pink border on hover */
 }
 
 .policy-card-title {

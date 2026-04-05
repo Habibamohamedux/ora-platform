@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom'; 
+import { supabase } from '../supabase'; 
 import "./OraLegalCenter.css"; 
 import NavbarLegal from '../components/layout/NavbarLegal';
 import LegalTitle from '../components/legal/LegalTitle';
@@ -8,134 +10,146 @@ import LegalParagraph from '../components/legal/LegalParagraph';
 import LegalSidebar from '../components/legal/LegalSidebar';
 import LegalSectionBlock from '../components/legal/LegalSectionBlock';
 
-// Inline data replacing the external import
-const policyData = [
-  {
-    id: 'introduction',
-    menuLabel: '1. INTRODUCTION',
-    sectionTitle: 'INTRODUCTION',
-    sectionSubtitle: null,
-    cards: [
-      {
-        cardTitle: null,
-        content: (
-          <>
-            <p>ORA develops digital healthcare technologies designed to improve women’s health monitoring, research, and clinical decision support. By accessing our website or services, you agree to the collection and use of information in accordance with this Privacy Policy.</p>
-            <p style={{ marginTop: '12px' }}>This policy applies to all visitors, registered users, healthcare partners, and researchers who interact with the ORA platform.</p>
-          </>
-        )
-      }
-    ]
-  },
-  {
-    id: 'information-we-collect',
-    menuLabel: '2. INFORMATION WE COLLECT',
-    sectionTitle: 'INFORMATION WE COLLECT',
-    sectionSubtitle: 'ORA MAY COLLECT SEVERAL TYPES OF INFORMATION TO PROVIDE AND IMPROVE OUR SERVICES.',
-    cards: [
-      {
-        cardTitle: 'PERSONAL INFORMATION',
-        content: (
-          <>
-            <p>Information that can identify you personally, including:</p>
-            <ul className="legal-list">
-              <li>Full name</li>
-              <li>Email address</li>
-              <li>Phone number</li>
-              <li>Professional credentials (for healthcare providers)</li>
-            </ul>
-          </>
-        )
-      },
-      {
-        cardTitle: 'ACCOUNT INFORMATION',
-        content: (
-          <>
-            <p>When creating an ORA account we may collect:</p>
-            <ul className="legal-list">
-              <li>Username and password</li>
-              <li>Profile preferences</li>
-              <li>Account activity logs</li>
-            </ul>
-          </>
-        )
-      }
-    ]
-  },
-  {
-    id: 'device-information',
-    menuLabel: '3. DEVICE INFORMATION',
-    sectionTitle: 'DEVICE INFORMATION',
-    sectionSubtitle: null,
-    cards: [
-      {
-        cardTitle: 'DEVICE INFORMATION',
-        content: (
-          <>
-            <p>We may automatically collect technical data including:</p>
-            <ul className="legal-list">
-              <li>Device type</li>
-              <li>Browser type</li>
-              <li>Operating system</li>
-              <li>IP address</li>
-              <li>Device identifiers</li>
-            </ul>
-          </>
-        )
-      }
-    ]
-  }
-];
-
 const OraLegalCenter = () => {
-    const [activeSection, setActiveSection] = useState('introduction');
+    // 1️⃣ Get the slug from the URL (e.g., /terms-of-use)
+    const { slug } = useParams(); 
 
-    // Smooth Scroll Function
+    const [activeSection, setActiveSection] = useState('');
+    const [pageData, setPageData] = useState(null);
+    const [sections, setSections] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchLegalPage = async () => {
+            setLoading(true);
+            // Reset scroll to top whenever we switch pages
+            window.scrollTo(0, 0);
+
+            // 2️⃣ Optimized fetch: Get Page + Sections + Cards in one go
+            // We use the exact table names from your schema
+            const { data, error } = await supabase
+                .from('legal_pages')
+                .select(`
+                    *,
+                    legal_sections (
+                        id,
+                        id_anchor,
+                        menu_label,
+                        section_title,
+                        section_subtitle,
+                        order_index,
+                        legal_cards (
+                            card_title,
+                            content,
+                            order_index
+                        )
+                    )
+                `)
+                .eq('slug', slug)
+                .single();
+
+            if (error || !data) {
+                console.error('❌ Supabase Error:', error);
+                setLoading(false);
+                return;
+            }
+
+            // 3️⃣ Format the relational data for your components
+            const formattedSections = data.legal_sections
+                .sort((a, b) => a.order_index - b.order_index)
+                .map(section => ({
+                    id: section.id_anchor,
+                    menuLabel: section.menu_label,
+                    sectionTitle: section.section_title,
+                    sectionSubtitle: section.section_subtitle,
+                    cards: section.legal_cards
+                        .sort((a, b) => a.order_index - b.order_index)
+                        .map(card => ({
+                            cardTitle: card.card_title,
+                            // Content is injected as HTML for lists/bolding
+                            content: (
+                                <div dangerouslySetInnerHTML={{ __html: card.content }} />
+                            )
+                        }))
+                }));
+
+            setPageData(data);
+            setSections(formattedSections);
+            
+            // Default active section to the first anchor
+            if (formattedSections.length > 0) {
+                setActiveSection(formattedSections[0].id);
+            }
+            
+            setLoading(false);
+        };
+
+        fetchLegalPage();
+    }, [slug]); // 🔄 Re-fetches when the URL changes
+
     const handleSectionClick = (id) => {
         setActiveSection(id);
         const element = document.getElementById(id);
         if (element) {
-            // Calculates position and subtracts 40px to account for sticky spacing
-            const y = element.getBoundingClientRect().top + window.scrollY - 40;
+            // Offset for your fixed NavbarLegal
+            const offset = 100; 
+            const y = element.getBoundingClientRect().top + window.scrollY - offset;
             window.scrollTo({ top: y, behavior: 'smooth' });
         }
     };
 
+    if (loading) return (
+        <div className="legal-loading-state">
+            <p>Loading ORA Legal Data...</p>
+        </div>
+    );
+    
+    if (!pageData) return (
+        <div className="legal-error-state">
+            <p>We couldn't find that legal resource.</p>
+        </div>
+    );
+
     return (
-        <>
+        <div className="legal-page-wrapper">
             <NavbarLegal />
+            
             <section className="ora-legal-center">
+                {/* Dynamic Header from legal_pages table */}
                 <div className="legal-header-row">
-                    <LegalTitle>ORA — PRIVACY POLICY</LegalTitle>
+                    <LegalTitle>{pageData.legal_title}</LegalTitle>
                     <div className="legal-meta-group">
-                        <LegalDate monthYear="March 2026" />
-                        <LegalUpdates monthYear="March 2026" />
+                        <LegalDate monthYear={pageData.legal_date} />
+                        <LegalUpdates monthYear={pageData.legal_updates} />
                     </div>
                 </div>
 
                 <LegalParagraph>
-                    ORA Technologies (“<strong>ORA</strong>”, “<strong>we</strong>”, “<strong>our</strong>”, or “<strong>us</strong>”) 
-                    is committed to protecting the privacy and security of our users, including patients, healthcare professionals, and researchers. This Privacy Policy explains how we collect, use, process, and protect information when you access the ORA website, digital platforms, and connected healthcare technologies.
+                    {pageData.intro_paragraph}
                 </LegalParagraph>
+
                 <div className="legal-gradient-hr" />
 
                 <div className="legal-layout-grid">
-                    {/* Left Column now receives the scroll function */}
+                    {/* Sidebar generated dynamically from sections */}
                     <LegalSidebar 
-                      sections={policyData} 
+                      sections={sections} 
                       activeSectionId={activeSection} 
                       onSectionClick={handleSectionClick}
                     />
 
-                    {/* Right Column */}
+                    {/* Main Content Area */}
                     <div className="legal-main-content">
-                        {policyData.map((section) => (
-                            <LegalSectionBlock key={section.id} sectionData={section} />
+                        {sections.map((section) => (
+                            <LegalSectionBlock 
+                                key={section.id} 
+                                sectionData={section} 
+                            />
                         ))}
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }
 
