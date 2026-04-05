@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./OraLegalCenter.css";
+import "./OraLegalCenter.css"; 
 import NavbarLegal from '../components/layout/NavbarLegal';
 import LegalTitle from '../components/legal/LegalTitle';
 import LegalDate from '../components/legal/LegalDate';
@@ -88,14 +88,23 @@ const policyData = [
 ];
 
 const OraLegalCenter = () => {
-    // You can implement scrollspy logic later to update this state dynamically
     const [activeSection, setActiveSection] = useState('introduction');
+
+    // Smooth Scroll Function
+    const handleSectionClick = (id) => {
+        setActiveSection(id);
+        const element = document.getElementById(id);
+        if (element) {
+            // Calculates position and subtracts 40px to account for sticky spacing
+            const y = element.getBoundingClientRect().top + window.scrollY - 40;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+    };
 
     return (
         <>
             <NavbarLegal />
             <section className="ora-legal-center">
-                {/* Header Row */}
                 <div className="legal-header-row">
                     <LegalTitle>ORA — PRIVACY POLICY</LegalTitle>
                     <div className="legal-meta-group">
@@ -110,13 +119,12 @@ const OraLegalCenter = () => {
                 </LegalParagraph>
                 <div className="legal-gradient-hr" />
 
-                {/* --- TWO COLUMN LAYOUT --- */}
                 <div className="legal-layout-grid">
-                    
-                    {/* Left Column */}
+                    {/* Left Column now receives the scroll function */}
                     <LegalSidebar 
                       sections={policyData} 
                       activeSectionId={activeSection} 
+                      onSectionClick={handleSectionClick}
                     />
 
                     {/* Right Column */}
@@ -125,7 +133,6 @@ const OraLegalCenter = () => {
                             <LegalSectionBlock key={section.id} sectionData={section} />
                         ))}
                     </div>
-
                 </div>
             </section>
         </>
