@@ -5,6 +5,7 @@ import CustomCursor from './components/common/CustomCursor';
 import Home from './pages/Home';
 import './pages/Home.css';
 import Invest from './pages/Invest';
+import Trust from './pages/Trust';
 import OraLegalCenter from './pages/OraLegalCenter';
 import './pages/OraLegalCenter.css';
 import './index.css';
@@ -20,6 +21,7 @@ root.render(
         <Route path="/invest" element={<Invest />} />
         <Route path="/legal" element={<Navigate to="/privacy-policy" replace />} />
         <Route path="/:slug" element={<OraLegalCenter />} />
+        <Route path="/trust" element={<Trust />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

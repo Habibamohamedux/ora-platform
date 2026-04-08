@@ -41,7 +41,7 @@ const menuData = [
   {
     category: 'TRUST',
     items: [
-      { title: 'Trust', path: '/Trust', desc: 'Privacy, data protection, and the ethical standards that ensure your information is always secure.' },
+      { title: 'Trust', path: '/trust', desc: 'Privacy, data protection, and the ethical standards that ensure your information is always secure.' },
     ],
   },
   {
