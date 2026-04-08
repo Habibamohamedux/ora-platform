@@ -417,3 +417,749 @@
     padding-bottom: 20px;
   }
 }
+/* ─── DATA PROTECTION SECTION ──────────────────────────────────── */
+
+.data-protection-section {
+  position: relative;
+  background-color: var(--white);
+  color: var(--slate);
+  padding: 6rem 2rem;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* Particle Background Setup */
+.data-protection-canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none; /* Let clicks pass through to content */
+}
+
+.data-protection-particles {
+  width: 100%;
+  height: 100%;
+}
+
+/* Fades the particles out naturally towards the bottom */
+.data-protection-fade-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 248, 249, 0) 0%,
+    rgba(250, 248, 249, 0.8) 50%,
+    var(--white) 100%
+  );
+  z-index: 1;
+}
+
+/* Content Container */
+.data-protection-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.data-protection-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.data-protection-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--pink);
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.data-protection-body {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--slate);
+}
+
+/* Grid Layout */
+.data-protection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+/* Cards */
+.data-protection-card {
+  background-color: var(--white);
+  border: 1px solid var(--pink-soft);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 30px var(--pink-ghost);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.data-protection-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px var(--pink-soft);
+  border-color: var(--pink-mid);
+}
+
+/* Card Icons */
+.data-protection-icon-wrapper {
+  background-color: var(--white);
+  border: 2px solid var(--pink-soft);
+  color: var(--pink);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.data-protection-card:hover .data-protection-icon-wrapper {
+  background-color: var(--pink);
+  color: var(--white);
+  border-color: var(--pink);
+}
+
+.data-protection-card-title {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--pink);
+  margin-bottom: 0.75rem;
+}
+
+.data-protection-card-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--slate-light);
+  margin: 0;
+}
+
+/* CTA Button */
+.data-protection-cta-wrapper {
+  text-align: center;
+}
+
+.data-protection-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pink);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px var(--pink-mid);
+}
+
+.data-protection-button:hover {
+  background-color: #a83550; /* A slightly darker pink */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--pink-mid);
+}
+
+.data-protection-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .data-protection-section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .data-protection-card {
+    padding: 2rem 1.5rem;
+  }
+}
+/* ─── ETHICAL RESEARCH & AI USE SECTION ──────────────────────── */
+
+.ethical-research-section {
+  background-color: var(--white);
+  color: var(--slate);
+  font-family: var(--font-body);
+  padding: 6rem 2rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header Grid */
+.ethical-research-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+  align-items: start;
+}
+
+.ethical-research-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  color: var(--slate);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.ethical-research-intro-bold {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--slate);
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+.ethical-research-intro-text {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--slate-light);
+  max-width: 90%;
+}
+
+/* Tabs */
+.ethical-research-tabs-wrapper {
+  border-bottom: 1px solid var(--slate-light);
+  margin-bottom: 0; /* Connects directly to the content area */
+}
+
+.ethical-research-tabs {
+  display: flex;
+  gap: 2rem;
+}
+
+.ethical-research-tab {
+  background: transparent;
+  border: none;
+  border-top: 4px solid transparent;
+  padding: 1.5rem 2rem;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--slate-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  top: 1px; /* Overlaps the bottom border slightly */
+}
+
+.ethical-research-tab:hover {
+  color: var(--slate);
+}
+
+.ethical-research-tab.active {
+  border-top-color: var(--pink);
+  color: var(--slate);
+  font-weight: 600;
+  background-color: var(--pink-ghost); /* Matches the content area background */
+}
+
+/* Content Area */
+.ethical-research-content-area {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  background-color: var(--pink-ghost);
+  min-height: 400px;
+}
+
+/* Left Column (Main Text & Watermark) */
+.ethical-research-content-left {
+  position: relative;
+  padding: 5rem 4rem;
+  overflow: hidden;
+  border-right: 1px solid rgba(103, 102, 124, 0.1);
+}
+
+.ethical-research-left-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+}
+
+.ethical-research-content-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--slate);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.ethical-research-content-body {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--slate);
+  margin-bottom: 2.5rem;
+}
+
+/* Decorative Watermark */
+.ethical-research-watermark {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.ethical-research-shape-1 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: var(--white);
+  border-radius: 50%;
+  top: 20%;
+  left: 10%;
+}
+
+.ethical-research-shape-2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border: 40px solid var(--white);
+  border-radius: 40px;
+  top: 50%;
+  left: -5%;
+  transform: rotate(15deg);
+}
+
+/* CTA Link */
+.ethical-research-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--slate);
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: opacity 0.3s ease;
+}
+
+.ethical-research-cta:hover {
+  opacity: 0.8;
+}
+
+.ethical-research-cta-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--pink-mid);
+  color: var(--white);
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.ethical-research-cta:hover .ethical-research-cta-icon {
+  background-color: var(--pink);
+  transform: scale(1.1);
+}
+
+/* Right Column (List) */
+.ethical-research-content-right {
+  padding: 5rem 4rem;
+}
+
+.ethical-research-list-heading {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: var(--slate-light);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.ethical-research-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ethical-research-list-item {
+  padding: 1.5rem 0;
+  font-size: 1.1rem;
+  color: var(--slate);
+  border-bottom: 1px solid rgba(103, 102, 124, 0.2);
+}
+
+.ethical-research-list-item:first-child {
+  padding-top: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .ethical-research-header {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .ethical-research-content-area {
+    grid-template-columns: 1fr;
+  }
+
+  .ethical-research-content-left {
+    border-right: none;
+    border-bottom: 1px solid rgba(103, 102, 124, 0.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .ethical-research-section {
+    padding: 4rem 1rem 2rem;
+  }
+
+  .ethical-research-tabs {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .ethical-research-tab {
+    flex: 1 1 100%;
+    text-align: left;
+    border-top: none;
+    border-left: 4px solid transparent;
+    padding: 1rem;
+  }
+
+  .ethical-research-tab.active {
+    border-top: none;
+    border-left-color: var(--pink);
+  }
+
+  .ethical-research-content-left,
+  .ethical-research-content-right {
+    padding: 3rem 1.5rem;
+  }
+}
+/* ─── CLINICAL DATA RESPONSIBILITY SECTION ──────────────────── */
+
+/* Full-width wrapper and main container for glowing edges and full width elements */
+.ora-clinical-data-wrapper {
+  position: relative;
+  background-color: #fafafa; /* Very light grey/white background */
+  overflow: hidden;
+  padding: 6rem 0; /* Vertical spacing for the whole section */
+  font-family: 'Wix Madefor Text', sans-serif; /* Standard ORA font */
+  color: #333; /* Default text color */
+}
+
+/* Base styles for the full-width pink glowing particle horizon effects */
+.ora-clinical-data-glow {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-image: linear-gradient(to right, rgba(233, 30, 99, 0), rgba(233, 30, 99, 1), rgba(233, 30, 99, 0));
+  background-size: 200% auto;
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Positioning for top glow */
+.ora-clinical-data-glow-top {
+  top: 0;
+}
+
+/* Positioning for bottom glow */
+.ora-clinical-data-glow-bottom {
+  bottom: 0;
+}
+
+/* Main inner container for content alignment and responsiveness */
+.ora-clinical-data-container {
+  max-width: 1400px; /* A standard max-width for this design */
+  margin: 0 auto;
+  padding: 0 2rem; /* Add horizontal padding for responsiveness */
+}
+
+/* ─── Oversized Header (Left Title, Right Intro) ─── */
+.ora-clinical-data-oversized-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 5rem;
+  align-items: start;
+}
+
+.ora-clinical-data-numbered-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #c94060; /* The pink color */
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.ora-clinical-data-main-headline {
+  font-size: clamp(3rem, 6vw, 6rem); /* Huge, fluid scaling headline */
+  font-family: 'Bebas Neue', sans-serif; /* Display font */
+  color: #222; /* Darker headline text */
+  line-height: 0.9;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.ora-clinical-data-intro-col {
+  padding-top: 1rem;
+}
+
+.ora-clinical-data-intro-text {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #555;
+  max-width: 90%;
+}
+
+/* ─── Tab Navigation Line ─── */
+.ora-clinical-data-tabs-line-wrapper {
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 0px; /* Connects directly to content area below */
+}
+
+.ora-clinical-data-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+.ora-clinical-data-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 4px solid transparent; /* Tab indicator bar */
+  padding: 1.5rem 2rem;
+  font-family: 'Wix Madefor Text', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #777;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  bottom: -1px; /* Overlap the bottom border by 1px */
+}
+
+.ora-clinical-data-tab:hover {
+  color: #333;
+}
+
+.ora-clinical-data-tab.active {
+  color: #222;
+  font-weight: 700;
+  border-bottom-color: #c94060; /* The pink color */
+}
+
+/* ─── Content Columns (Dynamic Area) ─── */
+.ora-clinical-data-content-area {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+  min-height: 400px;
+}
+
+/* Left Content Column */
+.ora-clinical-data-content-left {
+  position: relative;
+  padding: 5rem 4rem;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.ora-clinical-data-left-details {
+  position: relative;
+  z-index: 2; /* Content sits above watermark */
+  max-width: 500px;
+}
+
+.ora-clinical-data-content-title {
+  font-family: 'Wix Madefor Text', sans-serif;
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.ora-clinical-data-content-body {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 3.5rem;
+}
+
+/* ─── Stylized Intricate ORA Watermark Pattern ─── */
+/* Describes a layered geometric pattern based on interlocking 'O', 'R', and 'A' shapes, like nested letters, creating an intricate, generic layered pattern. Made white to be subtle on light grey. */
+.ora-clinical-data-watermark {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.1; /* Very subtle */
+}
+
+/* Define the specific intricate nested pattern in CSS using multiple nested circle gradients or a custom SVG if needed, but here's a generic description using gradients for simplicity. */
+.ora-clinical-data-ora-pattern {
+  background-image: 
+    radial-gradient(circle at 10% 10%, #fff 0px, transparent 15px),
+    radial-gradient(circle at 90% 10%, #fff 0px, transparent 15px),
+    radial-gradient(circle at 10% 90%, #fff 0px, transparent 15px),
+    radial-gradient(circle at 90% 90%, #fff 0px, transparent 15px),
+    repeating-linear-gradient(45deg, transparent 0, transparent 1px, #fff 1px, #fff 2px);
+}
+
+/* ─── Detailed Icon Frame ─── */
+.ora-clinical-data-icon-frame {
+  position: absolute;
+  top: 50%;
+  right: -5%;
+  transform: translateY(-50%);
+  z-index: 2;
+  opacity: 0.2;
+}
+
+.ora-clinical-data-pink-icon {
+  color: #c94060; /* Standard pink */
+}
+
+/* ─── CTA with Pink Circle and Arrow ─── */
+.ora-clinical-data-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: opacity 0.3s ease;
+}
+
+.ora-clinical-data-cta:hover {
+  opacity: 0.8;
+}
+
+.ora-clinical-data-cta-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: #c94060; /* Standard pink */
+  color: #fff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Add a pink glow to the CTA button */
+.ora-clinical-data-cta-pink-glow {
+  box-shadow: 0 0 10px rgba(233, 30, 99, 0.4);
+}
+
+.ora-clinical-data-cta:hover .ora-clinical-data-cta-button {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(233, 30, 99, 0.6);
+}
+
+/* Right Content Column (List Area) */
+.ora-clinical-data-content-right {
+  padding: 5rem 4rem;
+}
+
+.ora-clinical-data-list-heading {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: #777;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.ora-clinical-data-prioritized-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ora-clinical-data-list-item {
+  padding: 1.5rem 0;
+  font-size: 1.1rem;
+  color: #444;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* Horizontal separators */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .ora-clinical-data-oversized-header {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .ora-clinical-data-main-headline {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .ora-clinical-data-content-area {
+    grid-template-columns: 1fr;
+  }
+
+  .ora-clinical-data-content-left {
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .ora-clinical-data-icon-frame {
+    display: none; /* Hide the large icon on mobile for space */
+  }
+}
+
+@media (max-width: 768px) {
+  .ora-clinical-data-tabs {
+    flex-wrap: wrap;
+    gap: 0px;
+  }
+
+  .ora-clinical-data-tab {
+    flex: 1 1 100%;
+    text-align: left;
+    border-bottom: none;
+    border-left: 4px solid transparent;
+    padding: 1rem;
+  }
+
+  .ora-clinical-data-tab.active {
+    border-bottom: none;
+    border-left-color: #c94060;
+  }
+
+  .ora-clinical-data-content-left,
+  .ora-clinical-data-content-right {
+    padding: 3rem 1.5rem;
+  }
+}
