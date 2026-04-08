@@ -1,28 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'; // ✅ Corrected
-import CustomCursor from './components/common/CustomCursor';
-import Home from './pages/Home';
-import './pages/Home.css';
-import Invest from './pages/Invest';
-import Trust from './pages/Trust';
-import OraLegalCenter from './pages/OraLegalCenter';
-import './pages/OraLegalCenter.css';
+import { BrowserRouter } from 'react-router-dom'; // 1. Add this import!
 import './index.css';
+import RoutingApp from './RoutingApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter> 
-      <CustomCursor />
-      <Routes>
-
-        <Route path="/" element={<Home />} />
-        <Route path="/invest" element={<Invest />} />
-        <Route path="/legal" element={<Navigate to="/privacy-policy" replace />} />
-        <Route path="/:slug" element={<OraLegalCenter />} />
-        <Route path="/trust" element={<Trust />} />
-      </Routes>
+    {/* 2. Wrap RoutingApp in the BrowserRouter! */}
+    <BrowserRouter>
+      <RoutingApp />
     </BrowserRouter>
   </React.StrictMode>
 );

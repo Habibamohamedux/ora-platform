@@ -1,125 +1,134 @@
-import React, { useState } from "react";
-import { ArrowUpRight, Shield, UserCheck, Globe2 } from "lucide-react";
+import React, { useState, useEffect } from 'react';
 import "../../pages/Trust.css";
+// Added slight staggering so the float feels organic and random
+const PILLS = [
+  { text: 'Medical Records', top: '15%', left: '12%', delay: '0s' },
+  { text: 'Patient Privacy', top: '18%', right: '14%', delay: '0.2s' },
+  { text: 'Clinical Protocols', top: '45%', left: '6%', delay: '0.4s' },
+  { text: 'Data Encryption', top: '40%', right: '8%', delay: '0.6s' },
+  { text: 'HIPAA Compliance', top: '72%', left: '16%', delay: '0.8s' },
+  { text: 'Health Standards', top: '68%', right: '18%', delay: '1.0s' },
+  { text: 'Access Control', top: '80%', right: '42%', delay: '1.2s' }, 
+];
 
+const STATS = [
+  { value: '99', sup: '%', label: 'Data accuracy rate' },
+  { value: '50', sup: '+', label: 'Healthcare systems integrated' },
+  { value: '100', sup: '%', label: 'HIPAA & GDPR compliant' },
+  { value: '3', sup: null, label: 'Layers of access control' },
+];
 
-// Dynamic data mapping for each tab
-const clinicalTabsContent = {
-  records: {
-    label: "Medical Records Security",
-    leftTitle: "Secure Handling of Medical Records",
-    leftBody: "ORA implements multi-layered encryption, robust data segregation, and extensive lifecycle management to guarantee the total security of sensitive patient information.",
-    rightListHeading: "RECORD SECURITY",
-    rightList: ["Encryption At Rest", "Encryption In Transit", "Lifecycle Monitoring", "Secure Storage Protocols"],
-    icon: Shield,
-  },
-  access: {
-    label: "Controlled Professional Access",
-    leftTitle: "Strictly Controlled Access for Professionals",
-    leftBody: "ORA strictly manages system permissions, ensuring that only authorized healthcare personnel can access relevant medical information under defined least-privilege principles.",
-    rightListHeading: "ACCESS CONTROLS",
-    rightList: ["Role-Based Access Control (RBAC)", "Multifactor Authentication (MFA)", "User Activity Logging", "Session Management"],
-    icon: UserCheck,
-  },
-  compliance: {
-    label: "Global Health Data Compliance",
-    leftTitle: "Adherence to Global Health Data Practices",
-    leftBody: "Our systems and protocols are rigorously designed to meet or exceed relevant data privacy and security standards from various jurisdictions worldwide.",
-    rightListHeading: "COMPLIANCE STANDARDS",
-    rightList: ["HIPAA (US)", "GDPR (EU)", "PHIPA (Canada)", "PDPA (Singapore)"],
-    icon: Globe2,
-  }
+const PARTNERS = [
+  { name: 'HL7', badge: 'FHIR' },
+  { name: 'DICOM', badge: 'v3.0' },
+  { name: 'ISO', badge: '27001' },
+  { name: 'HIPAA', badge: 'CFR' },
+  { name: 'OpenEHR', badge: 'R1' },
+];
+
+// Helper component to animate the numbers smoothly
+const AnimatedStat = ({ endValue }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime = null;
+    const duration = 2000; // Increased to 2 seconds for a smoother count
+    const target = parseInt(endValue, 10);
+
+    if (isNaN(target)) {
+      setCount(endValue);
+      return;
+    }
+
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const progress = currentTime - startTime;
+      const percentage = Math.min(progress / duration, 1);
+      
+      // Extremely smooth custom ease-out calculation
+      const easeProgress = 1 - Math.pow(1 - percentage, 4); 
+      
+      setCount(Math.floor(easeProgress * target));
+
+      if (progress < duration) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [endValue]);
+
+  return <>{count}</>;
 };
 
-const ClinicalData = () => {
-  const [activeTabKey, setActiveTabKey] = useState("records");
-
-  const currentTabContent = clinicalTabsContent[activeTabKey];
-  const IconComponent = currentTabContent.icon;
-
+export default function ClinicalData() {
   return (
-    <section className="ora-clinical-data-wrapper">
-      {/* Pink particle glow at the top, full width, like the inspo but pink */}
-      <div className="ora-clinical-data-glow ora-clinical-data-glow-top"></div>
+    <section className="clinical-section-wrapper">
       
-      <div className="ora-clinical-data-container">
-        {/* Main Oversized Split Header */}
-        <div className="ora-clinical-data-oversized-header">
-          <div className="ora-clinical-data-headline-col">
-            <h4 className="ora-clinical-data-numbered-title">5. Clinical Data Responsibility</h4>
-            <h2 className="ora-clinical-data-main-headline">Handling Health Data with Care.</h2>
-          </div>
-          <div className="ora-clinical-data-intro-col">
-            <p className="ora-clinical-data-intro-text">
-              Health data requires the highest level of responsibility. ORA works with structured clinical data protocols to ensure accuracy, confidentiality, and compliance with healthcare standards.
-            </p>
-          </div>
+      {/* ── HERO ── */}
+      <div className="clinical-section-hero">
+        {/* Floating Pills */}
+        <div className="clinical-section-pills" aria-hidden="true">
+          {PILLS.map((pill, idx) => (
+            <span 
+              key={idx} 
+              className="clinical-section-pill" 
+              style={{ 
+                top: pill.top, 
+                left: pill.left, 
+                right: pill.right,
+                animationDelay: `${pill.delay}, ${pill.delay}` // Syncs entrance & float delays
+              }}
+            >
+              {pill.text}
+            </span>
+          ))}
         </div>
 
-        {/* Tabbed Navigation */}
-        <div className="ora-clinical-data-tabs-line-wrapper">
-          <div className="ora-clinical-data-tabs">
-            {Object.keys(clinicalTabsContent).map((key) => (
-              <button
-                key={key}
-                className={`ora-clinical-data-tab ${activeTabKey === key ? "active" : ""}`}
-                onClick={() => setActiveTabKey(key)}
-              >
-                {clinicalTabsContent[key].label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Dynamic Content Columns */}
-        <div className="ora-clinical-data-content-area">
-          {/* Left Column with title, text, and specific icon (Shield, User, or Globe) */}
-          <div className="ora-clinical-data-content-left">
-            {/* Watermark in the background */}
-            <div className="ora-clinical-data-watermark ora-clinical-data-ora-pattern"></div>
-            
-            <div className="ora-clinical-data-left-details">
-              <h3 className="ora-clinical-data-content-title">
-                {currentTabContent.leftTitle}
-              </h3>
-              <p className="ora-clinical-data-content-body">
-                {currentTabContent.leftBody}
-              </p>
-              
-              <div className="ora-clinical-data-icon-frame">
-                 <IconComponent size={64} strokeWidth={1.5} className="ora-clinical-data-pink-icon" />
-              </div>
-
-              {/* CTA with the pink circle and arrow */}
-              <a href="#data-handling" className="ora-clinical-data-cta">
-                <span className="ora-clinical-data-cta-text">→ Clinical Data Handling.</span>
-                <div className="ora-clinical-data-cta-button ora-clinical-data-cta-pink-glow">
-                  <ArrowUpRight size={16} strokeWidth={2.5} />
-                </div>
-              </a>
-            </div>
-          </div>
-
-          {/* Right Column with the detailed detailed list, like a list of measures */}
-          <div className="ora-clinical-data-content-right">
-            <h4 className="ora-clinical-data-list-heading">
-              {currentTabContent.rightListHeading}
-            </h4>
-            <ul className="ora-clinical-data-prioritized-list">
-              {currentTabContent.rightList.map((item, index) => (
-                <li key={index} className="ora-clinical-data-list-item">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Central Content */}
+        <div className="clinical-section-hero-content">
+          <h2 className="clinical-section-headline">
+            Handling Health Data<br />with <em>Care</em>
+          </h2>
+          <p className="clinical-section-sub">
+            Health data requires the highest level of responsibility. ORA works with
+            structured clinical data protocols to ensure accuracy, confidentiality,
+            and compliance with healthcare standards.
+          </p>
+          <button className="clinical-section-cta">
+            Clinical Data Handling <span className="clinical-section-cta-arrow">→</span>
+          </button>
         </div>
       </div>
-      
-      {/* Pink particle glow at the bottom, full width, like the inspo but pink */}
-      <div className="ora-clinical-data-glow ora-clinical-data-glow-bottom"></div>
+
+      {/* ── STATS ── */}
+      <div className="clinical-section-stats">
+        {STATS.map(({ value, sup, label }) => (
+          <div key={label} className="clinical-section-stat-item">
+            <div className="clinical-section-stat-number">
+              <AnimatedStat endValue={value} />
+              {sup && <span className="clinical-section-stat-symbol">{sup}</span>}
+            </div>
+            <p className="clinical-section-stat-label">{label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* ── TRUST SECTION ── */}
+      <div className="clinical-section-trust">
+        <span className="clinical-section-trust-label">ORA complies with global health data standards</span>
+        <div className="clinical-section-trust-logos">
+          {PARTNERS.map(({ name, badge }) => (
+            <div key={name} className="clinical-section-trust-logo-item">
+              <span className="clinical-section-trust-logo-name">{name}</span>
+              <span className="clinical-section-trust-badge">{badge}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </section>
   );
-};
-
-export default ClinicalData;
+}

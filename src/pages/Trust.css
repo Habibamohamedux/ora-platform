@@ -856,310 +856,669 @@
     padding: 3rem 1.5rem;
   }
 }
-/* ─── CLINICAL DATA RESPONSIBILITY SECTION ──────────────────── */
 
-/* Full-width wrapper and main container for glowing edges and full width elements */
-.ora-clinical-data-wrapper {
+:root {
+  --clinical-pink-dark: #a83550;
+  --clinical-pink-main: #c94060;
+  --clinical-pink-light: #fbe6eb;
+  --clinical-text-dark: #1e293b;
+  --clinical-text-slate: #475569;
+  --clinical-text-light-slate: #8b99a3;
+  --clinical-white: #ffffff;
+  --clinical-font-body: 'Wix Madefor Text', sans-serif;
+}
+
+/* ─── KEYFRAME ANIMATIONS ─────────────────────────────────── */
+@keyframes clinicalFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes clinicalFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); } /* Gentle drift */
+}
+
+/* ─── WRAPPER ─────────────────────────────────────────────── */
+.clinical-section-wrapper {
+  font-family: var(--clinical-font-body);
+  background: var(--clinical-white);
+  width: 100%; 
+  margin: 0; 
+  padding: 0;
+  overflow: hidden; 
+  /* Restored the top border radius while keeping it full width */
+  border-radius: 36px 36px 0 0;
+}
+
+/* ─── HERO PANEL ──────────────────────────────────────────── */
+.clinical-section-hero {
   position: relative;
-  background-color: #fafafa; /* Very light grey/white background */
-  overflow: hidden;
-  padding: 6rem 0; /* Vertical spacing for the whole section */
-  font-family: 'Wix Madefor Text', sans-serif; /* Standard ORA font */
-  color: #333; /* Default text color */
-}
-
-/* Base styles for the full-width pink glowing particle horizon effects */
-.ora-clinical-data-glow {
-  position: absolute;
-  left: 0;
   width: 100%;
-  height: 10px;
-  background-image: linear-gradient(to right, rgba(233, 30, 99, 0), rgba(233, 30, 99, 1), rgba(233, 30, 99, 0));
-  background-size: 200% auto;
-  opacity: 0.6;
-  z-index: 1;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 36px 36px 0 0;
+  background: linear-gradient(180deg, var(--clinical-pink-light) 0%, #fdf2f5 50%, #ffffff 100%);
+  padding: 80px 20px;
+}
+
+/* ─── FLOATING PILLS ──────────────────────────────────────── */
+.clinical-section-pills {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
-}
-
-/* Positioning for top glow */
-.ora-clinical-data-glow-top {
-  top: 0;
-}
-
-/* Positioning for bottom glow */
-.ora-clinical-data-glow-bottom {
-  bottom: 0;
-}
-
-/* Main inner container for content alignment and responsiveness */
-.ora-clinical-data-container {
-  max-width: 1400px; /* A standard max-width for this design */
+  z-index: 1;
+  max-width: 1400px; 
   margin: 0 auto;
-  padding: 0 2rem; /* Add horizontal padding for responsiveness */
 }
 
-/* ─── Oversized Header (Left Title, Right Intro) ─── */
-.ora-clinical-data-oversized-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 5rem;
-  align-items: start;
-}
-
-.ora-clinical-data-numbered-title {
-  font-size: 0.9rem;
+.clinical-section-pill {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(201, 64, 96, 0.15);
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase;
-  color: #c94060; /* The pink color */
-  margin-bottom: 1.5rem;
-  margin-top: 0.5rem;
+  color: var(--clinical-pink-main);
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(201, 64, 96, 0.08);
+  pointer-events: auto; 
+  cursor: default;
+  
+  /* Slower float (6s) and buttery smooth entrance */
+  opacity: 0;
+  animation: clinicalFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards, 
+             clinicalFloat 6s ease-in-out infinite;
+  
+  /* Smooth Hover Transition */
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.ora-clinical-data-main-headline {
-  font-size: clamp(3rem, 6vw, 6rem); /* Huge, fluid scaling headline */
-  font-family: 'Bebas Neue', sans-serif; /* Display font */
-  color: #222; /* Darker headline text */
-  line-height: 0.9;
-  letter-spacing: -1px;
+.clinical-section-pill:hover {
+  transform: scale(1.08) translateY(-6px) !important; 
+  box-shadow: 0 12px 30px rgba(201, 64, 96, 0.15);
+  border-color: rgba(201, 64, 96, 0.3);
+  color: var(--clinical-pink-dark);
+  z-index: 10;
+}
+
+/* ─── HERO CONTENT ────────────────────────────────────────── */
+.clinical-section-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 760px;
+  opacity: 0;
+  animation: clinicalFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.2s; 
+}
+
+.clinical-section-headline {
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 600;
+  color: var(--clinical-text-dark);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
   margin: 0;
 }
 
-.ora-clinical-data-intro-col {
-  padding-top: 1rem;
-}
-
-.ora-clinical-data-intro-text {
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: #555;
-  max-width: 90%;
-}
-
-/* ─── Tab Navigation Line ─── */
-.ora-clinical-data-tabs-line-wrapper {
-  position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 0px; /* Connects directly to content area below */
-}
-
-.ora-clinical-data-tabs {
-  display: flex;
-  justify-content: flex-start;
-  gap: 2rem;
-}
-
-.ora-clinical-data-tab {
-  background: transparent;
-  border: none;
-  border-bottom: 4px solid transparent; /* Tab indicator bar */
-  padding: 1.5rem 2rem;
-  font-family: 'Wix Madefor Text', sans-serif;
-  font-size: 1.1rem;
+.clinical-section-headline em {
+  font-style: italic;
   font-weight: 500;
-  color: #777;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  bottom: -1px; /* Overlap the bottom border by 1px */
+  color: var(--clinical-pink-main);
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.ora-clinical-data-tab:hover {
-  color: #333;
+.clinical-section-headline:hover em {
+  transform: scale(1.05) rotate(-2deg);
 }
 
-.ora-clinical-data-tab.active {
-  color: #222;
-  font-weight: 700;
-  border-bottom-color: #c94060; /* The pink color */
-}
-
-/* ─── Content Columns (Dynamic Area) ─── */
-.ora-clinical-data-content-area {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
-  min-height: 400px;
-}
-
-/* Left Content Column */
-.ora-clinical-data-content-left {
-  position: relative;
-  padding: 5rem 4rem;
-  overflow: hidden;
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.ora-clinical-data-left-details {
-  position: relative;
-  z-index: 2; /* Content sits above watermark */
-  max-width: 500px;
-}
-
-.ora-clinical-data-content-title {
-  font-family: 'Wix Madefor Text', sans-serif;
-  font-size: 2rem;
-  color: #222;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.5px;
-}
-
-.ora-clinical-data-content-body {
-  font-size: 1.1rem;
+.clinical-section-sub {
+  font-size: 16px;
   line-height: 1.6;
-  color: #555;
-  margin-bottom: 3.5rem;
+  font-weight: 400;
+  color: var(--clinical-text-slate);
+  max-width: 680px;
+  margin: 0;
 }
 
-/* ─── Stylized Intricate ORA Watermark Pattern ─── */
-/* Describes a layered geometric pattern based on interlocking 'O', 'R', and 'A' shapes, like nested letters, creating an intricate, generic layered pattern. Made white to be subtle on light grey. */
-.ora-clinical-data-watermark {
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.1; /* Very subtle */
-}
-
-/* Define the specific intricate nested pattern in CSS using multiple nested circle gradients or a custom SVG if needed, but here's a generic description using gradients for simplicity. */
-.ora-clinical-data-ora-pattern {
-  background-image: 
-    radial-gradient(circle at 10% 10%, #fff 0px, transparent 15px),
-    radial-gradient(circle at 90% 10%, #fff 0px, transparent 15px),
-    radial-gradient(circle at 10% 90%, #fff 0px, transparent 15px),
-    radial-gradient(circle at 90% 90%, #fff 0px, transparent 15px),
-    repeating-linear-gradient(45deg, transparent 0, transparent 1px, #fff 1px, #fff 2px);
-}
-
-/* ─── Detailed Icon Frame ─── */
-.ora-clinical-data-icon-frame {
-  position: absolute;
-  top: 50%;
-  right: -5%;
-  transform: translateY(-50%);
-  z-index: 2;
-  opacity: 0.2;
-}
-
-.ora-clinical-data-pink-icon {
-  color: #c94060; /* Standard pink */
-}
-
-/* ─── CTA with Pink Circle and Arrow ─── */
-.ora-clinical-data-cta {
+.clinical-section-cta {
   display: inline-flex;
   align-items: center;
-  gap: 1.5rem;
-  text-decoration: none;
-  color: #333;
-  font-weight: 700;
-  font-size: 1.05rem;
-  transition: opacity 0.3s ease;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 8px 8px 8px 24px;
+  background: var(--clinical-white);
+  color: var(--clinical-text-dark);
+  font-family: var(--clinical-font-body);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 64, 96, 0.1);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(201, 64, 96, 0.12);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.ora-clinical-data-cta:hover {
-  opacity: 0.8;
+.clinical-section-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(201, 64, 96, 0.2);
+  border-color: rgba(201, 64, 96, 0.25);
+  color: var(--clinical-pink-main);
 }
 
-.ora-clinical-data-cta-button {
+.clinical-section-cta-arrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  background-color: #c94060; /* Standard pink */
-  color: #fff;
+  background: var(--clinical-pink-main);
+  color: var(--clinical-white);
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  font-size: 16px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Add a pink glow to the CTA button */
-.ora-clinical-data-cta-pink-glow {
-  box-shadow: 0 0 10px rgba(233, 30, 99, 0.4);
+.clinical-section-cta:hover .clinical-section-cta-arrow {
+  transform: translateX(4px);
+  background: var(--clinical-pink-dark);
 }
 
-.ora-clinical-data-cta:hover .ora-clinical-data-cta-button {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(233, 30, 99, 0.6);
+/* ─── STATS STRIP ─────────────────────────────────────────── */
+.clinical-section-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--clinical-white);
+  padding: 40px 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Right Content Column (List Area) */
-.ora-clinical-data-content-right {
-  padding: 5rem 4rem;
+.clinical-section-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  animation: clinicalFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: default;
 }
 
-.ora-clinical-data-list-heading {
-  font-size: 0.85rem;
+/* Stagger stat animations */
+.clinical-section-stat-item:nth-child(1) { animation-delay: 0.4s; }
+.clinical-section-stat-item:nth-child(2) { animation-delay: 0.5s; }
+.clinical-section-stat-item:nth-child(3) { animation-delay: 0.6s; }
+.clinical-section-stat-item:nth-child(4) { animation-delay: 0.7s; }
+
+.clinical-section-stat-item:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.clinical-section-stat-number {
+  font-size: clamp(64px, 8vw, 88px);
+  font-weight: 400;
+  color: var(--clinical-text-dark);
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+  transition: color 0.4s ease;
+}
+
+.clinical-section-stat-item:hover .clinical-section-stat-number {
+  color: var(--clinical-pink-main);
+}
+
+.clinical-section-stat-symbol {
+  font-size: 40px;
+  font-weight: 400;
+  color: inherit; 
+  margin-left: 2px;
+}
+
+.clinical-section-stat-label {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--clinical-text-slate);
+  font-weight: 500;
+  transition: color 0.4s ease;
+}
+
+.clinical-section-stat-item:hover .clinical-section-stat-label {
+  color: var(--clinical-text-dark);
+}
+
+/* ─── TRUST STRIP ─────────────────────────────────────────── */
+.clinical-section-trust {
+  padding: 0 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  background: var(--clinical-white);
+  max-width: 1200px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: clinicalFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.8s;
+}
+
+.clinical-section-trust-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--clinical-pink-main);
+}
+
+.clinical-section-trust-logos {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.clinical-section-trust-logo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  opacity: 0.6;
+  filter: grayscale(100%);
+}
+
+.clinical-section-trust-logo-item:hover {
+  transform: translateY(-4px) scale(1.05);
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+.clinical-section-trust-logo-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--clinical-text-slate);
+  letter-spacing: -0.01em;
+  transition: color 0.4s ease;
+}
+
+.clinical-section-trust-logo-item:hover .clinical-section-trust-logo-name {
+  color: var(--clinical-text-dark);
+}
+
+.clinical-section-trust-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--clinical-pink-dark);
+  background: rgba(201, 64, 96, 0.08);
+  border-radius: 12px;
+  padding: 4px 10px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.clinical-section-trust-logo-item:hover .clinical-section-trust-badge {
+  background: var(--clinical-pink-main);
+  color: var(--clinical-white);
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .clinical-section-pill { display: none; }
+  .clinical-section-stats { flex-wrap: wrap; gap: 40px; }
+  .clinical-section-stat-item { width: 40%; }
+}
+
+@media (max-width: 600px) {
+  .clinical-section-hero { min-height: 480px; padding-top: 40px; }
+  .clinical-section-stats { flex-direction: column; }
+  .clinical-section-stat-item { width: 100%; }
+  .clinical-section-trust-logos { gap: 24px; }
+}
+/* transparency section */
+/* ─── TRANSPARENCY SECTION (LIGHT THEME) ──────────────────────────── */
+
+.transparency-section {
+  background-color: var(--white);
+  color: var(--slate);
+  padding: 80px 5% 120px;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* Header Section */
+.transparency-main-header {
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.transparency-super-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  color: var(--slate);
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.transparency-super-subtitle {
+  color: var(--slate-light);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Continuous Central Line */
+.transparency-vertical-line {
+  position: absolute;
+  left: 50%;
+  top: 200px; /* Starts below the header */
+  bottom: 250px; /* Stops right before the CTA card */
+  width: 1px;
+  background: var(--pink-soft);
+  z-index: 1;
+  transform: translateX(-50%);
+}
+
+.transparency-line-glow {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 5px;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent, var(--pink), transparent);
+  animation: transparencyLineScroll 4s infinite linear;
+}
+
+@keyframes transparencyLineScroll {
+  0% { top: -10%; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { top: 110%; opacity: 0; }
+}
+
+.transparency-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.transparency-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+  min-height: 50vh;
+  position: relative;
+  margin-bottom: 80px;
+}
+
+/* Nodes on the line */
+.transparency-node {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: var(--pink);
+  border-radius: 50%;
+  box-shadow: 0 0 20px 8px var(--pink-soft);
+  z-index: 3;
+}
+
+.transparency-center-node { top: 50%; }
+
+/* Typography & Layout */
+.transparency-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--slate);
+  margin-bottom: 20px;
   letter-spacing: 1px;
-  color: #777;
-  margin-bottom: 2.5rem;
-  text-transform: uppercase;
 }
 
-.ora-clinical-data-prioritized-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.ora-clinical-data-list-item {
-  padding: 1.5rem 0;
+.transparency-description {
+  color: var(--slate-light);
+  line-height: 1.7;
   font-size: 1.1rem;
-  color: #444;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* Horizontal separators */
 }
 
-/* Responsive Adjustments */
-@media (max-width: 992px) {
-  .ora-clinical-data-oversized-header {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .ora-clinical-data-main-headline {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-  }
-
-  .ora-clinical-data-content-area {
-    grid-template-columns: 1fr;
-  }
-
-  .ora-clinical-data-content-left {
-    border-right: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  .ora-clinical-data-icon-frame {
-    display: none; /* Hide the large icon on mobile for space */
-  }
+.transparency-icon-box {
+  width: 48px;
+  height: 48px;
+  background: var(--white);
+  border: 1px solid var(--pink-mid);
+  box-shadow: 0 8px 20px var(--pink-ghost);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  color: var(--pink);
 }
 
-@media (max-width: 768px) {
-  .ora-clinical-data-tabs {
-    flex-wrap: wrap;
-    gap: 0px;
-  }
+.transparency-text-right { padding-left: 40px; }
+.transparency-text-left { padding-right: 40px; }
 
-  .ora-clinical-data-tab {
-    flex: 1 1 100%;
-    text-align: left;
-    border-bottom: none;
-    border-left: 4px solid transparent;
-    padding: 1rem;
-  }
+/* Glass Cards for Light Theme */
+.transparency-glass-card {
+  background: var(--white);
+  border: 1px solid var(--pink-soft);
+  box-shadow: 0 25px 50px -12px var(--pink-ghost), 0 0 0 1px rgba(103, 102, 124, 0.05);
+  padding: 30px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
 
-  .ora-clinical-data-tab.active {
-    border-bottom: none;
-    border-left-color: #c94060;
-  }
+/* Isometric Card (Section 1) */
+.transparency-card-isometric {
+  transform: perspective(1200px) rotateY(15deg) rotateX(10deg);
+  border-left: 4px solid var(--pink);
+  background: linear-gradient(135deg, var(--white), var(--pink-ghost));
+}
 
-  .ora-clinical-data-content-left,
-  .ora-clinical-data-content-right {
-    padding: 3rem 1.5rem;
-  }
+.transparency-credential-leak { display: flex; flex-direction: column; gap: 20px; }
+.transparency-user-info { display: flex; align-items: center; gap: 15px; }
+
+.transparency-avatar-icon {
+  background: var(--slate-light);
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.transparency-email-text { font-weight: 600; font-size: 1.2rem; color: var(--slate); }
+
+.transparency-status-tag {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--slate-light);
+}
+
+.transparency-password-pill {
+  background: var(--pink);
+  color: var(--white);
+  padding: 10px 15px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: monospace;
+  font-size: 1.1rem;
+  width: max-content;
+  box-shadow: 0 4px 15px var(--pink-mid);
+}
+
+/* Stacked Cards (Section 2) */
+.transparency-stacked-cards {
+  position: relative;
+  height: 250px;
+  transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+}
+
+.transparency-stacked-card {
+  position: absolute;
+  width: 100%;
+  padding: 30px;
+  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid var(--pink-soft);
+  box-shadow: 0 10px 30px var(--pink-ghost);
+}
+
+.transparency-card-back { top: 0; left: 0; transform: translate(-20px, -20px) scale(0.9); opacity: 0.4; z-index: 1; }
+.transparency-card-middle { top: 0; left: 0; transform: translate(-10px, -10px) scale(0.95); opacity: 0.7; z-index: 2; }
+.transparency-card-front { top: 0; left: 0; z-index: 3; border-left: 4px solid var(--pink); }
+
+.transparency-mute-text { color: var(--slate-light); font-weight: 600; font-size: 1.2rem; }
+
+.transparency-alert-header { display: flex; align-items: center; gap: 10px; color: var(--pink); font-weight: 700; font-size: 1.4rem; margin-bottom: 5px; }
+.transparency-alert-sub { color: var(--slate); margin-bottom: 30px; }
+.transparency-alert-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+.transparency-user-id { color: var(--slate-light); font-family: monospace; }
+.transparency-alert-tag { font-weight: 600; }
+.transparency-alert-tag.safe { color: var(--pink); }
+
+/* Dashboard Card (Section 3) */
+.transparency-dashboard-card { background: var(--white); }
+.transparency-dashboard-title { font-size: 1.4rem; color: var(--slate); margin-bottom: 15px; }
+.transparency-dashboard-stats { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--slate-light); margin-bottom: 40px; }
+.transparency-highlight { color: var(--pink); font-weight: 700; }
+.transparency-dashboard-chart-area { display: flex; align-items: center; gap: 30px; }
+
+.transparency-ring-chart {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 12px solid var(--pink-ghost);
+  border-left-color: var(--pink);
+  border-top-color: var(--pink-mid);
+  position: relative;
+}
+
+.transparency-chart-legend { display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; color: var(--slate); }
+.transparency-legend-item { display: flex; align-items: center; gap: 8px; }
+.transparency-dot { width: 12px; height: 12px; border-radius: 2px; }
+.transparency-dot-ghost { background: var(--pink-ghost); border: 1px solid var(--pink-soft); }
+.transparency-dot-white { background: var(--white); border: 1px solid var(--slate-light); }
+.transparency-dot-pink { background: var(--pink); }
+
+/* ─── FINAL CTA SECTION ───────────────────────────────────────── */
+
+.transparency-final-cta-wrapper {
+  position: relative;
+  margin-top: 120px;
+  padding: 0 20px;
+}
+
+/* The node that connects the vertical line to the top of the CTA card */
+.transparency-cta-top-node {
+  top: 0;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.transparency-cta-card {
+  background: var(--white);
+  border: 1px solid var(--pink-mid);
+  border-radius: 12px;
+  padding: 80px 40px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 40px 80px var(--pink-ghost), 
+              inset 0 0 100px var(--pink-soft); /* Inner glow effect */
+  overflow: hidden;
+}
+
+/* Corner Hex/Dots styling from the image */
+.transparency-corner-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--pink);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--pink);
+}
+
+.cta-tl { top: -4px; left: -4px; }
+.cta-tr { top: -4px; right: -4px; }
+.cta-bl { bottom: -4px; left: -4px; }
+.cta-br { bottom: -4px; right: -4px; }
+
+.transparency-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.transparency-cta-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--slate);
+  line-height: 1.1;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.transparency-cta-highlight {
+  color: var(--pink);
+  text-shadow: 0 0 20px var(--pink-soft);
+}
+
+.transparency-cta-subtext {
+  color: var(--slate-light);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.transparency-cta-button {
+  background: var(--white);
+  color: var(--slate);
+  border: 1px solid var(--pink);
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px var(--pink-ghost);
+}
+
+.transparency-cta-button:hover {
+  background: var(--pink);
+  color: var(--white);
+  box-shadow: 0 15px 40px var(--pink-mid);
+  transform: translateY(-3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .transparency-vertical-line, .transparency-node { display: none; }
+  .transparency-row { grid-template-columns: 1fr; gap: 40px; margin-bottom: 60px; min-height: auto; }
+  .transparency-text-right, .transparency-text-left { padding: 0; }
+  .transparency-reverse-mobile { display: flex; flex-direction: column-reverse; }
+  .transparency-final-cta-wrapper { margin-top: 60px; padding: 0; }
+  .transparency-cta-card { padding: 60px 20px; }
 }
