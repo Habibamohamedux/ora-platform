@@ -4,6 +4,7 @@ import CustomCursor from './components/common/CustomCursor';
 import Home from './pages/Home';
 import Invest from './pages/Invest';
 import Trust from './pages/Trust';
+import Futures from './pages/Futures';
 import OraLegalCenter from './pages/OraLegalCenter';
 
 // Component-specific CSS
@@ -20,6 +21,7 @@ function RoutingApp() {
         <Route path="/trust" element={<Trust />} />
         <Route path="/legal" element={<Navigate to="/privacy-policy" replace />} />
         <Route path="/:slug" element={<OraLegalCenter />} />
+        <Route path="/futures" element={<Futures />} />
       </Routes>
     </>
   );

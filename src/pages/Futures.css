@@ -1,0 +1,818 @@
+/* === LIFE AT ORA === */
+@keyframes life-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes life-bg-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(3vw, 3vh) scale(1.06);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.life-section-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 7rem 5%;
+  background-color: var(--white);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+.life-section-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 0;
+  pointer-events: none;
+  animation: life-bg-drift 18s infinite ease-in-out;
+}
+.life-section-bg-glow.glow-1 {
+  top: -15%;
+  left: -8%;
+  width: 45vw;
+  height: 45vw;
+  background: var(--pink-soft);
+}
+.life-section-bg-glow.glow-2 {
+  bottom: 5%;
+  right: -12%;
+  width: 55vw;
+  height: 55vw;
+  background: var(--pink-ghost);
+  animation-delay: -9s;
+}
+
+.life-section-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* Header */
+.life-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  animation: life-fade-up 0.6s ease forwards;
+}
+.life-section-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.life-section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pink);
+}
+.life-section-eyebrow::before {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 28px;
+  background: var(--pink);
+}
+.life-section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 5.5vw, 5rem);
+  color: var(--slate);
+  margin: 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+.life-section-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  border: 1.5px solid var(--pink);
+  border-radius: 100px;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--pink);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.life-section-cta:hover {
+  background: var(--pink);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201, 64, 96, 0.25);
+}
+.life-section-cta svg {
+  transition: transform 0.3s;
+}
+.life-section-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* Stats */
+.life-section-stats {
+  display: flex;
+  border-top: 1px solid rgba(103, 102, 124, 0.12);
+  border-bottom: 1px solid rgba(103, 102, 124, 0.12);
+  padding: 1.8rem 0;
+  opacity: 0;
+  animation: life-fade-up 0.7s 0.1s forwards;
+}
+.life-section-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 2.5rem;
+  position: relative;
+}
+.life-section-stat + .life-section-stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: rgba(103, 102, 124, 0.15);
+}
+.life-section-stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  color: var(--pink);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.life-section-stat-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--slate);
+  opacity: 0.6;
+}
+
+/* Grid */
+.life-section-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.life-section-card:nth-child(1) {
+  grid-column: 1/3;
+}
+.life-section-card:nth-child(2) {
+  grid-column: 3/4;
+}
+.life-section-card:nth-child(3) {
+  grid-column: 1/2;
+}
+.life-section-card:nth-child(4) {
+  grid-column: 2/4;
+}
+
+/* Base card */
+.life-section-card {
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  opacity: 0;
+  animation: life-fade-up 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  transition:
+    transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 0.4s;
+}
+.life-section-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(201, 64, 96, 0.14);
+}
+
+/* Wide cards */
+.life-section-card-wide {
+  background: var(--white);
+  border: 1px solid rgba(201, 64, 96, 0.06);
+  box-shadow: 0 2px 14px rgba(103, 102, 124, 0.06);
+}
+.life-section-card-wide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--pink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 2;
+}
+.life-section-card-wide:hover::before {
+  transform: scaleX(1);
+}
+.life-section-card-img-wrapper {
+  width: 100%;
+  aspect-ratio: 16/7;
+  overflow: hidden;
+}
+.life-section-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.life-section-card-wide:hover .life-section-card-img {
+  transform: scale(1.06);
+}
+.life-section-card-content {
+  padding: 1.8rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.life-section-card-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--pink);
+  opacity: 0.85;
+}
+.life-section-card-tag::before {
+  content: "";
+  display: block;
+  width: 14px;
+  height: 1px;
+  background: var(--pink);
+}
+.life-section-card-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--slate);
+  margin: 0;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  transition: color 0.3s;
+}
+.life-section-card-wide:hover .life-section-card-title {
+  color: var(--pink);
+}
+.life-section-card-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--slate);
+  opacity: 0.72;
+  line-height: 1.6;
+  margin: 0;
+}
+.life-section-card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.73rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--pink);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+.life-section-card-wide:hover .life-section-card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Portrait cards — full bleed overlay */
+.life-section-card-portrait {
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.life-section-portrait-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.life-section-card-portrait:hover .life-section-portrait-img {
+  transform: scale(1.05);
+}
+.life-section-portrait-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.life-section-portrait-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(28, 12, 20, 0.94) 0%,
+    rgba(28, 12, 20, 0.55) 45%,
+    rgba(28, 12, 20, 0.05) 100%
+  );
+}
+.life-section-portrait-stripe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--pink);
+  z-index: 5;
+}
+.life-section-portrait-badge {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.4rem;
+  z-index: 6;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(201, 64, 96, 0.5);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+.life-section-portrait-content {
+  position: relative;
+  z-index: 6;
+  padding: 1.8rem 1.6rem 1.8rem 1.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.life-section-portrait-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+.life-section-portrait-tag::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 1px;
+  background: var(--pink);
+}
+.life-section-portrait-title {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+.life-section-portrait-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.55;
+  margin: 0;
+}
+.life-section-portrait-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--pink);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+  margin-top: 0.2rem;
+}
+.life-section-card-portrait:hover .life-section-portrait-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Testimonial */
+.life-section-testimonial {
+  width: 100%;
+  background: var(--white);
+  border-radius: 20px;
+  border: 1px solid var(--pink-soft);
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(201, 64, 96, 0.07);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  opacity: 0;
+  animation: life-fade-up 0.8s 0.5s forwards;
+}
+.life-section-testimonial-body {
+  padding: 3.5rem 4rem;
+  position: relative;
+}
+.life-section-testimonial-body::before {
+  content: "\201C";
+  position: absolute;
+  top: 1.5rem;
+  left: 3rem;
+  font-family: var(--font-display);
+  font-size: 8rem;
+  color: var(--pink);
+  opacity: 0.12;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.life-section-quote {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-style: italic;
+  color: var(--slate);
+  line-height: 1.7;
+  margin: 0 0 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+.life-section-author-box {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.life-section-author-img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--pink);
+  flex-shrink: 0;
+}
+.life-section-author-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.life-section-author-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--slate);
+  letter-spacing: 1.5px;
+}
+.life-section-author-role {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--slate);
+  opacity: 0.6;
+}
+.life-section-testimonial-accent {
+  width: 8px;
+  background: var(--pink);
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .life-section-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .life-section-card:nth-child(1),
+  .life-section-card:nth-child(2),
+  .life-section-card:nth-child(3),
+  .life-section-card:nth-child(4) {
+    grid-column: auto;
+  }
+  .life-section-card-portrait {
+    min-height: 380px;
+  }
+  .life-section-testimonial {
+    grid-template-columns: 1fr;
+  }
+  .life-section-testimonial-accent {
+    width: 100%;
+    height: 6px;
+    order: -1;
+  }
+}
+@media (max-width: 640px) {
+  .life-section-grid {
+    grid-template-columns: 1fr;
+  }
+  .life-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .life-section-stats {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .life-section-stat + .life-section-stat::before {
+    display: none;
+  }
+  .life-section-stat {
+    flex: 1 1 40%;
+    padding: 0 1rem;
+  }
+  .life-section-testimonial-body {
+    padding: 2.5rem 2rem;
+  }
+  .life-section-card-portrait {
+    min-height: 320px;
+  }
+}
+/* clinical section newsletter */
+@keyframes clinical-section-smooth-fade {
+  0% {
+    opacity: 0;
+    transform: scale(1) translateX(0);
+  }
+  5% {
+    opacity: 1;
+  }
+  16.66% {
+    opacity: 1;
+  }
+  21.66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1) translateX(-1%);
+  }
+}
+
+@keyframes clinical-section-pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.clinical-section-newsletter {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5rem 10%;
+  background-color: var(--slate);
+  overflow: hidden;
+}
+
+.clinical-section-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.clinical-section-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: clinical-section-smooth-fade 36s infinite;
+}
+
+.clinical-section-newsletter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 20, 20, 0.9) 0%,
+    rgba(20, 20, 20, 0.6) 50%,
+    rgba(20, 20, 20, 0.1) 100%
+  );
+  z-index: 1;
+}
+
+.clinical-section-newsletter-content {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.clinical-section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  color: var(--white);
+  line-height: 1;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.clinical-section-text {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--white);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+  opacity: 0.9;
+}
+
+.clinical-section-action-wrapper {
+  position: relative;
+  width: 100%;
+  height: 60px;
+}
+
+.clinical-section-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 1rem;
+  animation: clinical-section-pop-in 0.4s ease-out;
+}
+
+.clinical-section-input {
+  flex: 1;
+  height: 100%;
+  padding: 0 1.5rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--white);
+  outline: none;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.clinical-section-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 1px;
+}
+
+.clinical-section-input:focus {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: var(--white);
+}
+
+.clinical-section-button {
+  height: 100%;
+  padding: 0 2.5rem;
+  background-color: var(--pink);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.clinical-section-button:hover {
+  background-color: #b03652;
+  transform: translateY(-2px);
+}
+
+.clinical-section-success-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0 1.5rem;
+  background-color: var(--pink-mid);
+  border-left: 4px solid var(--pink);
+  border-radius: 4px;
+  animation: clinical-section-pop-in 0.5s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-sizing: border-box;
+}
+
+.clinical-section-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--pink);
+  color: var(--white);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.clinical-section-success-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--white);
+  margin: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.clinical-section-success-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--white);
+  margin: 0;
+  opacity: 0.8;
+}
+
+.clinical-section-disclaimer {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--white);
+  opacity: 0.6;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .clinical-section-action-wrapper {
+    height: 130px;
+  }
+
+  .clinical-section-form {
+    flex-direction: column;
+  }
+
+  .clinical-section-button {
+    width: 100%;
+  }
+
+  .clinical-section-newsletter {
+    padding: 4rem 5%;
+  }
+}

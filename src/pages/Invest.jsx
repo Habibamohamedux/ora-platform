@@ -6,6 +6,7 @@ import './Invest.css';
 // Component Imports
 import Navbar from '../components/layout/Navbar';
 import HeroInvest from '../components/sections/HeroInvest';
+import investVid from '../assests/video/invest.mp4'; 
 import GlobalOpportunity from '../components/sections/GlobalOpportunity';
 import TheGap from '../components/sections/TheGap';
 import TheSolution from '../components/sections/TheSolution';
@@ -147,7 +148,15 @@ const Invest = () => {
             
             {/* BACKGROUND LAYER */}
             <section className="hero-parallax-container2">
-                <HeroInvest />
+  <HeroInvest 
+    videoSrc={investVid}
+    titleLine1="Invest in the"
+    titleLine2="Future of Maternal Care"
+    subtitle="ORA is redefining maternal health through AI and clinical integration."
+    primaryBtnText="Request Deck"
+    secondaryBtnText="Partner With Us"
+  />
+);
             </section>
 
             {/* SLIDING SHEET LAYER */}

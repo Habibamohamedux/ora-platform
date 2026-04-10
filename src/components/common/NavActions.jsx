@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'; // 1️⃣ Import useNavigate
 import './NavActions.css';
 
 // 2️⃣ Added 'path' to each item so the router knows where to go
+// 2️⃣ Added 'path' to each item so the router knows where to go
 const menuData = [
   {
     category: 'SYSTEM',
@@ -48,6 +49,12 @@ const menuData = [
     category: 'BUSINESS',
     items: [
       { title: 'Invest', path: '/invest', desc: 'Opportunities to partner, collaborate, and support the future of maternal health technology.' },
+    ],
+  },
+  {
+    category: 'CAREERS',
+    items: [
+      { title: 'Futures', path: '/futures', desc: 'Join our mission to revolutionize maternal health. Explore opportunities to build the future of care with ORA.' },
     ],
   },
 ];

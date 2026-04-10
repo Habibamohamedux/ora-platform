@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap'; // Import GSAP
+import { gsap } from 'gsap';
 import './HeroInvest.css';
-import heroVideo from '../../assests/video/invest.mp4'; 
 
 const HeroButton = ({ text, variant = 'primary', onClick }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -22,7 +21,16 @@ const HeroButton = ({ text, variant = 'primary', onClick }) => {
   );
 };
 
-const HeroInvest = () => {
+const HeroInvest = ({ 
+  videoSrc, 
+  titleLine1 = "Invest in the", 
+  titleLine2 = "Future of Care", 
+  subtitle = "Default subtitle text goes here.",
+  primaryBtnText = "Get Started",
+  secondaryBtnText = "Learn More",
+  onPrimaryClick,
+  onSecondaryClick
+}) => {
   const sectionRef = useRef(null);
   const titleLine1Ref = useRef(null);
   const titleLine2Ref = useRef(null);
@@ -30,15 +38,15 @@ const HeroInvest = () => {
   const ctaGroupRef = useRef(null);
 
   useEffect(() => {
-    // 1. Prepare Text (Split title and subtitle into words for individual control)
+    // Helper to split text into spans for GSAP
     const prepareText = (ref, splitClass) => {
       if (ref.current) {
         const text = ref.current.textContent;
-        ref.current.textContent = ''; // Clear original text
+        ref.current.innerHTML = ''; 
         text.split(' ').forEach((word) => {
           const span = document.createElement('span');
-          span.classList.add('word-wrapper'); // Outter container for hiding overflow
-          span.innerHTML = `<span class="word ${splitClass}">${word}&nbsp;</span>`; // Inner actual word
+          span.classList.add('word-wrapper'); 
+          span.innerHTML = `<span class="word ${splitClass}">${word}&nbsp;</span>`;
           ref.current.appendChild(span);
         });
       }
@@ -48,66 +56,71 @@ const HeroInvest = () => {
     prepareText(titleLine2Ref, 'highlight-word');
     prepareText(subtitleRef, 'subtitle-word');
 
-    // 2. Setup GSAP Timeline
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-    // Initial state setup (hiding elements with GSAP)
-    gsap.set('.word', { yPercent: 100, opacity: 0 }); // Move words "down" inside their overflow hidden wrapper
+    gsap.set('.word', { yPercent: 100, opacity: 0 });
     gsap.set(ctaGroupRef.current, { y: 20, opacity: 0 });
 
-    // 3. Define the Impressive Sequence
     tl.to('.title-word', {
       duration: 1.1,
       yPercent: 0,
       opacity: 1,
-      stagger: 0.1, // Stagger words 0.1s apart
+      stagger: 0.1,
     })
     .to('.highlight-word', {
       duration: 1.1,
       yPercent: 0,
       opacity: 1,
       stagger: 0.1,
-    }, "-=1.0") // Overlay this animation starting 1.0s early
+    }, "-=1.0")
     .to('.subtitle-word', {
       duration: 0.8,
       yPercent: 0,
       opacity: 1,
-      stagger: 0.04, // Very fast stagger for subtitle
+      stagger: 0.04,
     }, "-=0.9")
     .to(ctaGroupRef.current, {
       duration: 1,
       y: 0,
       opacity: 1,
-      ease: 'back.out(1.4)', // Add an elastic "snap" to the buttons
+      ease: 'back.out(1.4)',
     }, "-=0.6");
 
-    return () => tl.kill(); // Cleanup on unmount
-  }, []);
+    return () => tl.kill();
+  }, [titleLine1, titleLine2, subtitle]); // Re-run if content changes
 
   return (
     <section className="hero-invest" ref={sectionRef}>
       <div className="hero-video-container">
-        <video autoPlay muted loop playsInline className="hero-video-element">
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        {videoSrc && (
+          <video autoPlay muted loop playsInline className="hero-video-element">
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        )}
         <div className="video-overlay"></div>
       </div>
 
       <div className="hero-content">
         <h1 className="hero-title">
-          <div ref={titleLine1Ref}>Invest in the</div>
-          <div ref={titleLine2Ref} className="text-highlight">Future of Maternal Care</div>
+          <div ref={titleLine1Ref}>{titleLine1}</div>
+          <div ref={titleLine2Ref} className="text-highlight">{titleLine2}</div>
         </h1>
         
-        {/* Subtitle words are generated in useEffect */}
         <p className="hero-subtitle" ref={subtitleRef}>
-          ORA is redefining maternal health through AI, wearable technology, 
-          and clinical integration.
+          {subtitle}
         </p>
 
         <div className="hero-cta-group" ref={ctaGroupRef}>
-          <HeroButton text="Request Investment Deck" variant="primary" />
-          <HeroButton text="Partner With ORA" variant="outline" />
+          <HeroButton 
+            text={primaryBtnText} 
+            variant="primary" 
+            onClick={onPrimaryClick} 
+          />
+          <HeroButton 
+            text={secondaryBtnText} 
+            variant="outline" 
+            onClick={onSecondaryClick} 
+          />
         </div>
       </div>
     </section>
