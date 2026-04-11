@@ -1,0 +1,230 @@
+/* =====================================================
+   ORA PRELOADER  —  matches reference design exactly
+   • Full-screen soft pink radial blob
+   • Solid pink filled disk at centre
+   • Concentric ring outlines
+   • White logo sitting on the disk
+   • Quote + slim progress bar below
+   ===================================================== */
+
+/* ── Overlay ─────────────────────────────────────── */
+.ora-pre {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--white, #faf8f9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* Entry — instant */
+  opacity: 1;
+  transition:
+    opacity  0.65s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exit */
+.ora-pre--exit {
+  opacity: 0;
+  transform: scale(1.035);
+  pointer-events: none;
+}
+
+/* ── Outer ambient glow — fills ~70 % of viewport ── */
+.ora-glow-outer {
+  position: absolute;
+  /* Slightly off-centre like the reference */
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: min(900px, 90vw);
+  height: min(900px, 90vw);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(201, 64, 96, 0.38)   0%,
+    rgba(201, 64, 96, 0.22)  22%,
+    rgba(201, 64, 96, 0.10)  45%,
+    rgba(201, 64, 96, 0.03)  68%,
+    transparent              100%
+  );
+  filter: blur(60px);
+  animation: glow-breathe 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glow-breathe {
+  0%, 100% { opacity: .85; transform: scale(1);    }
+  50%       { opacity: 1;   transform: scale(1.07); }
+}
+
+/* ── Solid filled pink disk — innermost circle ───── */
+.ora-disk {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: min(340px, 52vw);
+  height: min(340px, 52vw);
+  border-radius: 50%;
+  /* Mimics the soft filled centre in the screenshot */
+  background: radial-gradient(
+    circle at 48% 46%,
+    rgba(201, 64, 96, 0.82)  0%,
+    rgba(201, 64, 96, 0.65) 55%,
+    rgba(201, 64, 96, 0.42) 85%,
+    rgba(201, 64, 96, 0.18) 100%
+  );
+  filter: blur(28px);
+  animation: disk-breathe 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes disk-breathe {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.03); }
+}
+
+/* ── Concentric ring outlines ─────────────────────── */
+.ora-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.50);
+  pointer-events: none;
+  animation: ring-breathe 3.2s ease-in-out infinite;
+}
+
+.ora-ring-a {
+  width: min(340px, 52vw);
+  height: min(340px, 52vw);
+  animation-delay: 0s;
+}
+.ora-ring-b {
+  width: min(480px, 66vw);
+  height: min(480px, 66vw);
+  border-color: rgba(255, 255, 255, 0.30);
+  animation-delay: 0.25s;
+}
+.ora-ring-c {
+  width: min(620px, 80vw);
+  height: min(620px, 80vw);
+  border-color: rgba(255, 255, 255, 0.15);
+  animation-delay: 0.5s;
+}
+
+@keyframes ring-breathe {
+  0%, 100% { opacity: .7; transform: scale(.97); }
+  50%       { opacity: 1;  transform: scale(1);   }
+}
+
+/* ── Stage: everything centred over the disk ──────── */
+.ora-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Logo ─────────────────────────────────────────── */
+.ora-logo {
+  width: clamp(44px, 6vw, 68px);
+  height: auto;
+  display: block;
+  animation: logo-float 3.2s ease-in-out infinite;
+  margin-bottom: 28px;
+  filter: drop-shadow(0 2px 12px rgba(255,255,255,0.25));
+}
+
+@keyframes logo-float {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ── Quote ────────────────────────────────────────── */
+.ora-quote {
+  font-family: var(--font-display, 'Bebas Neue', sans-serif);
+  font-size: clamp(13px, 1.8vw, 17px);
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.82);
+  text-transform: uppercase;
+  margin: 0 0 26px;
+  white-space: nowrap;
+
+  opacity: 0;
+  animation: fade-up 0.7s ease forwards 0.25s;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ── Progress bar ─────────────────────────────────── */
+.ora-bar-track {
+  width: clamp(160px, 22vw, 240px);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  overflow: visible;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.ora-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.80);
+  transition: width 0.14s ease-out;
+  position: relative;
+  overflow: visible;
+}
+
+/* Glowing head dot */
+.ora-bar-head {
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  translate: 0 -50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px 3px rgba(255,255,255,0.6);
+}
+
+/* ── Percentage ───────────────────────────────────── */
+.ora-pct {
+  font-family: var(--font-body, 'Wix Madefor Text', sans-serif);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.60);
+
+  opacity: 0;
+  animation: fade-up 0.7s ease forwards 0.45s;
+}
+
+.ora-pct sup {
+  font-size: 8px;
+  vertical-align: super;
+  margin-left: 1px;
+}
+
+/* ── Page content ─────────────────────────────────── */
+.ora-page {
+  opacity: 0;
+  pointer-events: none;
+  /* No transition while overlay is up */
+}
+
+.ora-page--on {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.45s ease 0.05s;
+}
