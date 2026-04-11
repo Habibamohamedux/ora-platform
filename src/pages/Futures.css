@@ -3489,3 +3489,484 @@
     padding: 4rem 5%;
   }
 }
+/* ecosystem impact */
+/* ============================================================
+   EcosystemImpact.css
+   Import via: import "../../pages/Futures.css";
+   All classes prefixed: EcosystemImpact__
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Wix+Madefor+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ── Root ────────────────────────────────────────────────── */
+.EcosystemImpact {
+  background: #ffffff;
+  color: #1a1a2e;
+  font-family: var(--font-body);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ══════════════════════════════════════════════════════════
+   IMPACT SECTION  (white bg)
+══════════════════════════════════════════════════════════ */
+.EcosystemImpact__impact {
+  position: relative;
+  z-index: 1;
+  padding: clamp(48px, 7vw, 96px) clamp(20px, 5vw, 72px);
+}
+
+/* section label */
+.EcosystemImpact__sectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 14px;
+  opacity: 0;
+  animation: EcosystemImpact__fadeIn 0.7s 0.1s forwards;
+}
+.EcosystemImpact__sectionLabel::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--pink);
+}
+
+/* heading */
+.EcosystemImpact__impactHeading {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 80px);
+  letter-spacing: 0.12em;
+  color: #1a1a2e;
+  margin: 0 0 clamp(32px, 4vw, 52px);
+  opacity: 0;
+  animation: EcosystemImpact__fadeUp 0.8s 0.25s forwards cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ── Slideshow card ──────────────────────────────────────── */
+.EcosystemImpact__imageCard {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 2px 8px rgba(201,64,96,0.06),
+    0 16px 64px rgba(201,64,96,0.12),
+    0 40px 100px rgba(0,0,0,0.07);
+  border: 1px solid rgba(201,64,96,0.12);
+  background: #111;
+}
+
+/* slides container */
+.EcosystemImpact__slides {
+  position: relative;
+  height: clamp(280px, 42vw, 540px);
+  width: 100%;
+}
+
+.EcosystemImpact__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.EcosystemImpact__slide--active {
+  opacity: 1;
+}
+
+.EcosystemImpact__slideImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.07);
+  transition: transform 9s ease;
+}
+.EcosystemImpact__slide--active .EcosystemImpact__slideImg {
+  transform: scale(1.00);
+}
+
+/* gradient vignette */
+.EcosystemImpact__slideOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(10, 0, 20, 0.10) 0%,
+    rgba(10, 0, 20, 0.05) 35%,
+    rgba(10, 0, 20, 0.68) 100%
+  );
+  pointer-events: none;
+}
+
+/* dot indicators */
+.EcosystemImpact__dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 4;
+}
+.EcosystemImpact__dot {
+  height: 6px;
+  width: 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.35s, width 0.35s;
+}
+.EcosystemImpact__dot--active {
+  background: #ffffff;
+  width: 24px;
+}
+
+/* nav arrows */
+.EcosystemImpact__navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+.EcosystemImpact__navBtn:hover {
+  background: rgba(255,255,255,0.28);
+  border-color: rgba(255,255,255,0.55);
+}
+.EcosystemImpact__navBtn--prev { left: 18px; }
+.EcosystemImpact__navBtn--next { right: 18px; }
+.EcosystemImpact__navBtn--prev:hover { transform: translateY(-50%) translateX(-2px); }
+.EcosystemImpact__navBtn--next:hover { transform: translateY(-50%) translateX(2px); }
+.EcosystemImpact__navBtn svg {
+  width: 14px;
+  height: 14px;
+  stroke: #fff;
+  stroke-width: 2.2;
+  fill: none;
+}
+
+/* ── Stats row ───────────────────────────────────────────── */
+.EcosystemImpact__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(201,64,96,0.10);
+  border-top: none;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.EcosystemImpact__stat {
+  padding: clamp(22px, 3vw, 40px) clamp(16px, 2.5vw, 36px);
+  border-right: 1px solid rgba(201,64,96,0.10);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: background 0.35s;
+}
+.EcosystemImpact__stat:last-child { border-right: none; }
+
+/* animated bottom fill line */
+.EcosystemImpact__stat::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--pink);
+  transition: width 0.55s cubic-bezier(0.16,1,0.3,1);
+}
+.EcosystemImpact__stat:hover::after { width: 100%; }
+.EcosystemImpact__stat:hover { background: rgba(201,64,96,0.03); }
+
+.EcosystemImpact__statNumber {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.5vw, 72px);
+  line-height: 0.9;
+  color: var(--pink);
+  letter-spacing: -0.01em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.EcosystemImpact__statLabel {
+  font-size: clamp(10px, 1.1vw, 13px);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #67667c;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ECOSYSTEM SECTION  (pink bg)
+══════════════════════════════════════════════════════════ */
+.EcosystemImpact__ecosystem {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, #b01c3a 0%, #c94060 55%, #9a1830 100%);
+  padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center;
+  overflow: hidden;
+}
+
+/* decorative rings */
+.EcosystemImpact__ecoRing {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.09);
+  pointer-events: none;
+}
+.EcosystemImpact__ecoRing--1 { width: 620px; height: 620px; top: -280px; left: -160px; }
+.EcosystemImpact__ecoRing--2 { width: 440px; height: 440px; bottom: -210px; right: -90px; }
+.EcosystemImpact__ecoRing--3 { width: 250px; height: 250px; top: 38%; left: 40%; border-color: rgba(255,255,255,0.05); }
+
+/* ── Left column ─────────────────────────────────────────── */
+.EcosystemImpact__ecoLeft {
+  position: relative;
+  z-index: 1;
+}
+
+.EcosystemImpact__infoBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.50);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: EcosystemImpact__fadeIn 0.7s 0.15s forwards;
+}
+.EcosystemImpact__infoDot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.50);
+  flex-shrink: 0;
+}
+
+.EcosystemImpact__ecoTitle {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 6vw, 86px);
+  letter-spacing: 0.06em;
+  line-height: 0.93;
+  color: #ffffff;
+  margin: 0 0 clamp(20px, 2.5vw, 32px);
+  opacity: 0;
+  animation: EcosystemImpact__fadeUp 0.9s 0.30s forwards cubic-bezier(0.16,1,0.3,1);
+}
+
+.EcosystemImpact__ecoBody {
+  font-size: clamp(14px, 1.5vw, 17px);
+  line-height: 1.72;
+  color: rgba(255,255,255,0.78);
+  max-width: 400px;
+  opacity: 0;
+  animation: EcosystemImpact__fadeUp 0.9s 0.45s forwards cubic-bezier(0.16,1,0.3,1);
+}
+
+/* shimmer bar */
+.EcosystemImpact__shimmerBar {
+  width: 52px;
+  height: 2px;
+  background: rgba(255,255,255,0.22);
+  border-radius: 2px;
+  margin-top: 32px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: EcosystemImpact__fadeIn 0.6s 0.65s forwards;
+}
+.EcosystemImpact__shimmerBar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: translateX(-100%);
+  animation: EcosystemImpact__shimmer 2.2s 1.2s infinite ease-in-out;
+}
+
+/* ── Right column – Cards ────────────────────────────────── */
+.EcosystemImpact__cards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.4vw, 16px);
+}
+
+.EcosystemImpact__card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 16px;
+  padding: clamp(16px, 2vw, 24px) clamp(18px, 2.5vw, 28px);
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 22px);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    background 0.3s,
+    border-color 0.3s,
+    transform 0.4s cubic-bezier(0.16,1,0.3,1),
+    box-shadow 0.3s;
+  opacity: 0;
+  transform: translateX(36px);
+}
+.EcosystemImpact__card.EcosystemImpact__card--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.EcosystemImpact__card:nth-child(1) { transition-delay: 0.05s; }
+.EcosystemImpact__card:nth-child(2) { transition-delay: 0.16s; }
+.EcosystemImpact__card:nth-child(3) { transition-delay: 0.27s; }
+
+.EcosystemImpact__card:hover {
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.32);
+  transform: translateX(-5px) translateY(-2px);
+  box-shadow: 10px 14px 48px rgba(0,0,0,0.22);
+}
+.EcosystemImpact__card--active {
+  background: rgba(255,255,255,0.21) !important;
+  border-color: rgba(255,255,255,0.44) !important;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.20) !important;
+}
+
+/* icon box */
+.EcosystemImpact__cardIcon {
+  width: clamp(40px, 4.2vw, 52px);
+  height: clamp(40px, 4.2vw, 52px);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s, transform 0.35s;
+}
+.EcosystemImpact__card:hover .EcosystemImpact__cardIcon {
+  background: rgba(255,255,255,0.22);
+  transform: rotate(-8deg) scale(1.10);
+}
+.EcosystemImpact__cardIcon svg {
+  width: clamp(17px, 1.8vw, 22px);
+  height: clamp(17px, 1.8vw, 22px);
+  stroke: #ffffff;
+  stroke-width: 1.6;
+  fill: none;
+}
+
+/* card text */
+.EcosystemImpact__cardText { flex: 1; min-width: 0; }
+.EcosystemImpact__cardTitle {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.8vw, 22px);
+  letter-spacing: 0.10em;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+.EcosystemImpact__cardSub {
+  font-size: clamp(9px, 0.9vw, 11px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.52);
+  margin-bottom: 3px;
+}
+.EcosystemImpact__cardDesc {
+  font-size: clamp(9px, 0.85vw, 11px);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.34);
+}
+
+/* arrow circle */
+.EcosystemImpact__cardArrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+}
+.EcosystemImpact__card:hover .EcosystemImpact__cardArrow {
+  border-color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.12);
+  transform: translateX(3px);
+}
+.EcosystemImpact__cardArrow svg {
+  width: 10px; height: 10px;
+  stroke: #fff;
+  stroke-width: 2.2;
+  fill: none;
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════ */
+@media (max-width: 820px) {
+  .EcosystemImpact__ecosystem {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .EcosystemImpact__ecoBody { max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .EcosystemImpact__stats {
+    grid-template-columns: 1fr;
+    border-radius: 0 0 20px 20px;
+  }
+  .EcosystemImpact__stat {
+    border-right: none;
+    border-bottom: 1px solid rgba(201,64,96,0.10);
+    padding: 20px 18px;
+  }
+  .EcosystemImpact__stat:last-child { border-bottom: none; }
+  .EcosystemImpact__impact { padding: 36px 16px; }
+  .EcosystemImpact__ecosystem { padding: 56px 16px; }
+  .EcosystemImpact__navBtn { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════════════════════════ */
+@keyframes EcosystemImpact__fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes EcosystemImpact__fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes EcosystemImpact__shimmer {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}

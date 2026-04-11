@@ -6,18 +6,20 @@ import CareersNewsletter from '../components/futures/CareersNewsletter';
 import CareerFuture from '../components/futures/CareerFuture';
 import CareersAreas from '../components/futures/CareersAreas';
 import Openpositions from '../components/futures/OpenPositions';
+import EcosystemImpact from '../components/futures/EcosystemImpact';
 import './Futures.css';
 
 const Futures = () => {
   return (
     <> 
       <Navbar />
-      <InnovationEvents />
-     <LifeatOra />
       <CareerFuture />
-      <CareersNewsletter />
+     <LifeatOra />
       <CareersAreas />
       <Openpositions />
+      <InnovationEvents />
+      <EcosystemImpact />
+      <CareersNewsletter />
     </>
   );
 };
