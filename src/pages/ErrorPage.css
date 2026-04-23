@@ -1,0 +1,288 @@
+.ora-error-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 245, 250, 0.96) 42%, rgba(253, 188, 214, 0.56) 100%);
+  color: #67667C;
+  overflow: hidden;
+}
+
+.ora-error-hero {
+  width: min(1400px, 90vw);
+  min-height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  align-items: center;
+  gap: clamp(32px, 7vw, 110px);
+  padding: 128px 0 72px;
+  position: relative;
+}
+
+.ora-error-hero::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 104px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(103, 102, 124, 0.16), rgba(201, 64, 96, 0.34), rgba(103, 102, 124, 0));
+}
+
+.ora-error-content {
+  position: relative;
+  z-index: 2;
+}
+
+.ora-error-eyebrow {
+  margin: 0 0 18px;
+  font-family: 'Wix Madefor Text', 'Roboto Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  color: rgba(201, 64, 96, 0.72);
+  text-transform: uppercase;
+}
+
+.ora-error-content h1 {
+  margin: 0;
+  max-width: 620px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.2rem, 9vw, 9rem);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #67667C;
+}
+
+.ora-error-message {
+  max-width: 430px;
+  margin: 28px 0 0;
+  font-family: 'Wix Madefor Text', 'Roboto Condensed', sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.8;
+  color: rgba(103, 102, 124, 0.74);
+}
+
+.ora-error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 38px;
+}
+
+.ora-error-button {
+  min-width: 112px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 13px 22px;
+  border: 1px solid rgba(103, 102, 124, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  color: #67667C;
+  font-family: 'Wix Madefor Text', 'Roboto Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  text-transform: uppercase;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.45s ease,
+    background 0.45s ease,
+    color 0.45s ease;
+}
+
+.ora-error-button:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 64, 96, 0.35);
+  background: rgba(255, 255, 255, 0.7);
+  color: #c94060;
+}
+
+.ora-error-button--primary {
+  border-color: rgba(201, 64, 96, 0.3);
+  background: #c94060;
+  color: #fff;
+}
+
+.ora-error-button--primary:hover {
+  background: #b73555;
+  color: #fff;
+}
+
+.ora-error-path {
+  margin: 28px 0 0;
+  font-family: 'Wix Madefor Text', 'Roboto Condensed', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: rgba(103, 102, 124, 0.48);
+}
+
+.ora-error-path span {
+  color: rgba(201, 64, 96, 0.75);
+}
+
+.ora-error-visual {
+  position: relative;
+  min-height: clamp(420px, 56vw, 680px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ora-error-code {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.8vw, 24px);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 24vw, 22rem);
+  font-weight: 100;
+  line-height: 0.78;
+  color: rgba(103, 102, 124, 0.13);
+  text-shadow: 0 28px 70px rgba(201, 64, 96, 0.12);
+}
+
+.ora-error-code span:nth-child(2) {
+  color: rgba(201, 64, 96, 0.16);
+  transform: translateY(-0.08em);
+}
+
+.ora-error-signal {
+  position: absolute;
+  z-index: 3;
+  left: 5%;
+  right: 5%;
+  top: 50%;
+  display: grid;
+  grid-template-columns: 10px 1fr 34px 0.7fr 34px 1fr 10px;
+  align-items: center;
+  transform: translateY(-50%);
+  filter: drop-shadow(0 18px 26px rgba(201, 64, 96, 0.18));
+}
+
+.signal-dot {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #c94060;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.signal-line {
+  height: 2px;
+  background: linear-gradient(90deg, rgba(201, 64, 96, 0.08), rgba(201, 64, 96, 0.8));
+  transform-origin: left center;
+  animation: signal-pulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.signal-line--b {
+  animation-delay: 0.12s;
+}
+
+.signal-line--c {
+  animation-delay: 0.24s;
+}
+
+.signal-step {
+  width: 34px;
+  height: 58px;
+  border-color: #c94060;
+  border-style: solid;
+  opacity: 0.74;
+}
+
+.signal-step--up {
+  border-width: 2px 2px 0 0;
+  transform: translateY(-28px);
+}
+
+.signal-step--down {
+  border-width: 0 0 2px 2px;
+  transform: translateY(28px);
+}
+
+.ora-error-grid {
+  position: absolute;
+  inset: 8% 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(12px, 2vw, 28px);
+  opacity: 0.48;
+  mask-image: radial-gradient(circle at center, #000 0%, transparent 72%);
+}
+
+.ora-error-grid span {
+  border-top: 1px solid rgba(103, 102, 124, 0.13);
+  border-left: 1px solid rgba(201, 64, 96, 0.11);
+}
+
+@keyframes signal-pulse {
+  0% {
+    transform: scaleX(0.18);
+    opacity: 0.18;
+  }
+  42%,
+  72% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0.28;
+  }
+}
+
+@media (max-width: 900px) {
+  .ora-error-hero {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 36px;
+    padding-top: 112px;
+  }
+
+  .ora-error-visual {
+    min-height: 320px;
+    order: -1;
+  }
+
+  .ora-error-content h1,
+  .ora-error-message {
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .ora-error-hero {
+    width: min(90vw, 460px);
+    padding-bottom: 48px;
+  }
+
+  .ora-error-content h1 {
+    font-size: clamp(3.8rem, 18vw, 5.4rem);
+  }
+
+  .ora-error-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .ora-error-button {
+    width: 100%;
+  }
+
+  .ora-error-signal {
+    grid-template-columns: 10px 1fr 24px 0.6fr 24px 1fr 10px;
+  }
+
+  .signal-step {
+    width: 24px;
+    height: 42px;
+  }
+}

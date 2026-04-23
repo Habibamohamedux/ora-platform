@@ -8,6 +8,7 @@ const menuData = [
   {
     category: 'SYSTEM',
     items: [
+      { title: 'Contact', path: '/Contact', desc: 'Get in touch with our team for any inquiries or support.' },
       { title: 'Ecosystem', path: '/ecosystem', desc: 'A unified overview of how ORA connects AI, wearable technology, and clinical care into one seamless system.' },
       { title: 'Intelligence', path: '/intelligence', desc: 'The AI engine powering predictions, insights, and real-time maternal health analysis.' },
       { title: 'Clinical', path: '/clinical', desc: 'A dedicated layer for doctors to monitor patients, manage risks, and provide informed care.' },
@@ -115,7 +116,7 @@ const MenuItem = ({ item, globalIndex, isMenuOpen, onHover, onClick }) => {
 /* ─────────────────────────────────────────────
    NavActions
 ───────────────────────────────────────────── */
-const NavActions = () => {
+const NavActions = ({ onMenuChange }) => {
   const [isOpen,         setIsOpen]         = useState(false);
   const [triggerHovered, setTriggerHovered] = useState(false);
   const [activeDetail,   setActiveDetail]   = useState(null);
@@ -130,8 +131,17 @@ const NavActions = () => {
     setAnimKey(k => k + 1);
   };
 
-  const handleOpen  = () => { setIsOpen(true);  setActiveDetail(null); };
-  const handleClose = () => { setIsOpen(false); setActiveDetail(null); };
+  const handleOpen  = () => {
+    setIsOpen(true);
+    setActiveDetail(null);
+    onMenuChange?.(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setActiveDetail(null);
+    onMenuChange?.(false);
+  };
 
   // 5️⃣ Create a function to handle the click: Close menu, then navigate
   const handleItemClick = (path) => {
@@ -146,7 +156,7 @@ const NavActions = () => {
   return (
     <div className="ora-nav">
       <div
-        className="nav-trigger"
+        className={`nav-trigger${isActive ? ' active' : ''}`}
         onMouseEnter={() => setTriggerHovered(true)}
         onMouseLeave={() => setTriggerHovered(false)}
         onClick={handleOpen}

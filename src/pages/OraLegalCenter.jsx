@@ -10,6 +10,7 @@ import LegalUpdates from '../components/legal/LegalUpdates';
 import LegalParagraph from '../components/legal/LegalParagraph';
 import LegalSidebar from '../components/legal/LegalSidebar';
 import LegalSectionBlock from '../components/legal/LegalSectionBlock';
+import ErrorPage from './ErrorPage';
 
 const OraLegalCenter = () => {
     // 1️⃣ Get the slug from the URL (e.g., /terms-of-use)
@@ -106,9 +107,11 @@ const OraLegalCenter = () => {
     );
     
     if (!pageData) return (
-        <div className="legal-error-state">
-            <p>We couldn't find that legal resource.</p>
-        </div>
+        <ErrorPage
+          eyebrow="Legal Signal Lost"
+          title="That legal page is not in ORA's archive."
+          message="The resource may have moved, or the route may not exist yet."
+        />
     );
 
     return (

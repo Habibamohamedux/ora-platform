@@ -7,11 +7,11 @@
 .CH-hero {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 4rem;
   min-height: 100svh;
-  padding: 7rem 6vw 5rem;
+  padding: 5.25rem 6vw 4.5rem;
   background-color: var(--white);
   overflow: hidden;
 }
@@ -355,7 +355,7 @@
 @media (max-width: 1024px) {
   .CH-hero {
     flex-direction: column;
-    padding: 6rem 5vw 4rem;
+    padding: 5rem 5vw 4rem;
     min-height: auto;
   }
   .CH-content { max-width: 100%; }
@@ -364,7 +364,7 @@
 }
 
 @media (max-width: 640px) {
-  .CH-hero   { padding: 5rem 4vw 3.5rem; gap: 2.5rem; }
+  .CH-hero   { padding: 4.5rem 4vw 3.5rem; gap: 2.5rem; }
   .CH-mosaic { height: 320px; gap: 0.5rem; }
   .CH-mosaic-card { border-radius: 12px; }
   .CH-stats  { gap: 1.5rem; }

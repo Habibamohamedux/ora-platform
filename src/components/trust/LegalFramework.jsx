@@ -17,12 +17,14 @@ const LegalFramework = () => {
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      observer.disconnect();
     };
   }, []);
 
@@ -59,8 +61,8 @@ const LegalFramework = () => {
             </div>
 
             {/* Tiny aesthetic data dots */}
-            <div className="floating-dot dot-1"></div>
-            <div className="floating-dot dot-2"></div>
+            <div className="floating-dot dot-12"></div>
+            <div className="floating-dot dot-13"></div>
           </div>
         </div>
 

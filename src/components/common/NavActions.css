@@ -44,9 +44,11 @@
   width: 120px;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;            /* Figma: gap 72 between label and dots */
+  gap: 16px;          
   cursor: pointer;
   user-select: none;
+  color: var(--navbar-color, #fff);
+  transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .trigger-label-wrap {
@@ -68,12 +70,14 @@
   line-height: 1;
   white-space: nowrap;
   transition: transform 0.52s cubic-bezier(0.16, 1, 0.3, 1),
-              color     0.32s ease;
+              color     0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity   0.4s ease;
 }
 
 /* State 01 — "SYSTEM" sits in view */
 .trigger-text.row-a {
-  color: rgba(255, 255, 255, 0.88);
+  color: currentColor;
+  opacity: 0.88;
   transform: translateY(0%);
 }
 .trigger-text.row-a.hide {
@@ -82,7 +86,7 @@
 
 /* State 02 — "ORA SYSTEM NAVIGATION" starts below */
 .trigger-text.row-b {
-  color: #fff;
+  color: currentColor;
   transform: translateY(120%);
 }
 .trigger-text.row-b.show {
@@ -104,15 +108,16 @@
 .dot {
   width: 4px; height: 4px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.7);
-  transition: background 0.4s ease,
-              opacity    0.4s ease,
+  background: currentColor;
+  opacity: 0.7;
+  transition: background 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity    0.45s ease,
               transform  0.45s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* State 02 — rotate to cross, tint pink, hide corners */
 .dot-grid.s2 { transform: rotate(45deg); }
-.dot-grid.s2 .dot { background: var(--pink); }
+.dot-grid.s2 .dot { background: var(--pink); opacity: 1; }
 .dot-grid.s2 .dot-1 { opacity: 0; transform: scale(0); transition-delay: 0s;    }
 .dot-grid.s2 .dot-3 { opacity: 0; transform: scale(0); transition-delay: 0.04s; }
 .dot-grid.s2 .dot-7 { opacity: 0; transform: scale(0); transition-delay: 0.08s; }

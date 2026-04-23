@@ -220,6 +220,7 @@
 .ora-page {
   opacity: 0;
   pointer-events: none;
+  display: contents;
   /* No transition while overlay is up */
 }
 
