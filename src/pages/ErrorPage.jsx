@@ -27,8 +27,17 @@ const ErrorPage = ({
             <Link className="ora-error-button" to="/circle">
               Circle
             </Link>
+            <Link className="ora-error-button" to="/invest">
+              Invest
+            </Link>
             <Link className="ora-error-button" to="/trust">
               Trust
+            </Link>
+            <Link className="ora-error-button" to="/contact">
+              Contact
+            </Link>
+            <Link className="ora-error-button" to="/privacy-policy">
+              Privacy Policy
             </Link>
           </div>
 
