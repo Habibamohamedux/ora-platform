@@ -4,9 +4,9 @@ import Navbar from '../components/layout/Navbar';
 import './ErrorPage.css';
 
 const ErrorPage = ({
-  eyebrow = 'Signal Lost',
-  title = 'This path drifted outside ORA.',
-  message = 'The page you requested is not available, but the system is still listening.',
+  eyebrow = 'Connection Interrupted',
+  title = "We couldn't find this part of your journey.",
+  message = "Something went off track, but you're not lost. ORA is still here to guide and support you every step of the way.",
 }) => {
   const location = useLocation();
 

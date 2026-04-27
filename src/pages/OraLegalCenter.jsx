@@ -106,13 +106,7 @@ const OraLegalCenter = () => {
         </div>
     );
     
-    if (!pageData) return (
-        <ErrorPage
-          eyebrow="Legal Signal Lost"
-          title="That legal page is not in ORA's archive."
-          message="The resource may have moved, or the route may not exist yet."
-        />
-    );
+    if (!pageData) return <ErrorPage />;
 
     return (
         <div className="legal-page-wrapper">

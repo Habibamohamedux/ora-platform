@@ -1,0 +1,316 @@
+/* ── circle-expert-section6.css ── */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Wix+Madefor+Text:ital,wght@0,400;0,600;1,400&display=swap");
+
+.eg6-section {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #fff9fc 100%);
+  padding: 100px 0 90px;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+.eg6-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(to right, var(--pink), #9b6fa8, #5b8f7a);
+}
+
+.eg6-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Header ── */
+.eg6-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 16px;
+}
+
+.eg6-head-split {
+  display: flex;
+  align-items: flex-end;
+  gap: 60px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.eg6-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7vw, 86px);
+  line-height: 0.93;
+  color: var(--slate);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.eg6-subtitle {
+  font-size: 16px;
+  color: var(--slate-light);
+  line-height: 1.65;
+  max-width: 360px;
+  margin: 0 0 6px;
+}
+
+/* ── Body layout ── */
+.eg6-body {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 40px;
+  margin-bottom: 52px;
+  align-items: start;
+}
+
+/* ── Expert cards ── */
+.eg6-experts {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.eg6-expert-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.94);
+  border: 1.5px solid rgba(103,102,124,0.1);
+  border-radius: 16px;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  box-shadow: 0 14px 34px rgba(103, 102, 124, 0.05);
+}
+.eg6-expert-card:hover {
+  border-color: rgba(201,64,96,0.25);
+  box-shadow: 0 8px 24px rgba(201,64,96,0.08);
+  transform: translateX(4px);
+}
+
+.eg6-expert-avatar {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.eg6-verified {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: #4caf82;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.eg6-expert-info {
+  flex: 1;
+}
+
+.eg6-expert-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--slate);
+  margin-bottom: 2px;
+}
+
+.eg6-expert-role {
+  font-size: 12px;
+  color: var(--slate-light);
+}
+
+.eg6-expert-count {
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.1;
+}
+.eg6-expert-count span {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--slate-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Q&A block ── */
+.eg6-qa-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.eg6-qa-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: 1.5px solid rgba(103,102,124,0.15);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.eg6-qa-tab--active {
+  border-color: var(--qcolor);
+  color: var(--qcolor);
+  background: color-mix(in srgb, var(--qcolor) 8%, transparent);
+}
+
+.eg6-qa-tab-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.eg6-qa-panel {
+  background: rgba(255,255,255,0.96);
+  border: 1.5px solid rgba(103,102,124,0.1);
+  border-radius: 20px;
+  padding: 32px;
+  animation: eg6FadeIn 0.35s ease both;
+  border-left: 4px solid var(--qcolor);
+  box-shadow: 0 16px 42px rgba(103, 102, 124, 0.06);
+}
+@keyframes eg6FadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.eg6-q-row,
+.eg6-a-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.eg6-q-label,
+.eg6-a-label {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+}
+.eg6-q-label { color: var(--slate-light); }
+.eg6-a-label { color: var(--qcolor); }
+
+.eg6-q-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--slate);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.eg6-a-text {
+  font-size: 14px;
+  color: var(--slate-light);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.eg6-qa-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(103,102,124,0.1);
+}
+
+.eg6-qa-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.eg6-qa-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+}
+.eg6-qa-role {
+  font-size: 11.5px;
+  color: var(--slate-light);
+}
+
+/* ── CTAs ── */
+.eg6-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.eg6-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  letter-spacing: 0.02em;
+}
+
+.eg6-btn--primary {
+  background: var(--pink);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(201,64,96,0.28);
+}
+.eg6-btn--primary:hover {
+  background: #a8304f;
+  transform: translateY(-2px);
+}
+
+.eg6-btn--ghost {
+  border: 1.5px solid var(--pink);
+  color: var(--pink);
+  background: transparent;
+}
+.eg6-btn--ghost:hover {
+  background: var(--pink-soft);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 860px) {
+  .eg6-body { grid-template-columns: 1fr; }
+  .eg6-ctas { flex-direction: column; }
+  .eg6-btn { text-align: center; }
+}

@@ -1,0 +1,291 @@
+root{
+  --slate:       
+#67667C;       
+}
+.cch-section {
+  position: relative;
+  padding: 130px 24px;
+  background: var(--white);
+  overflow: hidden;
+}
+
+/* Subtle, sophisticated background grid using the slate-light tone */
+.cch-bg-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: 
+    linear-gradient(to right, var(--slate-light) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--slate-light) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+}
+
+.cch-inner { 
+  position: relative;
+  z-index: 1;
+  max-width: 1120px; 
+  margin: 0 auto; 
+}
+
+/* --- Header Section --- */
+.cch-header { 
+  text-align: center; 
+  margin-bottom: 72px; 
+}
+
+.cch-eyebrow { 
+  font-family: var(--font-body); 
+  font-size: 12px; 
+  font-weight: 600;
+  letter-spacing: 2.5px; 
+  text-transform: uppercase; 
+  color: var(--pink); 
+  display: block; 
+  margin-bottom: 16px; 
+}
+
+.cch-title { 
+  font-family: var(--font-display); 
+  font-size: clamp(42px, 6vw, 76px); 
+  color: var(--slate); 
+  margin: 0 0 20px; 
+  line-height: 0.95; 
+  letter-spacing: 0.5px;
+}
+
+.cch-desc { 
+  font-family: var(--font-body); 
+  font-size: 16.5px; 
+  color: var(--slate-light); 
+  max-width: 600px; 
+  margin: 0 auto; 
+  line-height: 1.6; 
+}
+
+/* --- Grid & Cards --- */
+.cch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.cch-card {
+  position: relative;
+  border: 1px solid rgba(103, 102, 124, 0.18);
+  border-radius: 12px; /* Sharper, more corporate corner radius */
+  padding: 36px 30px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  display: flex; 
+  flex-direction: column; 
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: cch-fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cch-card:hover { 
+  transform: translateY(-6px); 
+  border-color: rgba(103, 102, 124, 0.4); 
+  box-shadow: 0 24px 48px rgba(27, 32, 51, 0.06); 
+  background: #ffffff;
+}
+
+.cch-card--primary { 
+  border-color: var(--pink-mid); 
+  box-shadow: 0 12px 36px rgba(201, 64, 96, 0.08); 
+  background: #ffffff;
+}
+
+.cch-card--primary:hover {
+  border-color: var(--pink);
+  box-shadow: 0 24px 48px rgba(201, 64, 96, 0.12); 
+}
+
+/* --- Badges --- */
+.cch-badge {
+  position: absolute;
+  top: -12px; 
+  right: 24px; 
+  font-family: var(--font-body);
+  font-size: 10px; 
+  font-weight: 700;
+  letter-spacing: 1px; 
+  text-transform: uppercase;
+  background: var(--pink); 
+  color: var(--white);
+  border-radius: 4px; /* Corporate squared badge */
+  padding: 6px 14px;
+  box-shadow: 0 4px 12px var(--pink-soft);
+}
+
+/* --- Card Content --- */
+.cch-card__top { 
+  display: flex; 
+  align-items: flex-start; 
+  margin-bottom: 28px; 
+}
+
+.cch-icon {
+  width: 52px; 
+  height: 52px; 
+  border-radius: 10px;
+  background: rgba(103, 102, 124, 0.05); 
+  border: 1px solid rgba(103, 102, 124, 0.15);
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  color: var(--slate);
+  transition: all 0.3s ease;
+}
+
+.cch-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cch-card:hover .cch-icon {
+  background: var(--white);
+  border-color: var(--slate-light);
+}
+
+.cch-icon--primary { 
+  background: var(--pink-ghost); 
+  border-color: var(--pink-soft); 
+  color: var(--pink);
+}
+
+.cch-card--primary:hover .cch-icon--primary {
+  background: var(--pink-soft);
+  border-color: var(--pink-mid);
+}
+
+.cch-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cch-card__label { 
+  font-family: var(--font-body); 
+  font-size: 12px; 
+  font-weight: 600;
+  letter-spacing: 1.5px; 
+  text-transform: uppercase; 
+  color: var(--slate-light); 
+  margin-bottom: 10px; 
+}
+
+.cch-card__value { 
+  font-family: var(--font-display); 
+  font-size: 28px; 
+  color: var(--slate); 
+  line-height: 1.1; 
+  margin-bottom: 14px;
+}
+
+.cch-card__sub { 
+  font-family: var(--font-body); 
+  font-size: 14.5px; 
+  color: var(--slate-light); 
+  line-height: 1.55; 
+  margin-bottom: 18px;
+}
+
+.cch-resp {
+  font-family: var(--font-body); 
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--slate); 
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 28px;
+  padding: 6px 12px;
+  background: rgba(103, 102, 124, 0.06);
+  border-radius: 4px;
+}
+
+/* --- Buttons --- */
+.cch-card__actions { 
+  display: flex; 
+  gap: 12px; 
+  margin-top: auto; 
+}
+
+.cch-btn {
+  font-family: var(--font-body); 
+  font-size: 13px; 
+  font-weight: 600;
+  border-radius: 6px; 
+  padding: 12px 18px; 
+  cursor: pointer;
+  text-decoration: none; 
+  transition: all 0.2s ease; 
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.3px;
+}
+
+.cch-btn--main {
+  background: var(--slate); 
+  color: var(--white);
+  flex: 1; 
+}
+
+.cch-btn--main:hover { 
+  /* Slightly lighter dark-blue for hover */
+  background: #2a314d; 
+  box-shadow: 0 6px 16px rgba(27, 32, 51, 0.2);
+}
+
+.cch-btn--secondary {
+  background: transparent;
+  color: var(--slate);
+  border-color: rgba(103, 102, 124, 0.3);
+  flex: 1;
+}
+
+.cch-btn--secondary:hover {
+  border-color: var(--slate);
+  background: rgba(27, 32, 51, 0.04);
+}
+
+.cch-btn--copy {
+  background: var(--white); 
+  color: var(--slate);
+  border-color: rgba(103, 102, 124, 0.3);
+  width: 85px; 
+}
+
+.cch-btn--copy:hover { 
+  border-color: var(--slate); 
+}
+
+.cch-btn--copied { 
+  background: #f0fdf4; 
+  color: #166534; 
+  border-color: #86efac; 
+}
+
+.cch-btn--copied:hover {
+  border-color: #4ade80; 
+}
+
+/* --- Keyframes --- */
+@keyframes cch-fade-up { 
+  from { opacity: 0; transform: translateY(24px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .cch-section { padding: 90px 20px; }
+  .cch-header { margin-bottom: 56px; }
+  .cch-badge { top: -12px; right: 20px; }
+  .cch-bg-pattern { background-size: 40px 40px; }
+}

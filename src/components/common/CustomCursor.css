@@ -14,7 +14,28 @@ width: 100vw;
 height: 100vh;
 pointer-events: none;
 z-index: 10000;
-mix-blend-mode: difference;
+--cursor-color: #ffffff;
+--cursor-outline: rgba(255, 255, 255, 0.78);
+--cursor-hover: #ffffff;
+--cursor-hover-outline: rgba(255, 255, 255, 0.9);
+--cursor-shadow: rgba(255, 255, 255, 0.18);
+--cursor-hover-shadow: rgba(255, 255, 255, 0.24);
+}
+
+.cursor-wrapper--dark {
+--cursor-color: #67667C;
+--cursor-outline: rgba(103, 102, 124, 0.58);
+--cursor-hover: #c94060;
+--cursor-hover-outline: rgba(201, 64, 96, 0.55);
+--cursor-shadow: rgba(103, 102, 124, 0.18);
+--cursor-hover-shadow: rgba(201, 64, 96, 0.22);
+}
+
+.cursor-wrapper--light {
+--cursor-color: #ffffff;
+--cursor-outline: rgba(255, 255, 255, 0.78);
+--cursor-hover: #ffffff;
+--cursor-hover-outline: rgba(255, 255, 255, 0.92);
 }
 
 /* --- THE CIRCLE --- */
@@ -24,12 +45,14 @@ top: 0;
 left: 0;
 width: 42px;
 height: 42px;
-border: 1px solid rgba(255, 255, 255, 0.758);
+border: 1px solid var(--cursor-outline);
 border-radius: 50%;
 transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
 height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-border-color 0.4s ease;
+border-color 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 will-change: transform;
+box-shadow: 0 0 18px var(--cursor-shadow);
 }
 
 /* --- THE DOT --- */
@@ -39,10 +62,11 @@ top: 0;
 left: 0;
 width: 6px;
 height: 6px;
-background-color: #FFFFFF;
+background-color: var(--cursor-color);
 border-radius: 50%;
-transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+transition: width 0.3s ease, height 0.3s ease, background-color 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 will-change: transform;
+box-shadow: 0 0 12px var(--cursor-shadow);
 }
 
 /* --- HOVER STATES --- */
@@ -50,11 +74,12 @@ will-change: transform;
 .cursor-outline.hovered {
 width: 60px;
 height: 60px;
-border-color: #ff00a6;
+border-color: var(--cursor-hover-outline);
+box-shadow: 0 0 22px var(--cursor-hover-shadow);
 }
 
 .cursor-dot.animating {
-background-color: #ff00aa;
+background-color: var(--cursor-hover);
 width: 4px;
 height: 4px;
 /* Removed animation to keep dot centered */

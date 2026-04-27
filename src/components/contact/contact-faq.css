@@ -1,0 +1,359 @@
+
+
+.cfq-section { 
+  position: relative; 
+  padding: 120px 24px; 
+  background: var(--white); 
+  overflow: hidden; 
+}
+
+/* Unified background grid fade */
+.cfq-bg-fade {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: 
+    linear-gradient(to right, var(--slate-light) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--slate-light) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(circle at 70% 50%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 70% 50%, black 20%, transparent 80%);
+}
+
+.cfq-inner { 
+  position: relative;
+  z-index: 1;
+  max-width: 1120px; 
+  margin: 0 auto; 
+  display: grid; 
+  grid-template-columns: 320px 1fr; 
+  gap: 80px; 
+  align-items: start; 
+}
+
+@media (max-width: 860px) { 
+  .cfq-inner { grid-template-columns: 1fr; gap: 48px; } 
+}
+
+/* --- Left Column: Context --- */
+.cfq-left { height: 100%; }
+.cfq-sticky { 
+  position: sticky; 
+  top: 120px; 
+  animation: cfq-fade-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cfq-eyebrow { 
+  font-family: var(--font-body); 
+  font-size: 12px; 
+  font-weight: 600;
+  letter-spacing: 2.5px; 
+  text-transform: uppercase; 
+  color: var(--pink); 
+  display: block; 
+  margin-bottom: 16px; 
+}
+
+.cfq-title { 
+  font-family: var(--font-display); 
+  font-size: clamp(42px, 5.5vw, 64px); 
+  color: var(--slate); 
+  margin: 0 0 20px; 
+  line-height: 0.95; 
+  letter-spacing: 0.5px;
+}
+
+.cfq-title em { 
+  font-style: normal; 
+  color: var(--pink); 
+}
+
+.cfq-desc { 
+  font-family: var(--font-body); 
+  font-size: 15.5px; 
+  color: var(--slate-light); 
+  line-height: 1.6; 
+  margin: 0 0 32px; 
+}
+
+.cfq-cta { 
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body); 
+  font-size: 14px; 
+  font-weight: 600; 
+  color: var(--slate); 
+  text-decoration: none; 
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(103, 102, 124, 0.25);
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.cfq-cta:hover { 
+  background: var(--slate);
+  color: var(--white);
+  border-color: var(--slate);
+  box-shadow: 0 8px 24px rgba(27, 32, 51, 0.12);
+}
+
+.cfq-cta__icon { display: flex; align-items: center; transition: transform 0.2s; }
+.cfq-cta__icon svg { width: 18px; height: 18px; }
+.cfq-cta:hover .cfq-cta__icon { transform: translateX(4px); }
+
+/* --- Right Column: Search & FAQ --- */
+
+/* Glassmorphic Search Bar */
+.cfq-search-wrap {
+  position: relative;
+  margin-bottom: 32px;
+  animation: cfq-fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cfq-search__icon {
+  position: absolute; 
+  left: 20px; 
+  top: 50%; 
+  transform: translateY(-50%);
+  color: var(--slate-light); 
+  display: flex;
+  pointer-events: none;
+}
+
+.cfq-search__icon svg { width: 20px; height: 20px; }
+
+.cfq-search {
+  width: 100%; 
+  box-sizing: border-box;
+  font-family: var(--font-body); 
+  font-size: 15px; 
+  color: var(--slate);
+  background: rgba(255, 255, 255, 0.8); 
+  border: 1px solid rgba(103, 102, 124, 0.2);
+  border-radius: 12px; 
+  padding: 18px 48px 18px 52px; 
+  outline: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(27, 32, 51, 0.02);
+  transition: all 0.3s ease;
+}
+
+.cfq-search:focus { 
+  border-color: var(--slate); 
+  box-shadow: 0 8px 30px rgba(27, 32, 51, 0.08); 
+  background: #ffffff;
+}
+
+.cfq-search::placeholder { color: rgba(103, 102, 124, 0.5); font-weight: 400;}
+
+.cfq-search__clear {
+  position: absolute; 
+  right: 16px; 
+  top: 50%; 
+  transform: translateY(-50%);
+  background: rgba(103, 102, 124, 0.08); 
+  border: none; 
+  border-radius: 50%;
+  color: var(--slate-light);
+  cursor: pointer; 
+  padding: 6px; 
+  display: flex;
+  transition: all 0.2s ease;
+}
+
+.cfq-search__clear svg { width: 14px; height: 14px; }
+.cfq-search__clear:hover { background: rgba(103, 102, 124, 0.15); color: var(--slate); }
+
+/* Empty State */
+.cfq-empty { 
+  text-align: center; 
+  padding: 60px 20px; 
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  border: 1px dashed rgba(103, 102, 124, 0.2);
+  animation: cfq-fade-up 0.4s ease;
+}
+
+.cfq-empty__icon {
+  color: var(--slate-light);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+.cfq-empty__icon svg { width: 32px; height: 32px; opacity: 0.5; }
+
+.cfq-empty__text { 
+  font-family: var(--font-body); 
+  font-size: 15px; 
+  color: var(--slate-light); 
+  margin: 0 0 16px; 
+}
+
+.cfq-empty__link { 
+  font-family: var(--font-body); 
+  font-size: 14px; 
+  color: var(--pink); 
+  text-decoration: none; 
+  font-weight: 600; 
+  transition: color 0.2s;
+}
+.cfq-empty__link:hover { color: #a8324e; text-decoration: underline; }
+
+/* FAQ Card List */
+.cfq-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+}
+
+.cfq-item { 
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(103, 102, 124, 0.15);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  animation: cfq-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cfq-item:hover {
+  border-color: rgba(103, 102, 124, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.cfq-item--open {
+  background: #ffffff;
+  border-color: var(--slate);
+  box-shadow: 0 12px 30px rgba(27, 32, 51, 0.05);
+}
+
+/* Question Button */
+.cfq-q {
+  width: 100%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 16px;
+  padding: 20px 24px; 
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.cfq-q__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cfq-tag {
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(103, 102, 124, 0.08);
+  color: var(--slate-light);
+}
+
+/* Specific tag colors for UX */
+.cfq-tag--urgent { background: var(--pink-ghost); color: var(--pink); border: 1px solid var(--pink-soft); }
+.cfq-tag--privacy { background: rgba(34, 197, 94, 0.1); color: #166534; }
+.cfq-tag--clinical { background: rgba(59, 130, 246, 0.1); color: #1d4ed8; }
+
+.cfq-q__text {
+  font-family: var(--font-body); 
+  font-size: 15.5px; 
+  font-weight: 600; 
+  color: var(--slate);
+  line-height: 1.4;
+}
+
+.cfq-q:hover .cfq-q__text { color: var(--pink); }
+.cfq-item--open .cfq-q__text { color: var(--slate); }
+
+/* Rotating Chevron Icon */
+.cfq-icon {
+  flex-shrink: 0; 
+  width: 32px; 
+  height: 32px; 
+  border-radius: 50%;
+  background: rgba(103, 102, 124, 0.05); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  color: var(--slate-light); 
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cfq-icon svg { width: 18px; height: 18px; transition: transform 0.3s ease; }
+
+.cfq-item:hover .cfq-icon {
+  background: rgba(103, 102, 124, 0.1);
+  color: var(--slate);
+}
+
+.cfq-item--open .cfq-icon { 
+  background: var(--slate);
+  color: var(--white);
+}
+
+.cfq-item--open .cfq-icon svg {
+  transform: rotate(180deg);
+}
+
+/* Answer Animation Wrapper */
+.cfq-ans-wrap { 
+  display: grid; 
+  grid-template-rows: 0fr; 
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.cfq-item--open .cfq-ans-wrap { 
+  grid-template-rows: 1fr; 
+}
+
+/* Inner div prevents padding from breaking the grid height animation */
+.cfq-ans-inner {
+  overflow: hidden;
+}
+
+.cfq-ans { 
+  font-family: var(--font-body); 
+  font-size: 15px; 
+  color: var(--slate-light); 
+  line-height: 1.7; 
+  margin: 0; 
+  padding: 0 24px 24px; 
+}
+
+.cfq-footer { 
+  font-family: var(--font-body); 
+  font-size: 12.5px; 
+  font-weight: 500;
+  color: var(--slate-light); 
+  text-align: right; 
+  margin-top: 24px; 
+  animation: cfq-fade-up 0.6s ease 0.4s both;
+}
+
+/* --- Keyframes --- */
+@keyframes cfq-fade-up { 
+  from { opacity: 0; transform: translateY(16px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+@keyframes cfq-fade-right { 
+  from { opacity: 0; transform: translateX(-20px); } 
+  to { opacity: 1; transform: translateX(0); } 
+}

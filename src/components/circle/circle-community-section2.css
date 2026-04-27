@@ -1,0 +1,309 @@
+/* ── circle-community-section2.css ── */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Wix+Madefor+Text:ital,wght@0,400;0,600;1,400&display=swap");
+
+.cs2-section {
+  position: relative;
+  background: var(--white);
+  padding: 100px 0 80px;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* ── Grain & blobs ── */
+.cs2-bg-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 180px;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.cs2-bg-blob {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  z-index: 0;
+}
+.cs2-blob1 {
+  width: 480px;
+  height: 480px;
+  background: var(--pink);
+  top: -160px;
+  right: -100px;
+}
+.cs2-blob2 {
+  width: 320px;
+  height: 320px;
+  background: #9b6fa8;
+  bottom: -80px;
+  left: -60px;
+}
+
+/* ── Layout ── */
+.cs2-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Header ── */
+.cs2-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 14px;
+}
+
+.cs2-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7vw, 88px);
+  line-height: 0.95;
+  color: var(--slate);
+  margin: 0 0 20px;
+  letter-spacing: 0.01em;
+}
+.cs2-title em {
+  font-style: italic;
+  color: var(--pink);
+  font-family: var(--font-body);
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 400;
+  display: block;
+  margin-top: 6px;
+}
+
+.cs2-subtitle {
+  font-size: 16px;
+  color: var(--slate-light);
+  max-width: 440px;
+  line-height: 1.65;
+  margin-bottom: 52px;
+}
+
+/* ── Track ── */
+.cs2-track-wrap {
+  position: relative;
+  margin: 0 -32px;
+}
+
+.cs2-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 12px 32px 20px;
+  scrollbar-width: none;
+}
+.cs2-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cs2-fade {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+}
+.cs2-fade--left {
+  left: 0;
+  background: linear-gradient(to right, var(--white), transparent);
+}
+.cs2-fade--right {
+  right: 0;
+  background: linear-gradient(to left, var(--white), transparent);
+}
+
+/* ── Card ── */
+.cs2-card {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1.5px solid rgba(103, 102, 124, 0.12);
+  border-radius: 20px;
+  padding: 28px 26px 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cs2-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent, var(--pink)) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  border-radius: inherit;
+}
+
+.cs2-card:hover,
+.cs2-card--active {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(201, 64, 96, 0.12);
+  border-color: var(--accent, var(--pink));
+}
+.cs2-card--active::before {
+  opacity: 0.05;
+}
+
+.cs2-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cs2-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent, var(--pink));
+  background: color-mix(in srgb, var(--accent, var(--pink)) 10%, transparent);
+  padding: 4px 10px;
+  border-radius: 40px;
+}
+
+.cs2-type-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cs2-card-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.1;
+  color: var(--slate);
+  margin: 0 0 12px;
+  letter-spacing: 0.01em;
+}
+
+.cs2-card-excerpt {
+  font-size: 13.5px;
+  color: var(--slate-light);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.cs2-card-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--accent, var(--pink));
+  border-radius: 0 0 0 20px;
+  transition: width 0.4s ease;
+}
+.cs2-card--active .cs2-card-line,
+.cs2-card:hover .cs2-card-line {
+  width: 100%;
+}
+
+.cs2-card-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--slate);
+  font-weight: 600;
+}
+
+.cs2-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Dots ── */
+.cs2-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 28px 0 44px;
+}
+
+.cs2-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--pink-mid);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s, background 0.2s;
+}
+.cs2-dot--active {
+  background: var(--pink);
+  transform: scale(1.4);
+}
+
+/* ── CTAs ── */
+.cs2-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cs2-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  letter-spacing: 0.02em;
+}
+
+.cs2-btn--primary {
+  background: var(--pink);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(201, 64, 96, 0.28);
+}
+.cs2-btn--primary:hover {
+  background: #a8304f;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(201, 64, 96, 0.38);
+}
+
+.cs2-btn--ghost {
+  border: 1.5px solid var(--pink);
+  color: var(--pink);
+  background: transparent;
+}
+.cs2-btn--ghost:hover {
+  background: var(--pink-soft);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .cs2-card { flex: 0 0 270px; }
+  .cs2-ctas { flex-direction: column; }
+  .cs2-btn { justify-content: center; }
+}

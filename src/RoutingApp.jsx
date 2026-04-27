@@ -9,8 +9,9 @@ import Trust from './pages/Trust';
 import Futures from './pages/Futures';
 import OraLegalCenter from './pages/OraLegalCenter';
 import Circle from './pages/Circle';
-import CircleSectionPage from './pages/CircleSectionPage';
+import Contact from './pages/Contact';
 import ErrorPage from './pages/ErrorPage';
+import './pages/Circle.css';
 import './pages/Home.css';
 import './pages/OraLegalCenter.css';
 
@@ -23,8 +24,9 @@ function RoutingApp() {
         <Routes>
       
           <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/circle" element={<Circle />} />
-          <Route path="/circle/:pageKey" element={<CircleSectionPage />} />
+          <Route path="/circle/:pageKey" element={<Navigate to="/circle" replace />} />
           <Route path="/invest" element={<Invest />} />
           <Route path="/trust" element={<Trust />} />
           <Route path="/legal" element={<Navigate to="/privacy-policy" replace />} />

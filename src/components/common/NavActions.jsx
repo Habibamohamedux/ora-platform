@@ -8,7 +8,7 @@ const menuData = [
   {
     category: 'SYSTEM',
     items: [
-      { title: 'Contact', path: '/Contact', desc: 'Get in touch with our team for any inquiries or support.' },
+      { title: 'Contact', path: '/contact', desc: 'Get in touch with our team for guidance, clinical collaboration, legal questions, and partnerships.' },
       { title: 'Ecosystem', path: '/ecosystem', desc: 'A unified overview of how ORA connects AI, wearable technology, and clinical care into one seamless system.' },
       { title: 'Intelligence', path: '/intelligence', desc: 'The AI engine powering predictions, insights, and real-time maternal health analysis.' },
       { title: 'Clinical', path: '/clinical', desc: 'A dedicated layer for doctors to monitor patients, manage risks, and provide informed care.' },

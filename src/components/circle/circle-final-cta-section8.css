@@ -1,0 +1,230 @@
+/* ── circle-final-cta-section8.css ── */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Wix+Madefor+Text:ital,wght@0,400;0,600;1,400&display=swap");
+
+.s8-section {
+  position: relative;
+  background: linear-gradient(180deg, #fff7fb 0%, #fff1f6 100%);
+  padding: 120px 0 100px;
+  overflow: hidden;
+  font-family: var(--font-body);
+  text-align: center;
+}
+
+/* ── Rings ── */
+.s8-rings {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.s8-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(201,64,96,0.16);
+  transform: translate(-50%, -50%);
+  top: 0; left: 0;
+}
+
+.s8-ring--1 { width: 300px;  height: 300px;  animation: s8Rotate 12s linear infinite; }
+.s8-ring--2 { width: 500px;  height: 500px;  animation: s8Rotate 18s linear infinite reverse; }
+.s8-ring--3 { width: 700px;  height: 700px;  animation: s8Rotate 25s linear infinite; }
+.s8-ring--4 { width: 900px;  height: 900px;  opacity: 0.6; animation: s8Rotate 35s linear infinite reverse; }
+
+@keyframes s8Rotate {
+  from { transform: translate(-50%,-50%) rotate(0deg); }
+  to   { transform: translate(-50%,-50%) rotate(360deg); }
+}
+
+/* ── Grain ── */
+.s8-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 160px;
+  mix-blend-mode: soft-light;
+}
+
+/* ── Inner ── */
+.s8-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Badge ── */
+.s8-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pink);
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(201,64,96,0.16);
+  padding: 7px 18px;
+  border-radius: 30px;
+  margin-bottom: 32px;
+}
+
+/* ── Title ── */
+.s8-title {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 8vw, 100px);
+  line-height: 0.93;
+  color: var(--slate);
+  margin: 0 0 28px;
+  letter-spacing: 0.01em;
+}
+
+/* ── Cycling word ── */
+.s8-word {
+  display: inline-block;
+  color: var(--pink);
+  position: relative;
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.s8-word::after {
+  content: "";
+  display: block;
+  height: 5px;
+  background: rgba(201,64,96,0.28);
+  border-radius: 4px;
+  margin-top: 4px;
+  animation: s8Underline 2.4s ease-in-out infinite;
+}
+@keyframes s8Underline {
+  0%, 100% { transform: scaleX(1); }
+  50%       { transform: scaleX(0.6); }
+}
+
+.s8-word--exit {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+.s8-word--enter {
+  animation: s8WordIn 0.35s ease both;
+}
+@keyframes s8WordIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Body ── */
+.s8-body {
+  font-size: 17px;
+  color: rgba(103,102,124,0.74);
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+/* ── Proof ── */
+.s8-proof {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(103,102,124,0.88);
+}
+
+.s8-avatars {
+  display: flex;
+}
+
+.s8-proof-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--bg);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid #fff4f8;
+  margin-left: -8px;
+  position: relative;
+  z-index: var(--z);
+}
+.s8-proof-avatar:first-child { margin-left: 0; }
+
+/* ── CTAs ── */
+.s8-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.s8-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  letter-spacing: 0.02em;
+}
+
+.s8-btn--primary {
+  background: var(--pink);
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(201,64,96,0.24);
+}
+.s8-btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(201,64,96,0.32);
+}
+
+.s8-btn--app {
+  border: 2px solid rgba(201,64,96,0.2);
+  color: var(--pink);
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(8px);
+}
+.s8-btn--app:hover {
+  background: rgba(201,64,96,0.08);
+  border-color: rgba(201,64,96,0.5);
+  transform: translateY(-3px);
+}
+
+/* ── Tagline ── */
+.s8-tagline {
+  font-size: 12px;
+  color: rgba(103,102,124,0.58);
+  letter-spacing: 0.08em;
+}
+
+/* ── Wave ── */
+.s8-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--white);
+  clip-path: ellipse(55% 100% at 50% 100%);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .s8-ctas { flex-direction: column; align-items: stretch; }
+  .s8-btn  { justify-content: center; }
+}

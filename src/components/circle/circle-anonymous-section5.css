@@ -1,0 +1,296 @@
+/* ── circle-anonymous-section5.css ── */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Wix+Madefor+Text:ital,wght@0,400;0,600;1,400&display=swap");
+
+.as5-section {
+  position: relative;
+  background: linear-gradient(180deg, #fffafc 0%, #fff3f7 100%);
+  padding: 100px 0;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* ── Particles ── */
+.as5-particles {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+.as5-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--pink);
+  opacity: 0;
+  left: calc(var(--i) * 5.8% + 2%);
+  top: calc(var(--i) * 4.7% + 8%);
+  animation: as5Float calc(4s + var(--i) * 0.4s) ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.22s);
+}
+@keyframes as5Float {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+  50%       { opacity: 0.18; transform: translateY(-18px) scale(1.3); }
+}
+
+/* ── Inner ── */
+.as5-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+/* ── Visual side ── */
+.as5-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Flip mask card ── */
+.as5-mask-card {
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.as5-mask-front,
+.as5-mask-back {
+  background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255,244,248,0.96));
+  border: 1.5px solid rgba(201,64,96,0.16);
+  border-radius: 20px;
+  padding: 36px 32px;
+  text-align: center;
+  transition: transform 0.55s ease;
+  backface-visibility: hidden;
+  box-shadow: 0 24px 56px rgba(103, 102, 124, 0.08);
+}
+
+.as5-mask-card .as5-mask-back {
+  display: none; /* toggled via class */
+}
+
+.as5-mask-card--reveal .as5-mask-front {
+  display: none;
+}
+.as5-mask-card--reveal .as5-mask-back {
+  display: block;
+}
+
+.as5-mask-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  color: var(--pink);
+  background: rgba(201,64,96,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.as5-mask-icon svg { width: 32px; height: 32px; }
+
+.as5-mask-front p {
+  color: rgba(103,102,124,0.78);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+.as5-flip-hint {
+  font-size: 11px;
+  color: var(--pink);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.as5-mask-back blockquote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--slate);
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+.as5-mask-sub {
+  font-size: 12px;
+  color: rgba(103,102,124,0.55);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── Story cards ── */
+.as5-stories {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.as5-story-card {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(103,102,124,0.1);
+  border-radius: 14px;
+  padding: 18px 20px;
+  animation: as5SlideIn 0.4s ease both;
+  animation-delay: var(--delay, 0s);
+  box-shadow: 0 14px 34px rgba(103, 102, 124, 0.06);
+}
+@keyframes as5SlideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.as5-story-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.as5-story-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pink);
+  background: rgba(201,64,96,0.12);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.as5-story-ago {
+  font-size: 11px;
+  color: rgba(103,102,124,0.48);
+}
+
+.as5-story-text {
+  font-size: 13px;
+  color: rgba(103,102,124,0.82);
+  line-height: 1.6;
+  margin: 0 0 10px;
+  font-style: italic;
+}
+
+.as5-story-anon {
+  font-size: 10.5px;
+  color: rgba(103,102,124,0.5);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* ── Copy side ── */
+.as5-copy {}
+
+.as5-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 16px;
+}
+
+.as5-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6vw, 80px);
+  line-height: 0.93;
+  color: var(--slate);
+  margin: 0 0 24px;
+}
+.as5-title span {
+  color: var(--pink);
+}
+
+.as5-body {
+  font-size: 16px;
+  color: rgba(103,102,124,0.74);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 36px;
+}
+
+/* ── Badges ── */
+.as5-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.as5-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  color: rgba(103,102,124,0.82);
+  font-weight: 600;
+}
+
+.as5-badge-icon {
+  font-size: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(201,64,96,0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── CTAs ── */
+.as5-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 300px;
+}
+
+.as5-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.25s ease;
+  letter-spacing: 0.02em;
+}
+
+.as5-btn--primary {
+  background: var(--pink);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(201,64,96,0.35);
+}
+.as5-btn--primary:hover {
+  background: #a8304f;
+  transform: translateY(-2px);
+}
+
+.as5-btn--ghost {
+  border: 1.5px solid rgba(201,64,96,0.22);
+  color: var(--pink);
+  background: rgba(255,255,255,0.7);
+}
+.as5-btn--ghost:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+  background: rgba(201,64,96,0.08);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 860px) {
+  .as5-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .as5-ctas { max-width: 100%; flex-direction: row; flex-wrap: wrap; }
+  .as5-btn { flex: 1; min-width: 160px; }
+}
