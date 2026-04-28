@@ -1,0 +1,132 @@
+.site-footer {
+  position: relative;
+  margin-top: 88px;
+  background: #fff;
+  border-top: 1px solid rgba(201, 64, 96, 0.12);
+}
+
+.site-footer__shell {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 22px;
+}
+
+.site-footer__content {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(240px, 0.9fr);
+  gap: 40px;
+  margin-bottom: 18px;
+}
+
+.site-footer__brand {
+  padding: 0;
+}
+
+.site-footer__brand-copy {
+  margin: 18px 0 0;
+  font-family: 'Wix Madefor Text', 'Roboto', sans-serif;
+  color: rgba(62, 22, 39, 0.72);
+  line-height: 1.7;
+}
+
+.site-footer__links {
+  display: block;
+}
+
+.site-footer__group h3 {
+  margin: 0 0 14px;
+  font-family: 'Bebas Neue', 'Roboto Condensed', sans-serif;
+  font-size: 1.45rem;
+  letter-spacing: 0.08em;
+  color: #4a1b2f;
+}
+
+.site-footer__group-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 22px;
+}
+
+.site-footer__group-links a {
+  color: rgba(111, 78, 91, 0.84);
+  text-decoration: none;
+  font-family: 'Wix Madefor Text', 'Roboto', sans-serif;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.site-footer__group-links a:hover {
+  color: #c94060;
+}
+
+.site-footer__meta {
+  display: block;
+  gap: 16px;
+  padding: 18px 0;
+  margin-bottom: 10px;
+  border-top: 1px solid rgba(201, 64, 96, 0.12);
+}
+
+.site-footer__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.site-footer__social-label {
+  font-family: 'Bebas Neue', 'Roboto Condensed', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  color: #6b5160;
+}
+
+.site-footer__social {
+  padding: 0;
+  color: #8d6d7c;
+  text-decoration: none;
+  font-family: 'Wix Madefor Text', 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.site-footer__bottom {
+  display: flex;
+  justify-content: flex-start;
+  gap: 18px;
+  padding-top: 4px;
+}
+
+.site-footer__bottom p {
+  margin: 0;
+  font-family: 'Wix Madefor Text', 'Roboto', sans-serif;
+  color: rgba(111, 78, 91, 0.84);
+  line-height: 1.7;
+}
+
+@media (max-width: 1080px) {
+  .site-footer__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-footer {
+    margin-top: 72px;
+  }
+
+  .site-footer__shell {
+    width: min(100% - 20px, 1200px);
+    padding-top: 22px;
+  }
+
+  .site-footer__links {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__meta,
+  .site-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

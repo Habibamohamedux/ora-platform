@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./circle-checkin.css";
 
 const MOODS = [
@@ -10,26 +11,10 @@ const MOODS = [
   { id: "overwhelmed", emoji: "🌧", label: "Overwhelmed", color: "#94a3b8", bg: "rgba(148,163,184,0.12)" },
 ];
 
-const PROMPTS = {
-  calm:        "What's giving you peace today?",
-  hopeful:     "What are you looking forward to?",
-  anxious:     "What's weighing on your mind? Let it out here.",
-  tired:       "What does your body need most right now?",
-  grateful:    "What small moment made you smile today?",
-  overwhelmed: "It's okay to say it's too much. What would help?",
-};
-
-const SUGGESTIONS = {
-  calm:        ["Stories That Stay", "Week-by-Week"],
-  hopeful:     ["First Time Mamas", "Ask a Doctor"],
-  anxious:     ["High-Risk Hearts", "Ask a Doctor"],
-  tired:       ["After the Storm", "Evening Check-in"],
-  grateful:    ["First Time Mamas", "Stories That Stay"],
-  overwhelmed: ["Still Held", "Evening Check-in"],
-};
-
 export default function CircleCheckin() {
   const [selected, setSelected] = useState(null);
+  const { t } = useLanguage();
+  const moodsCopy = t("circleCheckin.moods");
 
   const mood = selected ? MOODS.find((m) => m.id === selected) : null;
 
@@ -43,13 +28,13 @@ export default function CircleCheckin() {
 
       <div className="cci-inner">
         <div className="cci-header">
-          <span className="cci-eyebrow">Emotional Wellness</span>
-          <h2 className="cci-title">Emotional Check-In</h2>
-          <p className="cci-desc">A safe space to name what you're feeling — no judgment, only support.</p>
+          <span className="cci-eyebrow">{t("circleCheckin.eyebrow")}</span>
+          <h2 className="cci-title">{t("circleCheckin.title")}</h2>
+          <p className="cci-desc">{t("circleCheckin.desc")}</p>
         </div>
 
         <div className="cci-card">
-          <p className="cci-question">How are you feeling right now?</p>
+          <p className="cci-question">{t("circleCheckin.question")}</p>
 
           <div className="cci-moods">
             {MOODS.map((m) => (
@@ -60,26 +45,26 @@ export default function CircleCheckin() {
                 onClick={() => setSelected(m.id === selected ? null : m.id)}
               >
                 <span className="cci-mood__emoji">{m.emoji}</span>
-                <span className="cci-mood__label">{m.label}</span>
+                <span className="cci-mood__label">{moodsCopy[m.id].label}</span>
               </button>
             ))}
           </div>
 
           {selected && (
             <div className="cci-response" key={selected}>
-              <p className="cci-prompt">{PROMPTS[selected]}</p>
-              <textarea className="cci-textarea" placeholder="Write freely — this is yours…" rows={3} />
+              <p className="cci-prompt">{moodsCopy[selected].prompt}</p>
+              <textarea className="cci-textarea" placeholder={t("circleCheckin.placeholder")} rows={3} />
 
               <div className="cci-suggest">
-                <p className="cci-suggest__label">ORA suggests for you</p>
+                <p className="cci-suggest__label">{t("circleCheckin.suggest")}</p>
                 <div className="cci-suggest__chips">
-                  {SUGGESTIONS[selected].map((s) => (
+                  {moodsCopy[selected].suggestions.map((s) => (
                     <button key={s} className="cci-chip">{s} →</button>
                   ))}
                 </div>
               </div>
 
-              <button className="cci-submit">Save Check-In</button>
+              <button className="cci-submit">{t("circleCheckin.save")}</button>
             </div>
           )}
         </div>

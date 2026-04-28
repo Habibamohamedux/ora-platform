@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./contact-location.css";
 
 // Import your local images
@@ -89,8 +90,18 @@ const OFFICES = [
 ];
 
 export default function ContactLocation() {
+  const { t } = useLanguage();
   const [activeId, setActiveId] = useState("cairo");
-  const activeOffice = OFFICES.find((o) => o.id === activeId);
+  const officeCopy = t("contactLocation.offices");
+  const offices = OFFICES.map((office, index) => ({
+    ...office,
+    ...officeCopy[index],
+    facilities: office.facilities.map((facility, facilityIndex) => ({
+      ...facility,
+      text: officeCopy[index].facilities[facilityIndex],
+    })),
+  }));
+  const activeOffice = offices.find((o) => o.id === activeId);
 
   return (
     <section className="clc-section" id="contact-location">
@@ -98,18 +109,16 @@ export default function ContactLocation() {
       
       <div className="clc-inner">
         <div className="clc-header">
-          <span className="clc-eyebrow">Our Network</span>
-          <h2 className="clc-title">Global Presence,<br /><em>Local Care</em></h2>
-          <p className="clc-desc">
-            Explore our state-of-the-art hubs around the world. Every ORA location is designed to innovate, support, and elevate maternal healthcare.
-          </p>
+          <span className="clc-eyebrow">{t("contactLocation.eyebrow")}</span>
+          <h2 className="clc-title">{t("contactLocation.titleLead")}<br /><em>{t("contactLocation.titleEm")}</em></h2>
+          <p className="clc-desc">{t("contactLocation.desc")}</p>
         </div>
 
         <div className="clc-layout">
           
           {/* Navigation Sidebar */}
           <div className="clc-nav">
-            {OFFICES.map((office) => {
+            {offices.map((office) => {
               const isActive = office.id === activeId;
               return (
                 <button 
@@ -134,7 +143,7 @@ export default function ContactLocation() {
               <div className="clc-stage__image-wrap">
                 <img 
                   src={activeOffice.image} 
-                  alt={`${activeOffice.city} Office`} 
+                  alt={t("contactLocation.imageAlt", { city: activeOffice.city })} 
                   className="clc-stage__image" 
                 />
                 <div className="clc-stage__overlay">
@@ -165,14 +174,14 @@ export default function ContactLocation() {
 
                     <div className="clc-actions">
                       <a href={activeOffice.mapsUrl} target="_blank" rel="noopener noreferrer" className="clc-btn clc-btn--primary">
-                        Get Directions
+                        {t("contactLocation.directions")}
                       </a>
                     </div>
                   </div>
 
                   {/* Facilities */}
                   <div className="clc-facilities">
-                    <h4 className="clc-facilities__title">On-Site Facilities</h4>
+                    <h4 className="clc-facilities__title">{t("contactLocation.facilitiesTitle")}</h4>
                     <div className="clc-facilities__list">
                       {activeOffice.facilities.map((fac, idx) => (
                         <div key={idx} className="clc-facility">

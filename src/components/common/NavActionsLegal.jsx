@@ -1,14 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useLanguage } from '../../i18n/LanguageContext';
 import './NavActionsLegal.css';
 
 const NavActionsLegal = () => {
+  const { t } = useLanguage();
   const links = [
-    { label: 'PRIVACY POLICY', path: '/privacy-policy' },
-    { label: 'TERMS OF USE', path: '/terms-of-use' },
-    { label: 'COOKIE POLICY', path: '/cookie-policy' },
-    { label: 'RESEARCH ETHICS', path: '/research-ethics' },
-    { label: 'CLINICAL DATA HANDLING', path: '/clinical-data-handling' },
+    { label: t('legal.privacy'), path: '/privacy-policy' },
+    { label: t('legal.terms'), path: '/terms-of-use' },
+    { label: t('legal.cookies'), path: '/cookie-policy' },
+    { label: t('legal.research'), path: '/research-ethics' },
+    { label: t('legal.clinical'), path: '/clinical-data-handling' },
   ];
 
   return (
@@ -33,7 +35,7 @@ const NavActionsLegal = () => {
         <div className="nav-legal-divider"></div>
 
         <NavLink to="/" className="nav-legal-link back-link">
-          BACK TO ORA
+          {t('legal.back')}
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             width="14" 

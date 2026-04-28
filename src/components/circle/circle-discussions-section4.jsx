@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./circle-discussions-section4.css";
 
 const categories = [
@@ -63,6 +64,9 @@ const recentPosts = [
 
 export default function DiscussionSpaces() {
   const [hovered, setHovered] = useState(null);
+  const { t } = useLanguage();
+  const categoryCopy = t("circleDiscussions.categories");
+  const postCopy = t("circleDiscussions.posts");
 
   return (
     <section className="ds4-section">
@@ -71,22 +75,20 @@ export default function DiscussionSpaces() {
 
       <div className="ds4-inner">
         <div className="ds4-header">
-          <span className="ds4-eyebrow">Discussions</span>
+          <span className="ds4-eyebrow">{t("circleDiscussions.eyebrow")}</span>
           <div className="ds4-head-row">
             <h2 className="ds4-title">
-              Open
+              {t("circleDiscussions.titleLine1")}
               <br />
-              Conversations
+              {t("circleDiscussions.titleLine2")}
             </h2>
-            <p className="ds4-subtitle">
-              No judgment, no wrong questions. Every stage, every feeling — find your thread.
-            </p>
+            <p className="ds4-subtitle">{t("circleDiscussions.subtitle")}</p>
           </div>
         </div>
 
         {/* Category grid */}
         <div className="ds4-grid">
-          {categories.map((c) => (
+          {categories.map((c, index) => (
             <div
               key={c.id}
               className={`ds4-card ${hovered === c.id ? "ds4-card--hov" : ""}`}
@@ -94,12 +96,12 @@ export default function DiscussionSpaces() {
               onMouseEnter={() => setHovered(c.id)}
               onMouseLeave={() => setHovered(null)}
             >
-              {c.hot && <span className="ds4-hot">Active</span>}
+              {c.hot && <span className="ds4-hot">{t("circleDiscussions.active")}</span>}
               <div className="ds4-card-icon">{c.icon}</div>
-              <h3 className="ds4-card-label">{c.label}</h3>
-              <p className="ds4-card-desc">{c.desc}</p>
+              <h3 className="ds4-card-label">{categoryCopy[index].label}</h3>
+              <p className="ds4-card-desc">{categoryCopy[index].desc}</p>
               <div className="ds4-card-footer">
-                <span className="ds4-threads">{c.threads} threads</span>
+                <span className="ds4-threads">{c.threads} {t("circleDiscussions.threads")}</span>
                 <a href="/circle/discussions" className="ds4-card-arrow">→</a>
               </div>
               <div className="ds4-card-glow" />
@@ -109,7 +111,7 @@ export default function DiscussionSpaces() {
 
         {/* Recent posts ticker */}
         <div className="ds4-recent">
-          <span className="ds4-recent-label">Recent</span>
+          <span className="ds4-recent-label">{t("circleDiscussions.recent")}</span>
           <div className="ds4-recent-list">
             {recentPosts.map((p, i) => {
               const cat = categories.find((c) => c.id === p.cat);
@@ -119,9 +121,9 @@ export default function DiscussionSpaces() {
                     className="ds4-recent-dot"
                     style={{ background: cat.color }}
                   />
-                  <span className="ds4-recent-title">{p.title}</span>
+                  <span className="ds4-recent-title">{postCopy[i]}</span>
                   <span className="ds4-recent-meta">
-                    {p.replies} replies · {p.time} ago
+                    {p.replies} {t("circleDiscussions.replies")} · {p.time} {t("circleDiscussions.ago")}
                   </span>
                 </div>
               );
@@ -132,10 +134,10 @@ export default function DiscussionSpaces() {
         {/* CTAs */}
         <div className="ds4-ctas">
           <a href="/circle/discussions" className="ds4-btn ds4-btn--primary">
-            Join Discussions
+            {t("circleDiscussions.join")}
           </a>
           <a href="/circle/new-post" className="ds4-btn ds4-btn--outline">
-            Start a Conversation
+            {t("circleDiscussions.start")}
           </a>
         </div>
       </div>

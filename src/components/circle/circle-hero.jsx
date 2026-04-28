@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./circle-hero.css";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 const NODES = [
   { id: 1, x: 12, y: 18, label: "Sarah, 28 weeks" },
@@ -19,6 +20,8 @@ export default function CircleHero() {
   const [activeNode, setActiveNode] = useState(null);
   const [tick, setTick] = useState(0);
   const svgRef = useRef(null);
+  const { t } = useLanguage();
+  const stats = t('circleHero.stats');
 
   useEffect(() => {
     const id = setInterval(() => setTick((t) => t + 1), 3000);
@@ -73,32 +76,32 @@ export default function CircleHero() {
 
       {/* Center content */}
       <div className="ch-content">
-        <p className="ch-eyebrow">ORA Circle</p>
+        <p className="ch-eyebrow">{t('circleHero.eyebrow')}</p>
         <h1 className="ch-headline">
-          You Were Never<br />Meant to Do<br />
-          <em>This Alone</em>
+          {t('circleHero.line1')}<br />{t('circleHero.line2')}<br />
+          <em>{t('circleHero.line3')}</em>
         </h1>
         <p className="ch-sub">
-          Connect with mothers, partners, and doctors — in the moments that matter most.
+          {t('circleHero.subtitle')}
         </p>
         <div className="ch-actions">
-          <button className="ch-btn ch-btn--primary">Join Your Circle</button>
-          <button className="ch-btn ch-btn--ghost">Explore Community</button>
+          <button className="ch-btn ch-btn--primary">{t('circleHero.primary')}</button>
+          <button className="ch-btn ch-btn--ghost">{t('circleHero.secondary')}</button>
         </div>
         <div className="ch-stats">
           <div className="ch-stat">
             <span className="ch-stat__num">12k+</span>
-            <span className="ch-stat__label">Active circles</span>
+            <span className="ch-stat__label">{stats[0]}</span>
           </div>
           <div className="ch-stat__divider" />
           <div className="ch-stat">
             <span className="ch-stat__num">94%</span>
-            <span className="ch-stat__label">Feel less alone</span>
+            <span className="ch-stat__label">{stats[1]}</span>
           </div>
           <div className="ch-stat__divider" />
           <div className="ch-stat">
             <span className="ch-stat__num">480+</span>
-            <span className="ch-stat__label">Verified doctors</span>
+            <span className="ch-stat__label">{stats[2]}</span>
           </div>
         </div>
       </div>
@@ -106,7 +109,7 @@ export default function CircleHero() {
       {/* Scroll indicator */}
       <div className="ch-scroll">
         <div className="ch-scroll__bar" />
-        <span>Scroll</span>
+        <span>{t('circleHero.scroll')}</span>
       </div>
     </section>
   );

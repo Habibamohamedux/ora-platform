@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./circle-shared-section3.css";
 
 const groups = [
@@ -58,7 +59,11 @@ const groups = [
 
 export default function SharedExperiences() {
   const [active, setActive] = useState("symptoms");
+  const { t } = useLanguage();
+  const groupsCopy = t("circleShared.groups");
   const activeGroup = groups.find((g) => g.id === active);
+  const activeIndex = groups.findIndex((g) => g.id === active);
+  const activeGroupCopy = groupsCopy[activeIndex];
 
   return (
     <section className="se3-section">
@@ -67,18 +72,16 @@ export default function SharedExperiences() {
       <div className="se3-inner">
         {/* Left: header + tabs */}
         <div className="se3-left">
-          <span className="se3-eyebrow">Shared Experiences</span>
+          <span className="se3-eyebrow">{t("circleShared.eyebrow")}</span>
           <h2 className="se3-title">
-            Moments That
+            {t("circleShared.titleLine1")}
             <br />
-            Connect Us
+            {t("circleShared.titleLine2")}
           </h2>
-          <p className="se3-subtitle">
-            From first butterflies to the daily grind — you've lived these moments, and so have thousands of others.
-          </p>
+          <p className="se3-subtitle">{t("circleShared.subtitle")}</p>
 
           <nav className="se3-tabs">
-            {groups.map((g) => (
+            {groups.map((g, index) => (
               <button
                 key={g.id}
                 className={`se3-tab ${active === g.id ? "se3-tab--active" : ""}`}
@@ -86,7 +89,7 @@ export default function SharedExperiences() {
                 onClick={() => setActive(g.id)}
               >
                 <span className="se3-tab-icon">{g.icon}</span>
-                <span className="se3-tab-label">{g.label}</span>
+                <span className="se3-tab-label">{groupsCopy[index].label}</span>
                 <span className="se3-tab-count">{g.count}</span>
               </button>
             ))}
@@ -94,7 +97,7 @@ export default function SharedExperiences() {
 
           <div className="se3-ctas">
             <a href="/circle/experiences" className="se3-btn se3-btn--primary">
-              Explore Experiences
+              {t("circleShared.explore")}
             </a>
           </div>
         </div>
@@ -109,15 +112,15 @@ export default function SharedExperiences() {
             <div className="se3-panel-header">
               <span className="se3-panel-icon">{activeGroup.icon}</span>
               <div>
-                <div className="se3-panel-label">{activeGroup.label}</div>
+                <div className="se3-panel-label">{activeGroupCopy.label}</div>
                 <div className="se3-panel-count">
-                  {activeGroup.count} shared moments
+                  {activeGroup.count} {t("circleShared.sharedMoments")}
                 </div>
               </div>
             </div>
 
             <ul className="se3-list">
-              {activeGroup.items.map((item, i) => (
+              {activeGroupCopy.items.map((item, i) => (
                 <li key={i} className="se3-list-item" style={{ animationDelay: `${i * 80}ms` }}>
                   <span className="se3-list-bullet" />
                   {item}
@@ -127,7 +130,7 @@ export default function SharedExperiences() {
 
             <div className="se3-panel-cta">
               <a href="/circle/experiences" className="se3-inline-link">
-                See all {activeGroup.label} stories →
+                {t("circleShared.seeAll", { label: activeGroupCopy.label })} →
               </a>
             </div>
 
@@ -138,11 +141,11 @@ export default function SharedExperiences() {
           {/* Floating stat bubbles */}
           <div className="se3-bubble se3-bubble--1">
             <strong>7.5k+</strong>
-            <span>moments shared</span>
+            <span>{t("circleShared.bubbleShared")}</span>
           </div>
           <div className="se3-bubble se3-bubble--2">
             <strong>4</strong>
-            <span>experience types</span>
+            <span>{t("circleShared.bubbleTypes")}</span>
           </div>
         </div>
       </div>

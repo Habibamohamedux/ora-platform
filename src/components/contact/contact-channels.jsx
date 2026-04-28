@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./contact-channels.css";
 
 // Enterprise-grade SVG icons
@@ -58,6 +59,8 @@ const CHANNELS = [
 
 export default function ContactChannels() {
   const [copied, setCopied] = useState(null);
+  const { t } = useLanguage();
+  const channelCopy = t("contactChannels.channels");
 
   function handleCopy(ch) {
     if (!ch.copyable) return;
@@ -72,22 +75,22 @@ export default function ContactChannels() {
       <div className="cch-bg-pattern" />
       <div className="cch-inner">
         <div className="cch-header">
-          <span className="cch-eyebrow">Global Infrastructure</span>
-          <h2 className="cch-title">Enterprise Connectivity<br />At Your Fingertips.</h2>
+          <span className="cch-eyebrow">{t("contactChannels.eyebrow")}</span>
+          <h2 className="cch-title">{t("contactChannels.line1")}<br />{t("contactChannels.line2")}</h2>
           <p className="cch-desc">
-            Select the communication channel tailored to your organizational needs. 
-            Our global support infrastructure guarantees secure and compliant resolution.
+            {t("contactChannels.desc")}
           </p>
         </div>
 
         <div className="cch-grid">
           {CHANNELS.map((ch, i) => (
+            // Values and links remain operational constants while the copy is localized.
             <div 
               key={ch.id} 
               className={`cch-card ${ch.primary ? "cch-card--primary" : ""}`}
               style={{ animationDelay: `${i * 0.1}s` }}
             >
-              {ch.badge && <div className="cch-badge">{ch.badge}</div>}
+              {channelCopy[ch.id].badge && <div className="cch-badge">{channelCopy[ch.id].badge}</div>}
 
               <div className="cch-card__top">
                 <div className={`cch-icon ${ch.primary ? "cch-icon--primary" : ""}`}>
@@ -96,10 +99,10 @@ export default function ContactChannels() {
               </div>
 
               <div className="cch-card__content">
-                <div className="cch-card__label">{ch.label}</div>
+                <div className="cch-card__label">{channelCopy[ch.id].label}</div>
                 <div className="cch-card__value">{ch.value}</div>
-                <div className="cch-card__sub">{ch.sub}</div>
-                <div className="cch-resp">{ch.resp}</div>
+                <div className="cch-card__sub">{channelCopy[ch.id].sub}</div>
+                <div className="cch-resp">{channelCopy[ch.id].resp}</div>
               </div>
 
               <div className="cch-card__actions">
@@ -109,14 +112,14 @@ export default function ContactChannels() {
                   target={ch.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
                 >
-                  {ch.id === "portal" ? "Access Portal" : "Connect"}
+                  {ch.id === "portal" ? t("contactChannels.accessPortal") : t("contactChannels.connect")}
                 </a>
                 {ch.copyable && (
                   <button 
                     className={`cch-btn cch-btn--copy ${copied === ch.id ? "cch-btn--copied" : ""}`}
                     onClick={() => handleCopy(ch)}
                   >
-                    {copied === ch.id ? "Copied" : "Copy"}
+                    {copied === ch.id ? t("contactChannels.copied") : t("contactChannels.copy")}
                   </button>
                 )}
               </div>

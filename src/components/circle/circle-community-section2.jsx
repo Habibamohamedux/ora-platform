@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./circle-community-section2.css";
 
 const stories = [
@@ -64,6 +65,8 @@ export default function CommunityStories() {
   const trackRef = useRef(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const { t } = useLanguage();
+  const storiesCopy = t("circleStories.stories");
 
   useEffect(() => {
     if (isHovered) return;
@@ -92,16 +95,13 @@ export default function CommunityStories() {
       <div className="cs2-inner">
         {/* Header */}
         <div className="cs2-header">
-          <span className="cs2-eyebrow">Community</span>
+          <span className="cs2-eyebrow">{t("circleStories.eyebrow")}</span>
           <h2 className="cs2-title">
-            Real Stories
+            {t("circleStories.titleLine1")}
             <br />
-            <em>from Real Journeys</em>
+            <em>{t("circleStories.titleLine2")}</em>
           </h2>
-          <p className="cs2-subtitle">
-            Milestones, struggles, laughs, and tears — shared by women just
-            like you.
-          </p>
+          <p className="cs2-subtitle">{t("circleStories.subtitle")}</p>
         </div>
 
         {/* Cards Track */}
@@ -119,14 +119,14 @@ export default function CommunityStories() {
                 style={{ "--accent": typeColors[s.type] }}
               >
                 <div className="cs2-card-top">
-                  <span className="cs2-tag">{s.tag}</span>
+                  <span className="cs2-tag">{storiesCopy[i].tag}</span>
                   <div
                     className="cs2-type-dot"
                     style={{ background: typeColors[s.type] }}
                   />
                 </div>
-                <h3 className="cs2-card-title">{s.title}</h3>
-                <p className="cs2-card-excerpt">{s.excerpt}</p>
+                <h3 className="cs2-card-title">{storiesCopy[i].title}</h3>
+                <p className="cs2-card-excerpt">{storiesCopy[i].excerpt}</p>
                 <div className="cs2-card-author">
                   <div
                     className="cs2-avatar"
@@ -159,10 +159,10 @@ export default function CommunityStories() {
         {/* CTAs */}
         <div className="cs2-ctas">
           <a href="/circle/stories" className="cs2-btn cs2-btn--primary">
-            Read Stories
+            {t("circleStories.read")}
           </a>
           <a href="/circle/share" className="cs2-btn cs2-btn--ghost">
-            Share Your Story
+            {t("circleStories.share")}
             <svg
               width="16"
               height="16"

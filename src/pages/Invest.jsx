@@ -5,6 +5,7 @@ import './Invest.css';
 
 // Component Imports
 import Navbar from '../components/layout/Navbar';
+import Seo from '../components/seo/Seo';
 import HeroInvest from '../components/sections/HeroInvest';
 import investVid from '../assests/video/invest.mp4'; 
 import GlobalOpportunity from '../components/sections/GlobalOpportunity';
@@ -144,19 +145,29 @@ const Invest = () => {
 
     return (
         <div className="invest-page-container2" ref={containerRef}>
+            <Seo
+              title="Invest in ORA | Future of Maternal Health Technology"
+              description="Explore ORA's vision for AI-driven maternal care, wearable monitoring, clinical integration, and scalable women's health innovation."
+              keywords={[
+                'maternal health investment',
+                'digital health startup',
+                'women health innovation',
+                'clinical technology platform',
+              ]}
+              schemaType="AboutPage"
+            />
             <Navbar />
             
             {/* BACKGROUND LAYER */}
             <section className="hero-parallax-container2">
-  <HeroInvest 
-    videoSrc={investVid}
-    titleLine1="Invest in the"
-    titleLine2="Future of Maternal Care"
-    subtitle="ORA is redefining maternal health through AI and clinical integration."
-    primaryBtnText="Request Deck"
-    secondaryBtnText="Partner With Us"
-  />
-);
+              <HeroInvest 
+                videoSrc={investVid}
+                titleLine1="Invest in the"
+                titleLine2="Future of Maternal Care"
+                subtitle="ORA is redefining maternal health through AI and clinical integration."
+                primaryBtnText="Request Deck"
+                secondaryBtnText="Partner With Us"
+              />
             </section>
 
             {/* SLIDING SHEET LAYER */}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../i18n/LanguageContext';
 import './CircleCommunityRail.css';
 
 const reveal = {
@@ -124,37 +125,32 @@ const sections = [
 ];
 
 const CircleCommunityRail = () => {
+  const { t } = useLanguage();
+  const signals = t('circleRail.signals');
+  const sectionsCopy = t('circleRail.sections');
+
   return (
     <section className="circle-community-rail">
       <motion.div className="circle-community-intro" {...reveal}>
         <div className="circle-community-intro__copy">
-          <span>Circle Community</span>
-          <h3>Support that feels lived-in, honest, and easy to enter.</h3>
-          <p>
-            The Circle experience now shifts from abstract feature blocks into story-led spaces, practical discussion,
-            anonymous support, and trusted expert guidance. Each section below is designed around the kinds of moments
-            people actually look for during pregnancy.
-          </p>
+          <span>{t('circleRail.introLabel')}</span>
+          <h3>{t('circleRail.introTitle')}</h3>
+          <p>{t('circleRail.introBody')}</p>
         </div>
 
         <div className="circle-community-intro__signals" aria-hidden="true">
-          <article>
-            <strong>Stories</strong>
-            <span>Milestones, fears, and emotional truth</span>
-          </article>
-          <article>
-            <strong>Support</strong>
-            <span>Groups, questions, and anonymous honesty</span>
-          </article>
-          <article>
-            <strong>Trust</strong>
-            <span>Verified guidance layered into community care</span>
-          </article>
+          {signals.map((signal) => (
+            <article key={signal.title}>
+              <strong>{signal.title}</strong>
+              <span>{signal.text}</span>
+            </article>
+          ))}
         </div>
       </motion.div>
 
       <div className="circle-community-grid">
         {sections.map((section, index) => (
+          // Layout, links, and ordering remain stable while the presentation copy is localized.
           <motion.article
             key={section.number}
             className={`circle-community-card circle-community-card--${section.tone}${
@@ -168,25 +164,25 @@ const CircleCommunityRail = () => {
 
             <div className="circle-community-card__head">
               <span className="circle-community-card__number">{section.number}</span>
-              <span className="circle-community-card__eyebrow">{section.eyebrow}</span>
+              <span className="circle-community-card__eyebrow">{sectionsCopy[index].eyebrow}</span>
             </div>
 
-            <h4>{section.title}</h4>
-            <p className="circle-community-card__description">{section.description}</p>
+            <h4>{sectionsCopy[index].title}</h4>
+            <p className="circle-community-card__description">{sectionsCopy[index].description}</p>
 
             <div className="circle-community-card__body">
               <div className="circle-community-card__block">
-                <span>Inside this space</span>
+                <span>{t('circleRail.inside')}</span>
                 <ul>
-                  {section.items.map((item) => (
+                  {sectionsCopy[index].items.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </div>
 
               <div className="circle-community-card__block circle-community-card__block--soft">
-                <span>{section.sideLabel}</span>
-                <p>{section.sideCopy}</p>
+                <span>{sectionsCopy[index].sideLabel}</span>
+                <p>{sectionsCopy[index].sideCopy}</p>
               </div>
             </div>
 
@@ -197,7 +193,7 @@ const CircleCommunityRail = () => {
                   to={cta.to}
                   className={`circle-community-card__cta${ctaIndex === 0 ? ' is-primary' : ''}`}
                 >
-                  {cta.label}
+                  {sectionsCopy[index].ctas[ctaIndex]}
                   <span aria-hidden="true">→</span>
                 </Link>
               ))}

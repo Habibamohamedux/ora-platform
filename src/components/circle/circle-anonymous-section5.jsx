@@ -1,26 +1,12 @@
 import React, { useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./circle-anonymous-section5.css";
-
-const anonStories = [
-  {
-    text: "I was terrified to ask about my symptoms online because everyone would know it was me. Coming here felt like finally being able to breathe.",
-    tag: "Week 8",
-    ago: "1h ago",
-  },
-  {
-    text: "I wasn't ready to tell anyone I was pregnant, but I needed someone to talk to. Anonymously sharing here saved me.",
-    tag: "First Trimester",
-    ago: "3h ago",
-  },
-  {
-    text: "Asked a question I was embarrassed about and got 14 kind responses. No one judged me. I cried happy tears.",
-    tag: "Second Trimester",
-    ago: "5h ago",
-  },
-];
 
 export default function AnonymousSupport() {
   const [flipped, setFlipped] = useState(false);
+  const { t } = useLanguage();
+  const stories = t("circleAnonymous.stories");
+  const frontLines = t("circleAnonymous.front").split("\n");
 
   return (
     <section className="as5-section">
@@ -46,27 +32,27 @@ export default function AnonymousSupport() {
                   <circle cx="24" cy="18" r="3" fill="currentColor" opacity="0.3"/>
                 </svg>
               </div>
-              <p>Your identity stays hidden.<br />Your story can still be told.</p>
-              <span className="as5-flip-hint">Tap to reveal →</span>
+              <p>{frontLines[0]}<br />{frontLines[1]}</p>
+              <span className="as5-flip-hint">{t("circleAnonymous.tap")}</span>
             </div>
             <div className="as5-mask-back">
               <blockquote>
-                "I finally said the thing I couldn't say to anyone."
+                "{t("circleAnonymous.quote")}"
               </blockquote>
-              <p className="as5-mask-sub">Anonymous Circle Member</p>
+              <p className="as5-mask-sub">{t("circleAnonymous.member")}</p>
             </div>
           </div>
 
           {/* Story cards */}
           <div className="as5-stories">
-            {anonStories.map((s, i) => (
+            {stories.map((s, i) => (
               <div key={i} className="as5-story-card" style={{ "--delay": `${i * 0.12}s` }}>
                 <div className="as5-story-top">
                   <span className="as5-story-tag">{s.tag}</span>
                   <span className="as5-story-ago">{s.ago}</span>
                 </div>
                 <p className="as5-story-text">"{s.text}"</p>
-                <div className="as5-story-anon">Anonymous ✦</div>
+                <div className="as5-story-anon">{t("circleAnonymous.anonymous")}</div>
               </div>
             ))}
           </div>
@@ -74,36 +60,34 @@ export default function AnonymousSupport() {
 
         {/* Right: copy */}
         <div className="as5-copy">
-          <span className="as5-eyebrow">Anonymous Support</span>
+          <span className="as5-eyebrow">{t("circleAnonymous.eyebrow")}</span>
           <h2 className="as5-title">
-            Speak Freely,<br />
-            <span>Without Judgment</span>
+            {t("circleAnonymous.titleLine1")}<br />
+            <span>{t("circleAnonymous.titleLine2")}</span>
           </h2>
-          <p className="as5-body">
-            Some things are hard to say with your name attached. Circle gives you the space to ask, share, and process — completely anonymously.
-          </p>
+          <p className="as5-body">{t("circleAnonymous.body")}</p>
 
           <div className="as5-badges">
             <div className="as5-badge">
               <span className="as5-badge-icon">🔒</span>
-              Identity never revealed
+              {t("circleAnonymous.identity")}
             </div>
             <div className="as5-badge">
               <span className="as5-badge-icon">✦</span>
-              Moderated & safe
+              {t("circleAnonymous.safe")}
             </div>
             <div className="as5-badge">
               <span className="as5-badge-icon">♡</span>
-              Always met with kindness
+              {t("circleAnonymous.kind")}
             </div>
           </div>
 
           <div className="as5-ctas">
             <a href="/circle/anonymous" className="as5-btn as5-btn--primary">
-              Ask Anonymously
+              {t("circleAnonymous.ask")}
             </a>
             <a href="/circle/anonymous-feed" className="as5-btn as5-btn--ghost">
-              View Anonymous Stories
+              {t("circleAnonymous.view")}
             </a>
           </div>
         </div>

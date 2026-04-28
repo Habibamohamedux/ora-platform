@@ -7,11 +7,13 @@ import H1Light from '../common/h1-light';
 import Minititle from '../common/minititle';
 import LightParagraph from '../common/lightparagraph';
 import MascotNormal from '../common/mascotnormal';
+import { useLanguage } from '../../i18n/LanguageContext';
 import './HeroMascot.css';
 
 const HeroMascot = () => {
   const circlesRef = useRef([]);
   const mascotRef = useRef(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // BACKGROUND CIRCLES PULSE
@@ -77,16 +79,16 @@ const HeroMascot = () => {
       {/* UI Content Layer */}
       <div className="ui-text-layer">
         <div className="left-group">
-          <Minititle text="AI Assistant for Pregnancy & Fertility"/>
-          <H1Light text="MEET ORA—\nYOUR INTELLIGENT\nPREGNANCY COMPANION" />
+          <Minititle text={t('home.miniTitle')}/>
+          <H1Light text={t('home.title')} />
           <GlassButton 
-            text="MEET ORA" 
+            text={t('home.cta')} 
             onClick={() => console.log("Button Clicked!")} 
           />
         </div>
 
         <div className="right-group">
-            <LightParagraph text="ORA is an AI assistant designed to support you throughout your pregnancy and fertility journey. From personalized insights to real-time guidance, ORA is here to empower you every step of the way." />
+            <LightParagraph text={t('home.paragraph')} />
         </div>
 
         <div className="hero-footer01">

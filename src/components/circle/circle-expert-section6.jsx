@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./circle-expert-section6.css";
 
 const experts = [
@@ -52,6 +53,9 @@ const featuredQAs = [
 
 export default function ExpertGuidance() {
   const [activeQA, setActiveQA] = useState(0);
+  const { t } = useLanguage();
+  const expertRoles = t("circleExpert.experts");
+  const qaCopy = t("circleExpert.qa");
 
   return (
     <section className="eg6-section">
@@ -60,23 +64,21 @@ export default function ExpertGuidance() {
       <div className="eg6-inner">
         {/* Header */}
         <div className="eg6-header">
-          <span className="eg6-eyebrow">Expert Guidance</span>
+          <span className="eg6-eyebrow">{t("circleExpert.eyebrow")}</span>
           <div className="eg6-head-split">
             <h2 className="eg6-title">
-              Guided by
+              {t("circleExpert.titleLine1")}
               <br />
-              Professionals
+              {t("circleExpert.titleLine2")}
             </h2>
-            <p className="eg6-subtitle">
-              Real questions answered by verified doctors, midwives, and maternal health specialists — so you can trust every word.
-            </p>
+            <p className="eg6-subtitle">{t("circleExpert.subtitle")}</p>
           </div>
         </div>
 
         <div className="eg6-body">
           {/* Experts */}
           <div className="eg6-experts">
-            {experts.map((e) => (
+            {experts.map((e, index) => (
               <div key={e.id} className="eg6-expert-card">
                 <div
                   className="eg6-expert-avatar"
@@ -84,19 +86,19 @@ export default function ExpertGuidance() {
                 >
                   {e.initials}
                   {e.verified && (
-                    <span className="eg6-verified" title="Verified">✓</span>
+                    <span className="eg6-verified" title={t("circleExpert.verified")}>✓</span>
                   )}
                 </div>
                 <div className="eg6-expert-info">
                   <div className="eg6-expert-name">{e.name}</div>
-                  <div className="eg6-expert-role">{e.role}</div>
+                  <div className="eg6-expert-role">{expertRoles[index]}</div>
                 </div>
                 <div
                   className="eg6-expert-count"
                   style={{ color: e.color }}
                 >
                   {e.answers}<br />
-                  <span>answers</span>
+                  <span>{t("circleExpert.answers")}</span>
                 </div>
               </div>
             ))}
@@ -116,7 +118,7 @@ export default function ExpertGuidance() {
                     className="eg6-qa-tab-dot"
                     style={{ background: featuredQAs[i].color }}
                   />
-                  {qa.tag}
+                  {qaCopy[i].tag}
                 </button>
               ))}
             </div>
@@ -124,11 +126,11 @@ export default function ExpertGuidance() {
             <div className="eg6-qa-panel" key={activeQA} style={{ "--qcolor": featuredQAs[activeQA].color }}>
               <div className="eg6-q-row">
                 <span className="eg6-q-label">Q</span>
-                <p className="eg6-q-text">{featuredQAs[activeQA].q}</p>
+                <p className="eg6-q-text">{qaCopy[activeQA].q}</p>
               </div>
               <div className="eg6-a-row">
                 <span className="eg6-a-label">A</span>
-                <p className="eg6-a-text">{featuredQAs[activeQA].a}</p>
+                <p className="eg6-a-text">{qaCopy[activeQA].a}</p>
               </div>
               <div className="eg6-qa-author">
                 <div
@@ -139,7 +141,7 @@ export default function ExpertGuidance() {
                 </div>
                 <div>
                   <div className="eg6-qa-name">{featuredQAs[activeQA].expert}</div>
-                  <div className="eg6-qa-role">{featuredQAs[activeQA].role} · Verified</div>
+                  <div className="eg6-qa-role">{qaCopy[activeQA].role} · {t("circleExpert.verified")}</div>
                 </div>
               </div>
             </div>
@@ -149,10 +151,10 @@ export default function ExpertGuidance() {
         {/* CTAs */}
         <div className="eg6-ctas">
           <a href="/circle/experts" className="eg6-btn eg6-btn--primary">
-            Ask an Expert
+            {t("circleExpert.ask")}
           </a>
           <a href="/circle/expert-feed" className="eg6-btn eg6-btn--ghost">
-            View Expert Answers
+            {t("circleExpert.view")}
           </a>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/layout/Navbar';
+import Seo from '../components/seo/Seo';
 import ContactHero from "../components/contact/contact-hero";
 import ContactChannels from "../components/contact/contact-channels";
 import ContactForm from "../components/contact/contact-form";
@@ -14,7 +15,18 @@ export default function Contact() {
   return (
 
     <main className="contact-page">
-          <Navbar />
+      <Seo
+        title="Contact ORA | Support, Partnerships, and Clinical Collaboration"
+        description="Contact ORA for product support, clinical collaboration, partnership inquiries, legal questions, and maternal health platform guidance."
+        keywords={[
+          'contact ORA',
+          'maternal health support',
+          'clinical collaboration',
+          'health technology partnerships',
+        ]}
+        schemaType="ContactPage"
+      />
+      <Navbar />
       <ContactHero />
       <ContactChannels />
       <ContactForm />

@@ -1,0 +1,49 @@
+.insights-back-top.ora-back-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 120;
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background:
+    linear-gradient(135deg, rgba(201, 64, 96, 0.94), rgba(118, 34, 58, 0.96));
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow:
+    0 16px 40px rgba(117, 31, 58, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+}
+
+.insights-back-top.ora-back-top.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.insights-back-top.ora-back-top:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 20px 46px rgba(117, 31, 58, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 640px) {
+  .insights-back-top.ora-back-top {
+    right: 16px;
+    bottom: 16px;
+    height: 52px;
+    width: 52px;
+  }
+}

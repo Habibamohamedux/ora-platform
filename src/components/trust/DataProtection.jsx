@@ -2,10 +2,13 @@ import React, { useCallback } from "react";
 import Particles from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { ShieldCheck, Cloud, Activity } from "lucide-react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "../../pages/Trust.css";
 
 
 const DataProtection = () => {
+  const { t } = useLanguage();
+  const cards = t("trustDataProtection.cards");
   // Initialize the particle engine
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
@@ -94,13 +97,10 @@ const DataProtection = () => {
       <div className="data-protection-container">
         <div className="data-protection-header">
           <h2 className="data-protection-headline">
-            Enterprise-Level Security Standards
+            {t("trustDataProtection.headline")}
           </h2>
           <p className="data-protection-body">
-            We use advanced security protocols to protect your data from unauthorized
-            access, loss, or misuse. Our infrastructure follows modern encryption
-            standards and secure cloud practices to ensure reliability and safety at
-            all times.
+            {t("trustDataProtection.body")}
           </p>
         </div>
 
@@ -110,9 +110,9 @@ const DataProtection = () => {
             <div className="data-protection-icon-wrapper">
               <ShieldCheck size={28} strokeWidth={2} />
             </div>
-            <h3 className="data-protection-card-title">End-to-end encryption</h3>
+            <h3 className="data-protection-card-title">{cards[0].title}</h3>
             <p className="data-protection-card-desc">
-              Safeguard your communications and stored data with military-grade encryption protocols.
+              {cards[0].desc}
             </p>
           </div>
 
@@ -121,9 +121,9 @@ const DataProtection = () => {
             <div className="data-protection-icon-wrapper">
               <Cloud size={28} strokeWidth={2} />
             </div>
-            <h3 className="data-protection-card-title">Secure cloud storage</h3>
+            <h3 className="data-protection-card-title">{cards[1].title}</h3>
             <p className="data-protection-card-desc">
-              Scale confidently on cloud-native infrastructure built to withstand high traffic and prevent data loss.
+              {cards[1].desc}
             </p>
           </div>
 
@@ -132,16 +132,16 @@ const DataProtection = () => {
             <div className="data-protection-icon-wrapper">
               <Activity size={28} strokeWidth={2} />
             </div>
-            <h3 className="data-protection-card-title">Continuous monitoring</h3>
+            <h3 className="data-protection-card-title">{cards[2].title}</h3>
             <p className="data-protection-card-desc">
-              Real-time threat detection and active infrastructure monitoring to catch issues before they happen.
+              {cards[2].desc}
             </p>
           </div>
         </div>
 
         <div className="data-protection-cta-wrapper">
           <button className="data-protection-button">
-            &rarr; Learn About Data Protection
+            &rarr; {t("trustDataProtection.cta")}
           </button>
         </div>
       </div>

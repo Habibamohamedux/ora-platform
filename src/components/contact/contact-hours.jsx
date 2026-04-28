@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./contact-hours.css";
 
 // Clean, Professional SVG Icons
@@ -10,28 +11,23 @@ const Icons = {
   globe: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
 };
 
-const SCHEDULE = [
-  { day: "Sunday",    open: "09:00", close: "18:00" },
-  { day: "Monday",    open: "09:00", close: "18:00" },
-  { day: "Tuesday",   open: "09:00", close: "18:00" },
-  { day: "Wednesday", open: "09:00", close: "18:00" },
-  { day: "Thursday",  open: "09:00", close: "18:00" },
-  { day: "Friday",    open: null,    close: null    },
-  { day: "Saturday",  open: "10:00", close: "15:00" },
+const SCHEDULE_TEMPLATE = [
+  { open: "09:00", close: "18:00" },
+  { open: "09:00", close: "18:00" },
+  { open: "09:00", close: "18:00" },
+  { open: "09:00", close: "18:00" },
+  { open: "09:00", close: "18:00" },
+  { open: null, close: null },
+  { open: "10:00", close: "15:00" },
 ];
 
-const SERVICES = [
-  { name: "Global Support Desk",   days: "Sun – Thu", time: "9 AM – 6 PM",  icon: "support" },
-  { name: "Clinical Consultations",days: "Daily",     time: "7 PM – 10 PM", icon: "clinical" },
-  { name: "Technical Operations",  days: "Sun – Thu", time: "9 AM – 9 PM",  icon: "technical" },
-  { name: "Critical Care Response",days: "Always",    time: "24 / 7",       icon: "critical", always: true },
-];
+const SERVICE_ICONS = ["support", "clinical", "technical", "critical"];
 
 const CLOCKS = [
-  { label: "Cairo",  tz: "Africa/Cairo" },
-  { label: "Dubai",  tz: "Asia/Dubai" },
-  { label: "Berlin", tz: "Europe/Berlin" },
-  { label: "Paris",  tz: "Europe/Paris" },
+  { tz: "Africa/Cairo" },
+  { tz: "Asia/Dubai" },
+  { tz: "Europe/Berlin" },
+  { tz: "Europe/Paris" },
 ];
 
 function toMinutes(hhmm) {
@@ -49,6 +45,21 @@ function useGlobalTime() {
 }
 
 export default function ContactHours() {
+  const { language, t } = useLanguage();
+  const locale = {
+    en: "en-US",
+    fr: "fr-FR",
+    ar: "ar-EG",
+  }[language] || "en-US";
+  const schedule = SCHEDULE_TEMPLATE.map((entry, index) => ({
+    ...entry,
+    day: t("contactHours.days")[index],
+  }));
+  const services = t("contactHours.services").map((service, index) => ({
+    ...service,
+    icon: SERVICE_ICONS[index],
+    always: index === 3,
+  }));
   const now = useGlobalTime();
   
   const cairoTimeStr = now.toLocaleString("en-US", { timeZone: "Africa/Cairo" });
@@ -56,7 +67,7 @@ export default function ContactHours() {
   const dayIdx = cairoDate.getDay(); 
   const currentMins = cairoDate.getHours() * 60 + cairoDate.getMinutes();
   
-  const today = SCHEDULE[dayIdx];
+  const today = schedule[dayIdx];
   const isOpen = today.open && currentMins >= toMinutes(today.open) && currentMins < toMinutes(today.close);
 
   function minsUntilClose() {
@@ -72,9 +83,9 @@ export default function ContactHours() {
       
       <div className="chr-inner">
         <div className="chr-header">
-          <span className="chr-eyebrow">Global Operations</span>
-          <h2 className="chr-title">Support <em>Availability</em></h2>
-          <p className="chr-desc">Our headquarters operate primarily on Egypt Standard Time (EET). Critical infrastructure and emergency response teams remain active 24/7 globally.</p>
+          <span className="chr-eyebrow">{t("contactHours.eyebrow")}</span>
+          <h2 className="chr-title">{t("contactHours.titleLead")} <em>{t("contactHours.titleEm")}</em></h2>
+          <p className="chr-desc">{t("contactHours.desc")}</p>
         </div>
 
         {/* Global Timezones Strip */}
@@ -82,10 +93,10 @@ export default function ContactHours() {
           <div className="chr-world-strip__icon">{Icons.globe}</div>
           <div className="chr-world-clocks">
             {CLOCKS.map((clock) => (
-              <div key={clock.label} className="chr-clock-item">
-                <span className="chr-clock__label">{clock.label}</span>
+              <div key={clock.tz} className="chr-clock-item">
+                <span className="chr-clock__label">{t("contactHours.clocks")[CLOCKS.indexOf(clock)]}</span>
                 <span className="chr-clock__time">
-                  {now.toLocaleTimeString("en-US", { 
+                  {now.toLocaleTimeString(locale, { 
                     timeZone: clock.tz, 
                     hour: "2-digit", 
                     minute: "2-digit",
@@ -101,21 +112,21 @@ export default function ContactHours() {
           {/* Main HQ Schedule */}
           <div className="chr-schedule-card chr-anim-1">
             <div className="chr-card-header">
-              <h3 className="chr-card-title">HQ Schedule (EET)</h3>
+              <h3 className="chr-card-title">{t("contactHours.scheduleTitle")}</h3>
               <div className={`chr-status ${isOpen ? "chr-status--open" : "chr-status--closed"}`}>
                 <span className="chr-status__dot" />
                 <span>
                   {isOpen
                     ? closing !== null && closing < 60
-                      ? `Closing in ${closing} min`
-                      : "System Online"
-                    : "System Offline"}
+                      ? t("contactHours.closingIn", { minutes: closing })
+                      : t("contactHours.systemOnline")
+                    : t("contactHours.systemOffline")}
                 </span>
               </div>
             </div>
 
             <div className="chr-schedule-list">
-              {SCHEDULE.map((d, i) => {
+              {schedule.map((d, i) => {
                 const isToday = i === dayIdx;
                 let progress = 0;
                 if (isToday && d.open) {
@@ -126,10 +137,10 @@ export default function ContactHours() {
                   <div key={d.day} className={`chr-row ${isToday ? "chr-row--today" : ""} ${!d.open ? "chr-row--off" : ""}`}>
                     <span className="chr-row__day">
                       {d.day}
-                      {isToday && <span className="chr-badge">Today</span>}
+                      {isToday && <span className="chr-badge">{t("contactHours.today")}</span>}
                     </span>
                     <span className="chr-row__hrs">
-                      {d.open ? `${d.open.replace(":00","")} – ${d.close.replace(":00","")}` : "Closed"}
+                      {d.open ? `${d.open.replace(":00","")} – ${d.close.replace(":00","")}` : t("contactHours.closed")}
                     </span>
                     {isToday && d.open && (
                       <div className="chr-progress">
@@ -144,21 +155,21 @@ export default function ContactHours() {
 
           {/* Service Tiers */}
           <div className="chr-services-card chr-anim-2">
-            <h3 className="chr-card-title chr-card-title--mb">Service Tiers</h3>
+            <h3 className="chr-card-title chr-card-title--mb">{t("contactHours.servicesTitle")}</h3>
             <div className="chr-services-list">
-              {SERVICES.map((s) => (
+              {services.map((s) => (
                 <div key={s.name} className={`chr-svc ${s.always ? "chr-svc--critical" : ""}`}>
                   <div className="chr-svc__icon">{Icons[s.icon]}</div>
                   <div className="chr-svc__info">
                     <span className="chr-svc__name">{s.name}</span>
                     <span className="chr-svc__time">{s.days} • {s.time}</span>
                   </div>
-                  {s.always && <span className="chr-svc__tag">24/7 Active</span>}
+                  {s.always && <span className="chr-svc__tag">{t("contactHours.alwaysActive")}</span>}
                 </div>
               ))}
             </div>
             <div className="chr-note">
-               Coverage reflects standard operational capabilities. Emergency clinical escalations override standard hours.
+               {t("contactHours.note")}
             </div>
           </div>
         </div>

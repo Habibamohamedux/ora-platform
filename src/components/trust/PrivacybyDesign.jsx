@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Database, ShieldCheck, Lock, EyeOff } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "../../pages/Trust.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -31,11 +32,13 @@ const PRIVACY_ITEMS = [
 
 const PrivacyByDesign = () => {
   const sectionRef = useRef(null);
+  const { t } = useLanguage();
+  const items = t("trustPrivacy.items");
 
   const renderAnimatedTitle = (line1, line2) => {
-    const renderWords = (text) =>
-      text.split(" ").map((word, i) => {
-        const isPink = word.toLowerCase() === "protect.";
+    const renderWords = (text, highlightLastWord = false) =>
+      text.split(" ").map((word, i, words) => {
+        const isPink = highlightLastWord && i === words.length - 1;
         return (
           <span
             key={i}
@@ -50,7 +53,7 @@ const PrivacyByDesign = () => {
       <>
         <span className="title-line">{renderWords(line1)}</span>
         <br />
-        <span className="title-line">{renderWords(line2)}</span>
+        <span className="title-line">{renderWords(line2, true)}</span>
       </>
     );
   };
@@ -101,27 +104,34 @@ const PrivacyByDesign = () => {
       <div className="privacy-container">
         {/* LEFT */}
         <div className="privacy-left">
-          <div className="privacy-eyebrow">Privacy Policy</div>
+          <div className="privacy-eyebrow">{t("trustPrivacy.eyebrow")}</div>
           <h1 className="privacy-title">
-            {renderAnimatedTitle("Privacy, by design.", "We protect.")}
+            {renderAnimatedTitle(t("trustPrivacy.line1"), t("trustPrivacy.line2"))}
           </h1>
           <p className="privacy-description">
-            At <a href="/" className="ora-tag">ORA</a>, privacy is not an add-on —
-            it is built into every interaction. Every layer of our architecture
-            is crafted to secure your health journey with total transparency.
+            {t("trustPrivacy.description").split("ORA").map((part, index, parts) => (
+              <React.Fragment key={`${part}-${index}`}>
+                {part}
+                {index < parts.length - 1 && (
+                  <a href="/" className="ora-tag">
+                    ORA
+                  </a>
+                )}
+              </React.Fragment>
+            ))}
           </p>
         </div>
 
         {/* RIGHT */}
         <div className="privacy-right">
-          {PRIVACY_ITEMS.map(({ Icon, title, desc }) => (
-            <div className="privacy-item" key={title}>
+          {PRIVACY_ITEMS.map(({ Icon }, index) => (
+            <div className="privacy-item" key={items[index].title}>
               <div className="icon-circle">
                 <Icon size={22} strokeWidth={1.8} />
               </div>
               <div className="item-content">
-                <h3>{title}</h3>
-                <p>{desc}</p>
+                <h3>{items[index].title}</h3>
+                <p>{items[index].desc}</p>
               </div>
             </div>
           ))}
@@ -131,7 +141,7 @@ const PrivacyByDesign = () => {
       {/* CTA */}
       <div className="cta-container">
         <a href="/legal" className="privacy-cta-button">
-          <span>Read Privacy Policy</span>
+          <span>{t("trustPrivacy.cta")}</span>
           <span className="cta-arrow">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7"/>

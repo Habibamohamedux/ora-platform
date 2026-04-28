@@ -1,63 +1,68 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // 1️⃣ Import useNavigate
+import { useLanguage } from '../../i18n/LanguageContext';
 import './NavActions.css';
 
-// 2️⃣ Added 'path' to each item so the router knows where to go
-// 2️⃣ Added 'path' to each item so the router knows where to go
 const menuData = [
   {
-    category: 'SYSTEM',
+    category: 'system',
     items: [
-      { title: 'Ecosystem', path: '/ecosystem', desc: 'A unified overview of how ORA connects AI, wearable technology, and clinical care into one seamless system.' },
-      { title: 'Intelligence', path: '/intelligence', desc: 'The AI engine powering predictions, insights, and real-time maternal health analysis.' },
-      { title: 'Clinical', path: '/clinical', desc: 'A dedicated layer for doctors to monitor patients, manage risks, and provide informed care.' },
+      { key: 'ecosystem', path: '/ecosystem' },
+      { key: 'intelligence', path: '/intelligence' },
+      { key: 'clinical', path: '/clinical' },
     ],
   },
   {
-    category: 'EXPERIENCE',
+    category: 'experience',
     items: [
-      { title: 'Companion', path: '/companion', desc: 'Your everyday interface for tracking, guidance, and personalized pregnancy support.' },
-      { title: 'Pulse', path: '/pulse', desc: "Real-time biometric monitoring through ORA's wearable technology, capturing vital health signals." },
+      { key: 'companion', path: '/companion' },
+      { key: 'pulse', path: '/pulse' },
     ],
   },
   {
-    category: 'FOUNDATION',
+    category: 'foundation',
     items: [
-      { title: 'Origin', path: '/origin', desc: "The story, vision, and purpose behind ORA and its mission to redefine maternal care." },
+      { key: 'origin', path: '/origin' },
     ],
   },
   {
-    category: 'KNOWLEDGE',
+    category: 'knowledge',
     items: [
-      { title: 'Insights', path: '/insights', desc: 'Research, articles, and data-driven content grounded in medical evidence and innovation.' },
-      { title: 'Guidance', path: '/guidance', desc: 'Practical resources, educational content, and step-by-step support throughout the maternal journey.' },
+      { key: 'insights', path: '/insights' },
+      { key: 'guidance', path: '/guidance' },
     ],
   },
   {
-    category: 'CONNECTION',
+    category: 'connection',
     items: [
-      { title: 'Contact', path: '/contact', desc: 'Get in touch with our team for guidance, clinical collaboration, legal questions, and partnerships.' },
-      { title: 'Circle', path: '/circle', desc: 'A supportive space for shared experiences, community stories, and emotional connection.' },
+      { key: 'contact', path: '/contact' },
+      { key: 'circle', path: '/circle' },
     ],
   },
   {
-    category: 'TRUST',
+    category: 'trust',
     items: [
-      { title: 'Trust', path: '/trust', desc: 'Privacy, data protection, and the ethical standards that ensure your information is always secure.' },
+      { key: 'trust', path: '/trust' },
     ],
   },
   {
-    category: 'BUSINESS',
+    category: 'business',
     items: [
-      { title: 'Invest', path: '/invest', desc: 'Opportunities to partner, collaborate, and support the future of maternal health technology.' },
+      { key: 'invest', path: '/invest' },
     ],
   },
   {
-    category: 'CAREERS',
+    category: 'careers',
     items: [
-      { title: 'Futures', path: '/futures', desc: 'Join our mission to revolutionize maternal health. Explore opportunities to build the future of care with ORA.' },
+      { key: 'futures', path: '/futures' },
     ],
   },
+];
+
+const LANGUAGE_OPTIONS = [
+  { code: 'en', enabled: true },
+  { code: 'fr', enabled: true },
+  { code: 'ar', enabled: true },
 ];
 
 /* ─────────────────────────────────────────────
@@ -121,6 +126,7 @@ const NavActions = ({ onMenuChange }) => {
   const [triggerHovered, setTriggerHovered] = useState(false);
   const [activeDetail,   setActiveDetail]   = useState(null);
   const [animKey,        setAnimKey]        = useState(0);
+  const { language, setLanguage, t } = useLanguage();
 
   const navigate = useNavigate(); // 4️⃣ Initialize the router navigation
 
@@ -151,6 +157,10 @@ const NavActions = ({ onMenuChange }) => {
     }, 300); // Optional: tiny delay so the menu closing animation can start before the page swaps
   };
 
+  const handleLanguageSelect = (code) => {
+    setLanguage(code);
+  };
+
   let globalIndex = 0;
 
   return (
@@ -167,10 +177,10 @@ const NavActions = ({ onMenuChange }) => {
       >
         <div className="trigger-label-wrap">
           <span className={`trigger-text row-a${isActive ? ' hide' : ''}`}>
-            SYSTEM
+            {t('nav.trigger')}
           </span>
           <span className={`trigger-text row-b${isActive ? ' show' : ''}`}>
-            ORA SYSTEM NAVIGATION
+            {t('nav.menuTitle')}
           </span>
         </div>
 
@@ -193,11 +203,28 @@ const NavActions = ({ onMenuChange }) => {
 
         {/* Header */}
         <div className="mh">
-          <span className="mh-brand">ORA · Maternal Health</span>
-          <span className="mh-center">ORA SYSTEM NAVIGATION</span>
-          <button className="close-btn" onClick={handleClose} aria-label="Close navigation">
-            Close
-          </button>
+          <span className="mh-brand">{t('nav.brand')}</span>
+          <span className="mh-center">{t('nav.menuTitle')}</span>
+
+          <div className="mh-actions">
+            <div className="mh-language" aria-label={t('nav.language')}>
+              {LANGUAGE_OPTIONS.map((option) => (
+                <button
+                  key={option.code}
+                  type="button"
+                  className={`mh-language__option${language === option.code ? ' is-active' : ''}${option.enabled ? '' : ' is-disabled'}`}
+                  onClick={() => handleLanguageSelect(option.code)}
+                  disabled={!option.enabled}
+                  title={!option.enabled ? `${t(`languages.${option.code}`)} · ${t('languages.arSoon')}` : t(`languages.${option.code}`)}
+                >
+                  {option.code.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <button className="close-btn" onClick={handleClose} aria-label={t('nav.close')}>
+              {t('nav.close')}
+            </button>
+          </div>
         </div>
 
         {/* Body */}
@@ -206,14 +233,19 @@ const NavActions = ({ onMenuChange }) => {
           <div className="ml">
             {menuData.map(({ category, items }) => (
               <div key={category}>
-                <p className="cat-label">{category}</p>
+                <p className="cat-label">{t(`nav.categories.${category}`)}</p>
                 <ul className="item-list">
                   {items.map((item) => {
                     const idx = globalIndex++;
+                    const translatedItem = {
+                      ...item,
+                      title: t(`nav.items.${item.key}.title`),
+                      desc: t(`nav.items.${item.key}.desc`),
+                    };
                     return (
                       <MenuItem
-                        key={item.title}
-                        item={item}
+                        key={item.key}
+                        item={translatedItem}
                         globalIndex={idx}
                         isMenuOpen={isOpen}
                         onHover={handleHover}
@@ -231,14 +263,19 @@ const NavActions = ({ onMenuChange }) => {
           <div className="mr">
             {activeDetail ? (
               <div key={animKey}>
-                <p className="d-eye">— Overview</p>
+                <p className="d-eye">— {t('nav.overview')}</p>
                 <h2 className="d-title">{activeDetail.title}</h2>
                 <div className="d-rule" />
                 <p className="d-desc">{activeDetail.desc}</p>
               </div>
             ) : (
               <p className="d-placeholder" style={{ opacity: isOpen ? 1 : 0 }}>
-                Hover any item<br />to explore.
+                {t('nav.hoverPlaceholder').split('\n').map((line, index, arr) => (
+                  <React.Fragment key={line}>
+                    {line}
+                    {index < arr.length - 1 && <br />}
+                  </React.Fragment>
+                ))}
               </p>
             )}
           </div>
@@ -247,8 +284,11 @@ const NavActions = ({ onMenuChange }) => {
 
         {/* Footer */}
         <div className="mf">
-          <span>© {new Date().getFullYear()} ORA Health — All rights reserved</span>
-          <span>Redefining Maternal Care</span>
+          <div className="mf-meta">
+            <span>{t('nav.copyright')}</span>
+            <span>{t('nav.languageNote')}</span>
+          </div>
+          <span>{t('nav.tagline')}</span>
         </div>
 
       </div>

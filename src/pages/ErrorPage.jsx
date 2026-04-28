@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
+import Seo from '../components/seo/Seo';
 import './ErrorPage.css';
 
 const ErrorPage = ({
@@ -12,6 +13,12 @@ const ErrorPage = ({
 
   return (
     <main className="ora-error-page">
+      <Seo
+        title="Page Not Found | ORA"
+        description="The page you requested could not be found. Explore ORA's maternal health platform, legal center, community, and support pages."
+        keywords={['ORA 404', 'page not found', 'maternal health platform']}
+        noIndex
+      />
       <Navbar />
 
       <section className="ora-error-hero" aria-labelledby="ora-error-title">

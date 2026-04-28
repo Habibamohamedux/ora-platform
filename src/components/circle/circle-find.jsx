@@ -1,13 +1,14 @@
 import { useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./circle-find.css";
 
 const FILTERS = [
-  { id: "first", label: "First Pregnancy" },
-  { id: "highrisk", label: "High-Risk Support" },
-  { id: "newmom", label: "New Mothers" },
-  { id: "partner", label: "Partners" },
-  { id: "postpartum", label: "Postpartum" },
-  { id: "loss", label: "Pregnancy Loss" },
+  { id: "first" },
+  { id: "highrisk" },
+  { id: "newmom" },
+  { id: "partner" },
+  { id: "postpartum" },
+  { id: "loss" },
 ];
 
 const CIRCLES = [
@@ -57,6 +58,9 @@ const CIRCLES = [
 
 export default function CircleFind() {
   const [active, setActive] = useState("first");
+  const { t } = useLanguage();
+  const filters = t("circleFind.filters");
+  const circlesCopy = t("circleFind.circles");
 
   const visible = CIRCLES.filter((c) => c.tags.includes(active));
 
@@ -66,11 +70,9 @@ export default function CircleFind() {
 
       <div className="cf-inner">
         <div className="cf-header">
-          <span className="cf-eyebrow">Smart Matching</span>
-          <h2 className="cf-title">Find Your Circle</h2>
-          <p className="cf-desc">
-            Discover spaces that feel made for exactly where you are right now.
-          </p>
+          <span className="cf-eyebrow">{t("circleFind.eyebrow")}</span>
+          <h2 className="cf-title">{t("circleFind.title")}</h2>
+          <p className="cf-desc">{t("circleFind.desc")}</p>
         </div>
 
         {/* Filter bar */}
@@ -81,7 +83,7 @@ export default function CircleFind() {
               className={`cf-filter ${active === f.id ? "cf-filter--on" : ""}`}
               onClick={() => setActive(f.id)}
             >
-              {f.label}
+              {filters[FILTERS.indexOf(f)]}
             </button>
           ))}
         </div>
@@ -89,6 +91,7 @@ export default function CircleFind() {
         {/* Cards grid */}
         <div className="cf-grid">
           {visible.map((circle, i) => (
+            // Structural data stays stable while copy is localized.
             <div
               className="cf-card"
               key={circle.id}
@@ -100,22 +103,20 @@ export default function CircleFind() {
                 </div>
                 <div className="cf-card__live">
                   <span className="cf-card__dot" />
-                  {circle.active} online
+                  {circle.active} {t("circleFind.online")}
                 </div>
               </div>
-              <h3 className="cf-card__name">{circle.name}</h3>
-              <p className="cf-card__desc">{circle.desc}</p>
+              <h3 className="cf-card__name">{circlesCopy[circle.id - 1].name}</h3>
+              <p className="cf-card__desc">{circlesCopy[circle.id - 1].desc}</p>
               <div className="cf-card__footer">
-                <span className="cf-card__members">{circle.members.toLocaleString()} members</span>
-                <button className="cf-card__join">Join →</button>
+                <span className="cf-card__members">{circle.members.toLocaleString()} {t("circleFind.members")}</span>
+                <button className="cf-card__join">{t("circleFind.join")} →</button>
               </div>
             </div>
           ))}
         </div>
 
-        <p className="cf-hint">
-          ORA learns from you — your stage, your mood, your needs — to surface the circles that matter most.
-        </p>
+        <p className="cf-hint">{t("circleFind.hint")}</p>
       </div>
     </section>
   );

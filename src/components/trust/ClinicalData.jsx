@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from "../../i18n/LanguageContext";
 import "../../pages/Trust.css";
 // Added slight staggering so the float feels organic and random
-const PILLS = [
-  { text: 'Medical Records', top: '15%', left: '12%', delay: '0s' },
-  { text: 'Patient Privacy', top: '18%', right: '14%', delay: '0.2s' },
-  { text: 'Clinical Protocols', top: '45%', left: '6%', delay: '0.4s' },
-  { text: 'Data Encryption', top: '40%', right: '8%', delay: '0.6s' },
-  { text: 'HIPAA Compliance', top: '72%', left: '16%', delay: '0.8s' },
-  { text: 'Health Standards', top: '68%', right: '18%', delay: '1.0s' },
-  { text: 'Access Control', top: '80%', right: '42%', delay: '1.2s' }, 
+const PILL_LAYOUT = [
+  { top: '15%', left: '12%', delay: '0s' },
+  { top: '18%', right: '14%', delay: '0.2s' },
+  { top: '45%', left: '6%', delay: '0.4s' },
+  { top: '40%', right: '8%', delay: '0.6s' },
+  { top: '72%', left: '16%', delay: '0.8s' },
+  { top: '68%', right: '18%', delay: '1.0s' },
+  { top: '80%', right: '42%', delay: '1.2s' }, 
 ];
 
 const STATS = [
@@ -64,6 +65,13 @@ const AnimatedStat = ({ endValue }) => {
 };
 
 export default function ClinicalData() {
+  const { t } = useLanguage();
+  const pills = t("trustClinical.pills");
+  const stats = t("trustClinical.stats");
+  const line2Words = t("trustClinical.line2").split(" ");
+  const line2Prefix = line2Words.slice(0, -1).join(" ");
+  const line2Highlight = line2Words.slice(-1)[0];
+
   return (
     <section className="clinical-section-wrapper">
       
@@ -71,7 +79,7 @@ export default function ClinicalData() {
       <div className="clinical-section-hero">
         {/* Floating Pills */}
         <div className="clinical-section-pills" aria-hidden="true">
-          {PILLS.map((pill, idx) => (
+          {PILL_LAYOUT.map((pill, idx) => (
             <span 
               key={idx} 
               className="clinical-section-pill" 
@@ -82,7 +90,7 @@ export default function ClinicalData() {
                 animationDelay: `${pill.delay}, ${pill.delay}` // Syncs entrance & float delays
               }}
             >
-              {pill.text}
+              {pills[idx]}
             </span>
           ))}
         </div>
@@ -90,35 +98,36 @@ export default function ClinicalData() {
         {/* Central Content */}
         <div className="clinical-section-hero-content">
           <h2 className="clinical-section-headline">
-            Handling Health Data<br />with <em>Care</em>
+            {t("trustClinical.line1")}
+            <br />
+            {line2Prefix ? `${line2Prefix} ` : ""}
+            <em>{line2Highlight}</em>
           </h2>
           <p className="clinical-section-sub">
-            Health data requires the highest level of responsibility. ORA works with
-            structured clinical data protocols to ensure accuracy, confidentiality,
-            and compliance with healthcare standards.
+            {t("trustClinical.subtitle")}
           </p>
           <button className="clinical-section-cta">
-            Clinical Data Handling <span className="clinical-section-cta-arrow">→</span>
+            {t("trustClinical.cta")} <span className="clinical-section-cta-arrow">→</span>
           </button>
         </div>
       </div>
 
       {/* ── STATS ── */}
       <div className="clinical-section-stats">
-        {STATS.map(({ value, sup, label }) => (
-          <div key={label} className="clinical-section-stat-item">
+        {STATS.map(({ value, sup }, index) => (
+          <div key={stats[index]} className="clinical-section-stat-item">
             <div className="clinical-section-stat-number">
               <AnimatedStat endValue={value} />
               {sup && <span className="clinical-section-stat-symbol">{sup}</span>}
             </div>
-            <p className="clinical-section-stat-label">{label}</p>
+            <p className="clinical-section-stat-label">{stats[index]}</p>
           </div>
         ))}
       </div>
 
       {/* ── TRUST SECTION ── */}
       <div className="clinical-section-trust">
-        <span className="clinical-section-trust-label">ORA complies with global health data standards</span>
+        <span className="clinical-section-trust-label">{t("trustClinical.trustLabel")}</span>
         <div className="clinical-section-trust-logos">
           {PARTNERS.map(({ name, badge }) => (
             <div key={name} className="clinical-section-trust-logo-item">

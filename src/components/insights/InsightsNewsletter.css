@@ -1,0 +1,302 @@
+.insights-newsletter {
+  padding: 100px 0;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Full-bleed pink band */
+.insights-newsletter__band {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.insights-newsletter__card {
+  background: linear-gradient(135deg, var(--slate) 0%, #4a4960 100%);
+  border-radius: 32px;
+  padding: 80px 80px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+/* Decorative circles */
+.insights-newsletter__card::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,64,96,0.18) 0%, transparent 65%);
+  right: -150px;
+  top: -150px;
+  pointer-events: none;
+}
+
+.insights-newsletter__card::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,64,96,0.1) 0%, transparent 65%);
+  left: -80px;
+  bottom: -80px;
+  pointer-events: none;
+}
+
+/* Pattern */
+.insights-newsletter__pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201, 64, 96, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 64, 96, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* ── Left ── */
+.insights-newsletter__left {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+.insights-newsletter__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 20px;
+  padding: 5px 14px;
+  border: 1px solid rgba(201,64,96,0.35);
+  border-radius: 100px;
+  background: rgba(201,64,96,0.08);
+}
+
+.insights-newsletter__tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pink);
+  animation: heroPulse 2s ease-in-out infinite;
+}
+
+@keyframes heroPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.insights-newsletter__title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 0.95;
+  color: var(--white);
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+
+.insights-newsletter__title em {
+  font-style: normal;
+  color: var(--pink);
+}
+
+.insights-newsletter__desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(250,248,249,0.62);
+  max-width: 400px;
+}
+
+.insights-newsletter__perks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.insights-newsletter__perk {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(250,248,249,0.75);
+}
+
+.insights-newsletter__perk-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(201,64,96,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--pink);
+}
+
+/* ── Right ── */
+.insights-newsletter__right {
+  position: relative;
+  z-index: 2;
+  width: 400px;
+  flex-shrink: 0;
+}
+
+.insights-newsletter__form-card {
+  background: rgba(250,248,249,0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(250,248,249,0.12);
+  border-radius: 24px;
+  padding: 36px;
+}
+
+.insights-newsletter__form-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.insights-newsletter__form-subtitle {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(250,248,249,0.5);
+  margin-bottom: 24px;
+}
+
+.insights-newsletter__field {
+  margin-bottom: 14px;
+}
+
+.insights-newsletter__input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(250,248,249,0.07);
+  border: 1.5px solid rgba(250,248,249,0.12);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  box-sizing: border-box;
+}
+
+.insights-newsletter__input::placeholder {
+  color: rgba(250,248,249,0.35);
+}
+
+.insights-newsletter__input:focus {
+  border-color: var(--pink);
+  background: rgba(201,64,96,0.07);
+}
+
+.insights-newsletter__interests {
+  margin-bottom: 20px;
+}
+
+.insights-newsletter__interests-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(250,248,249,0.55);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.insights-newsletter__interest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.insights-newsletter__interest-tag {
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid rgba(250,248,249,0.15);
+  background: transparent;
+  color: rgba(250,248,249,0.6);
+  transition: all 0.2s;
+}
+
+.insights-newsletter__interest-tag.selected,
+.insights-newsletter__interest-tag:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+}
+
+.insights-newsletter__submit {
+  width: 100%;
+  padding: 15px;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.insights-newsletter__submit:hover {
+  background: #a8304f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(201,64,96,0.35);
+}
+
+.insights-newsletter__privacy {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: rgba(250,248,249,0.35);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .insights-newsletter__card {
+    flex-direction: column;
+    gap: 48px;
+    padding: 60px 48px;
+  }
+
+  .insights-newsletter__right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .insights-newsletter {
+    padding: 60px 0;
+  }
+
+  .insights-newsletter__band {
+    padding: 0 20px;
+  }
+
+  .insights-newsletter__card {
+    padding: 40px 28px;
+    border-radius: 24px;
+  }
+}

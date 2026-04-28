@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./circle-conversations.css";
 
 const MESSAGES = [
@@ -22,6 +23,9 @@ export default function CircleConversations() {
   const [bars, setBars] = useState(() => Array.from({ length: BAR_COUNT }, () => 0.3));
   const [visibleMsgs, setVisibleMsgs] = useState([MESSAGES[0]]);
   const msgRef = useRef(null);
+  const { t } = useLanguage();
+  const roomNames = t("circleConversations.rooms");
+  const messageTexts = t("circleConversations.messages");
 
   // Animate voice bars
   useEffect(() => {
@@ -53,34 +57,34 @@ export default function CircleConversations() {
 
       <div className="cc-inner">
         <div className="cc-header">
-          <span className="cc-eyebrow">Real-Time Presence</span>
-          <h2 className="cc-title">Real-Time Conversations</h2>
-          <p className="cc-desc">Not just chat — presence. Hear voices, share moments, feel held.</p>
+          <span className="cc-eyebrow">{t("circleConversations.eyebrow")}</span>
+          <h2 className="cc-title">{t("circleConversations.title")}</h2>
+          <p className="cc-desc">{t("circleConversations.desc")}</p>
         </div>
 
         <div className="cc-layout">
           {/* Left: Live rooms */}
           <div className="cc-rooms">
-            <p className="cc-rooms__label">Drop-In Rooms</p>
-            {ROOMS.map((room) => (
+            <p className="cc-rooms__label">{t("circleConversations.roomsLabel")}</p>
+            {ROOMS.map((room, index) => (
               <div key={room.id} className={`cc-room ${room.live ? "cc-room--live" : ""}`}>
                 <div className="cc-room__icon">{room.type === "voice" ? "🎙" : "💬"}</div>
                 <div className="cc-room__info">
-                  <span className="cc-room__name">{room.name}</span>
+                  <span className="cc-room__name">{roomNames[index]}</span>
                   {room.live
-                    ? <span className="cc-room__meta"><span className="cc-room__dot" />{room.listeners} listening</span>
-                    : <span className="cc-room__meta cc-room__meta--off">Scheduled — 8 PM</span>
+                    ? <span className="cc-room__meta"><span className="cc-room__dot" />{room.listeners} {t("circleConversations.listening")}</span>
+                    : <span className="cc-room__meta cc-room__meta--off">{t("circleConversations.scheduled")}</span>
                   }
                 </div>
                 {room.live && (
-                  <button className="cc-room__join">Join</button>
+                  <button className="cc-room__join">{t("circleConversations.join")}</button>
                 )}
               </div>
             ))}
 
             {/* Voice wave visualizer */}
             <div className="cc-wave">
-              <span className="cc-wave__label">Live in "Ask a Doctor"</span>
+              <span className="cc-wave__label">{t("circleConversations.liveIn")}</span>
               <div className="cc-wave__bars">
                 {bars.map((h, i) => (
                   <div
@@ -96,8 +100,8 @@ export default function CircleConversations() {
           {/* Right: Chat */}
           <div className="cc-chat">
             <div className="cc-chat__header">
-              <span className="cc-chat__name">First Time Mamas</span>
-              <span className="cc-chat__online"><span className="cc-room__dot" />38 online</span>
+              <span className="cc-chat__name">{t("circleConversations.chatName")}</span>
+              <span className="cc-chat__online"><span className="cc-room__dot" />{t("circleConversations.chatOnline")}</span>
             </div>
             <div className="cc-chat__messages" ref={msgRef}>
               {visibleMsgs.map((msg) => (
@@ -110,21 +114,21 @@ export default function CircleConversations() {
                     <div className="cc-msg__meta">
                       <span className="cc-msg__user">
                         {msg.user}
-                        {msg.doctor && <span className="cc-msg__dr">Dr.</span>}
+                        {msg.doctor && <span className="cc-msg__dr">{t("circleConversations.doctorLabel")}</span>}
                       </span>
-                      <span className="cc-msg__time">{msg.time} ago</span>
+                      <span className="cc-msg__time">{msg.time} {t("circleConversations.ago")}</span>
                     </div>
-                    <div className="cc-msg__bubble">{msg.text}</div>
+                    <div className="cc-msg__bubble">{messageTexts[msg.id - 1]}</div>
                   </div>
                 </div>
               ))}
             </div>
             <div className="cc-chat__input">
               <div className="cc-chat__anon-toggle">
-                <span>Anonymous</span>
+                <span>{t("circleConversations.anonymous")}</span>
                 <div className="cc-toggle" />
               </div>
-              <div className="cc-chat__field">Type something…</div>
+              <div className="cc-chat__field">{t("circleConversations.input")}</div>
             </div>
           </div>
         </div>

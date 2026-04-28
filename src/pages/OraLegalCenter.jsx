@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'; 
 import { supabase } from '../supabase'; 
 import "./OraLegalCenter.css"; 
+import Seo from '../components/seo/Seo';
 import NavbarLegal from '../components/layout/NavbarLegal';
-import OraLegalFooter from '../components/layout/OraLegalFooter';
 import LegalTitle from '../components/legal/LegalTitle';
 import LegalDate from '../components/legal/LegalDate';
 import LegalUpdates from '../components/legal/LegalUpdates';
@@ -20,6 +20,16 @@ const OraLegalCenter = () => {
     const [pageData, setPageData] = useState(null);
     const [sections, setSections] = useState([]);
     const [loading, setLoading] = useState(true);
+    const fallbackTitle = slug
+        ? `${slug
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ')} | ORA Legal Center`
+        : 'ORA Legal Center';
+    const seoTitle = pageData?.legal_title ? `${pageData.legal_title} | ORA Legal Center` : fallbackTitle;
+    const seoDescription = pageData?.intro_paragraph
+        ? pageData.intro_paragraph
+        : 'Review ORA legal policies, privacy commitments, cookie practices, and terms governing the maternal health platform.';
 
     useEffect(() => {
         const fetchLegalPage = async () => {
@@ -102,6 +112,16 @@ const OraLegalCenter = () => {
 
     if (loading) return (
         <div className="legal-loading-state">
+            <Seo
+              title={seoTitle}
+              description={seoDescription}
+              keywords={[
+                'ORA legal center',
+                'privacy policy',
+                'terms of use',
+                'cookie policy',
+              ]}
+            />
             <p>Loading ORA Legal Data...</p>
         </div>
     );
@@ -110,6 +130,16 @@ const OraLegalCenter = () => {
 
     return (
         <div className="legal-page-wrapper">
+            <Seo
+              title={seoTitle}
+              description={seoDescription}
+              keywords={[
+                'ORA legal center',
+                'privacy policy',
+                'terms of use',
+                'cookie policy',
+              ]}
+            />
             <NavbarLegal />
             
             <section className="ora-legal-center">
@@ -148,7 +178,6 @@ const OraLegalCenter = () => {
                 </div>
      
             </section>
-                       <OraLegalFooter />
         </div>
     );
 }

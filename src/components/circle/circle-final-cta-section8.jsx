@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./circle-final-cta-section8.css";
-
-const words = ["Connect", "Support", "Empower"];
 
 export default function FinalCTA() {
   const cycleRef = useRef(null);
   const wordRef = useRef(null);
   const wordIndexRef = useRef(0);
+  const { t } = useLanguage();
+  const words = t("circleFinalCta.words");
 
   useEffect(() => {
     const el = wordRef.current;
@@ -24,7 +25,7 @@ export default function FinalCTA() {
     }, 2400);
 
     return () => clearInterval(cycleRef.current);
-  }, []);
+  }, [words]);
 
   return (
     <section className="s8-section">
@@ -39,19 +40,17 @@ export default function FinalCTA() {
       <div className="s8-grain" />
 
       <div className="s8-inner">
-        <div className="s8-badge">Be Part of Something Supportive</div>
+        <div className="s8-badge">{t("circleFinalCta.badge")}</div>
 
         <h2 className="s8-title">
-          Circle is built to
+          {t("circleFinalCta.intro")}
           <br />
-          <span className="s8-word" ref={wordRef}>Connect</span>
+          <span className="s8-word" ref={wordRef}>{words[0]}</span>
           <br />
-          every journey.
+          {t("circleFinalCta.outro")}
         </h2>
 
-        <p className="s8-body">
-          Thousands of women are already here — sharing milestones, finding answers, and building the community they never knew they needed.
-        </p>
+        <p className="s8-body">{t("circleFinalCta.body")}</p>
 
         {/* Social proof strip */}
         <div className="s8-proof">
@@ -66,13 +65,13 @@ export default function FinalCTA() {
               </div>
             ))}
           </div>
-          <span>12,400+ women have joined</span>
+          <span>{t("circleFinalCta.joined")}</span>
         </div>
 
         {/* CTAs */}
         <div className="s8-ctas">
           <a href="/circle/join" className="s8-btn s8-btn--primary">
-            <span>Join Now</span>
+            <span>{t("circleFinalCta.join")}</span>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -82,13 +81,13 @@ export default function FinalCTA() {
               <rect x="3" y="1" width="12" height="16" rx="2.5" stroke="currentColor" strokeWidth="1.5"/>
               <circle cx="9" cy="14" r="1" fill="currentColor"/>
             </svg>
-            Download App
+            {t("circleFinalCta.download")}
           </a>
         </div>
 
         {/* Bottom tagline */}
         <div className="s8-tagline">
-          Free to join · Anonymous options · Expert-verified answers
+          {t("circleFinalCta.tagline")}
         </div>
       </div>
 

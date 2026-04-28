@@ -16,8 +16,10 @@ const MascotNormal = forwardRef((props, ref) => {
   }));
 
   useEffect(() => {
+    const orbElement = orbRef.current;
+
     // 1. ORB BREATHE & SOFT SCALE
-    gsap.to(orbRef.current, {
+    gsap.to(orbElement, {
       scale: 1.04,
       duration: 3,
       repeat: -1,
@@ -47,7 +49,7 @@ const MascotNormal = forwardRef((props, ref) => {
     }, 4500);
 
     return () => {
-      gsap.killTweensOf(orbRef.current);
+      gsap.killTweensOf(orbElement);
       clearInterval(eyeInterval);
     };
   }, []);

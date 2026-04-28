@@ -1,0 +1,21 @@
+{
+  "name": "ORA",
+  "short_name": "ORA",
+  "description": "ORA is an AI-powered maternal health platform supporting pregnancy, fertility, connected care, and clinical intelligence.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f9",
+  "theme_color": "#faf8f9",
+  "icons": [
+    {
+      "src": "/icon-192.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon-512.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

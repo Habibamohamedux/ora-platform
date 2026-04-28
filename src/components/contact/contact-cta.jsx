@@ -1,4 +1,5 @@
 import "./contact-cta.css";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 // Premium SVG Icon Suite
 const Icons = {
@@ -25,20 +26,17 @@ const SOCIALS = [
 ];
 
 const LINKS = [
-  { label: "Join ORA Circle", href: "#" },
-  { label: "Doctor Sessions", href: "#" },
-  { label: "Privacy Policy",  href: "#" },
-  { label: "Careers at ORA",  href: "#" },
-];
-
-const FEATURES = [
-  "24/7 Medical Chat",
-  "Encrypted Records",
-  "Private Circles",
-  "Urgent Routing"
+  { href: "#" },
+  { href: "#" },
+  { href: "#" },
+  { href: "#" },
 ];
 
 export default function ContactCta() {
+  const { t } = useLanguage();
+  const featureList = t("contactCta.features");
+  const linkLabels = t("contactCta.links");
+
   return (
     <section className="cct-section" id="contact-cta">
       <div className="cct-inner">
@@ -50,21 +48,19 @@ export default function ContactCta() {
           <div className="cct-hero-bg-grid" />
 
           <div className="cct-hero-content">
-            <span className="cct-hero-eyebrow">Always Here</span>
+            <span className="cct-hero-eyebrow">{t("contactCta.eyebrow")}</span>
             <h2 className="cct-hero-title">
-              You Don't Have<br />to Figure<br /><em>This Out Alone</em>
+              {t("contactCta.line1")}<br />{t("contactCta.line2")}<br /><em>{t("contactCta.line3")}</em>
             </h2>
-            <p className="cct-hero-sub">
-              ORA was built for moments exactly like this. Reach out — or step straight into your circle.
-            </p>
+            <p className="cct-hero-sub">{t("contactCta.sub")}</p>
             <div className="cct-hero-btns">
               <a href="mailto:hello@ora.care" className="cct-btn cct-btn--primary">
                 <span className="cct-btn__ic">{Icons.mail}</span>
-                Email Us Now
+                {t("contactCta.primary")}
               </a>
               <a href="#app" className="cct-btn cct-btn--secondary">
                 <span className="cct-btn__ic">{Icons.download}</span>
-                Download the App
+                {t("contactCta.secondary")}
               </a>
             </div>
           </div>
@@ -75,9 +71,9 @@ export default function ContactCta() {
           
           {/* Bento Box 1: App Features */}
           <div className="cct-bento-card cct-bento-card--features">
-            <h4 className="cct-bento-heading">The ORA App</h4>
+            <h4 className="cct-bento-heading">{t("contactCta.appHeading")}</h4>
             <ul className="cct-feature-list">
-              {FEATURES.map((feat) => (
+              {featureList.map((feat) => (
                 <li key={feat} className="cct-feature-item">
                   <span className="cct-feature-ic">{Icons.check}</span>
                   <span className="cct-feature-text">{feat}</span>
@@ -88,12 +84,12 @@ export default function ContactCta() {
 
           {/* Bento Box 2: Quick Links */}
           <div className="cct-bento-card cct-bento-card--links">
-            <h4 className="cct-bento-heading">Quick Links</h4>
+            <h4 className="cct-bento-heading">{t("contactCta.linksHeading")}</h4>
             <ul className="cct-link-list">
-              {LINKS.map((l) => (
+              {LINKS.map((l, index) => (
                 <li key={l.label}>
                   <a href={l.href} className="cct-list-link">
-                    {l.label}
+                    {linkLabels[index]}
                     <span className="cct-list-link__arr">{Icons.arrow}</span>
                   </a>
                 </li>
@@ -103,7 +99,7 @@ export default function ContactCta() {
 
           {/* Bento Box 3: Social Media Network */}
           <div className="cct-bento-card cct-bento-card--socials">
-            <h4 className="cct-bento-heading">Join Our Network</h4>
+            <h4 className="cct-bento-heading">{t("contactCta.socialHeading")}</h4>
             <div className="cct-social-grid">
               {SOCIALS.map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="cct-social-pill">

@@ -1,12 +1,15 @@
 import React from 'react';
 import '../../pages/OraLegalCenter.css';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 const LegalSidebar = ({ sections, activeSectionId, onSectionClick }) => {
+  const { t } = useLanguage();
+
   return (
     <aside className="legal-sidebar">
       {/* Table of Contents */}
       <div className="sidebar-section">
-        <h4 className="toc-title">Contents</h4>
+        <h4 className="toc-title">{t('legal.contents')}</h4>
         <ul className="toc-list">
           {sections.map((section) => (
             <li 
@@ -47,9 +50,9 @@ const LegalSidebar = ({ sections, activeSectionId, onSectionClick }) => {
   <path d="M11.7009 12.5999H11.1239V9.48962H13.0903V9.97028H11.7009V10.8202H12.7946V11.2868H11.7009V12.5999Z" fill="#FFC4E1"/>
 </svg>
           </div>
-          <p className="download-text">DOWNLOAD FULL POLICY AS PDF</p>
+          <p className="download-text">{t('legal.downloadFull')}</p>
           <span className="download-link">
-DOWNLOAD PDF
+{t('legal.download')}
 <svg 
   className="arrow" 
   width="16" 
@@ -73,24 +76,24 @@ DOWNLOAD PDF
 
       {/* Contact Information Card */}
       <div className="sidebar-section legal-contact-info">
-        <p className="contact-intro">FOR QUESTIONS REGARDING THIS PRIVACY POLICY OR ORA'S DATA PRACTICES, PLEASE CONTACT US.</p>
-        <h5 className="contact-heading">ORA TECHNOLOGIES — PRIVACY OFFICE</h5>
+        <p className="contact-intro">{t('legal.contactIntro')}</p>
+        <h5 className="contact-heading">{t('legal.privacyOffice')}</h5>
         
         <div className="contact-block">
-          <span className="contact-label">EMAIL:</span>
+          <span className="contact-label">{t('legal.email')}</span>
           <a href="mailto:PRIVACY@ORA-HEALTHTECH.COM">PRIVACY@ORA-HEALTHTECH.COM</a>
         </div>
         
         <div className="contact-block">
-          <span className="contact-label">SUPPORT:</span>
+          <span className="contact-label">{t('legal.support')}</span>
           <a href="mailto:SUPPORT@ORA-HEALTHTECH.COM">SUPPORT@ORA-HEALTHTECH.COM</a>
         </div>
 
         <div className="contact-block location-block">
-          <span className="contact-label">HEAD OFFICE:</span>
+          <span className="contact-label">{t('legal.headOffice')}</span>
           <span>ORA TECHNOLOGIES</span>
-          <span>HEALTH INNOVATION DISTRICT</span>
-          <span>CAIRO, EGYPT</span>
+          <span>{t('legal.district')}</span>
+          <span>{t('legal.city')}</span>
         </div>
       </div>
     </aside>

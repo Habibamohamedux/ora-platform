@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "./contact-form.css";
 
 // Clean, professional SVG Icon Set
@@ -144,34 +145,37 @@ const Icons = {
 };
 
 const TOPICS = [
-  { id: "general", label: "General Question", icon: "general" },
-  { id: "medical", label: "Medical & Clinical", icon: "medical" },
-  { id: "technical", label: "Technical Support", icon: "technical" },
-  { id: "account", label: "Account Help", icon: "account" },
-  { id: "partner", label: "Partnerships", icon: "partner" },
-  { id: "feedback", label: "Feedback", icon: "feedback" },
+  { id: "general", icon: "general" },
+  { id: "medical", icon: "medical" },
+  { id: "technical", icon: "technical" },
+  { id: "account", icon: "account" },
+  { id: "partner", icon: "partner" },
+  { id: "feedback", icon: "feedback" },
 ];
 
 const URGENCY = [
-  { id: "low", label: "Not urgent", desc: "Response within 24 hours" },
-  { id: "med", label: "Somewhat urgent", desc: "Response within a few hours" },
-  { id: "high", label: "Urgent", desc: "Needs immediate attention" },
+  { id: "low" },
+  { id: "med" },
+  { id: "high" },
 ];
 
-function validate(form, topic) {
+function validate(form, topic, t) {
   const errs = {};
-  if (!form.name.trim()) errs.name = "Please enter your full name";
-  if (!form.email.trim()) errs.email = "Email address is required";
+  if (!form.name.trim()) errs.name = t("contactForm.errors.name");
+  if (!form.email.trim()) errs.email = t("contactForm.errors.emailRequired");
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-    errs.email = "Please enter a valid email";
-  if (!topic) errs.topic = "Please select a topic";
-  if (!form.message.trim()) errs.message = "Message cannot be empty";
+    errs.email = t("contactForm.errors.emailValid");
+  if (!topic) errs.topic = t("contactForm.errors.topic");
+  if (!form.message.trim()) errs.message = t("contactForm.errors.messageRequired");
   else if (form.message.trim().length < 20)
-    errs.message = "Please add a bit more detail (min 20 characters)";
+    errs.message = t("contactForm.errors.messageMin");
   return errs;
 }
 
 export default function ContactForm() {
+  const { t } = useLanguage();
+  const topicLabels = t("contactForm.topics");
+  const urgencyCopy = t("contactForm.urgency");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -189,13 +193,13 @@ export default function ContactForm() {
   const set = (k) => (e) => {
     setForm((f) => ({ ...f, [k]: e.target.value }));
     if (touched[k]) {
-      const errs = validate({ ...form, [k]: e.target.value }, topic);
+      const errs = validate({ ...form, [k]: e.target.value }, topic, t);
       setErrors((prev) => ({ ...prev, [k]: errs[k] }));
     }
   };
   const blur = (k) => () => {
     setTouched((t) => ({ ...t, [k]: true }));
-    const errs = validate(form, topic);
+    const errs = validate(form, topic, t);
     setErrors((prev) => ({ ...prev, [k]: errs[k] }));
   };
 
@@ -206,7 +210,7 @@ export default function ContactForm() {
       topic: true,
     };
     setTouched(all);
-    const errs = validate(form, topic);
+    const errs = validate(form, topic, t);
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
@@ -224,16 +228,17 @@ export default function ContactForm() {
             <div className="cf-success__ring">
               <div className="cf-success__check">{Icons.check}</div>
             </div>
-            <h3 className="cf-success__title">Message Sent</h3>
+            <h3 className="cf-success__title">{t("contactForm.success.title")}</h3>
             <p className="cf-success__body">
-              Thank you, <strong>{form.name}</strong>. Your message regarding{" "}
-              <em>{TOPICS.find((t) => t.id === topic)?.label}</em> has been
-              securely sent to our team.
+              {t("contactForm.success.bodyPrefix")} <strong>{form.name}</strong>.{" "}
+              {t("contactForm.success.bodyMiddle")}{" "}
+              <em>{topicLabels[topic]}</em> {t("contactForm.success.bodySuffix")}
               <br />
-              We will send our reply to <strong>{form.email}</strong> shortly.
+              {t("contactForm.success.replyTo")} <strong>{form.email}</strong>{" "}
+              {t("contactForm.success.shortly")}
             </p>
             <div className="cf-success__ref">
-              Reference Number: #ORA-
+              {t("contactForm.success.reference")}: #ORA-
               {Math.random().toString(36).slice(2, 8).toUpperCase()}
             </div>
             <button
@@ -247,7 +252,7 @@ export default function ContactForm() {
                 setFile(null);
               }}
             >
-              Send Another Message
+              {t("contactForm.success.another")}
             </button>
           </div>
         </div>
@@ -261,24 +266,15 @@ export default function ContactForm() {
       <div className="cf-inner">
         {/* Aside */}
         <div className="cf-aside">
-          <span className="cf-eyebrow">Get in Touch</span>
+          <span className="cf-eyebrow">{t("contactForm.eyebrow")}</span>
           <h2 className="cf-title">
-            How Can We
+            {t("contactForm.titleLead")}
             <br />
-            <em>Help You?</em>
+            <em>{t("contactForm.titleEm")}</em>
           </h2>
-          <p className="cf-desc">
-            Whether you're a parent, partner, or clinician, we're here for you.
-            A real human reads every message to ensure you get the care and
-            support you need.
-          </p>
+          <p className="cf-desc">{t("contactForm.desc")}</p>
           <div className="cf-promises">
-            {[
-              "Avg. reply within 3 hours",
-              "Support from real humans",
-              "Private & confidential",
-              "Secure, encrypted processing",
-            ].map((tx, i) => (
+            {t("contactForm.promises").map((tx, i) => (
               <div
                 key={tx}
                 className="cf-promise"
@@ -298,7 +294,7 @@ export default function ContactForm() {
             className={`cf-field cf-anim-1 ${errors.topic && touched.topic ? "cf-field--err" : ""}`}
           >
             <label className="cf-label">
-              What is this about? <span className="cf-req">*</span>
+              {t("contactForm.labels.topic")} <span className="cf-req">{t("contactForm.required")}</span>
             </label>
             <div className="cf-topics">
               {TOPICS.map((t) => (
@@ -312,7 +308,7 @@ export default function ContactForm() {
                   }}
                 >
                   <span className="cf-topic__icon">{Icons[t.icon]}</span>
-                  {t.label}
+                  {topicLabels[t.id]}
                 </button>
               ))}
             </div>
@@ -327,14 +323,14 @@ export default function ContactForm() {
               className={`cf-field ${errors.name && touched.name ? "cf-field--err" : ""} ${touched.name && !errors.name ? "cf-field--ok" : ""}`}
             >
               <label className="cf-label" htmlFor="cf-name">
-                Full Name <span className="cf-req">*</span>
+                {t("contactForm.labels.name")} <span className="cf-req">{t("contactForm.required")}</span>
               </label>
               <div className="cf-input-wrap">
                 <input
                   id="cf-name"
                   type="text"
                   className="cf-input"
-                  placeholder="Your full name"
+                  placeholder={t("contactForm.placeholders.name")}
                   value={form.name}
                   onChange={set("name")}
                   onBlur={blur("name")}
@@ -351,14 +347,14 @@ export default function ContactForm() {
               className={`cf-field ${errors.email && touched.email ? "cf-field--err" : ""} ${touched.email && !errors.email ? "cf-field--ok" : ""}`}
             >
               <label className="cf-label" htmlFor="cf-email">
-                Email Address <span className="cf-req">*</span>
+                {t("contactForm.labels.email")} <span className="cf-req">{t("contactForm.required")}</span>
               </label>
               <div className="cf-input-wrap">
                 <input
                   id="cf-email"
                   type="email"
                   className="cf-input"
-                  placeholder="you@example.com"
+                  placeholder={t("contactForm.placeholders.email")}
                   value={form.email}
                   onChange={set("email")}
                   onBlur={blur("email")}
@@ -377,13 +373,13 @@ export default function ContactForm() {
           <div className="cf-row cf-anim-3">
             <div className="cf-field">
               <label className="cf-label" htmlFor="cf-phone">
-                Phone Number <span className="cf-opt">(optional)</span>
+                {t("contactForm.labels.phone")} <span className="cf-opt">{t("contactForm.optional")}</span>
               </label>
               <input
                 id="cf-phone"
                 type="tel"
                 className="cf-input"
-                placeholder="+1 (555) 000-0000"
+                placeholder={t("contactForm.placeholders.phone")}
                 value={form.phone}
                 onChange={set("phone")}
               />
@@ -392,7 +388,7 @@ export default function ContactForm() {
 
           {/* Urgency */}
           <div className="cf-field cf-anim-4">
-            <label className="cf-label">How urgent is this?</label>
+            <label className="cf-label">{t("contactForm.labels.urgency")}</label>
             <div className="cf-urgency">
               {URGENCY.map((u) => (
                 <button
@@ -401,8 +397,8 @@ export default function ContactForm() {
                   className={`cf-urgency-opt ${urgency === u.id ? "cf-urgency-opt--on" : ""}`}
                   onClick={() => setUrgency(u.id)}
                 >
-                  <div className="cf-urgency-opt__label">{u.label}</div>
-                  <div className="cf-urgency-opt__desc">{u.desc}</div>
+                  <div className="cf-urgency-opt__label">{urgencyCopy[u.id].label}</div>
+                  <div className="cf-urgency-opt__desc">{urgencyCopy[u.id].desc}</div>
                 </button>
               ))}
             </div>
@@ -413,13 +409,13 @@ export default function ContactForm() {
             className={`cf-field cf-anim-5 ${errors.message && touched.message ? "cf-field--err" : ""}`}
           >
             <label className="cf-label" htmlFor="cf-msg">
-              Your Message <span className="cf-req">*</span>
+              {t("contactForm.labels.message")} <span className="cf-req">{t("contactForm.required")}</span>
             </label>
             <textarea
               id="cf-msg"
               className="cf-textarea"
               rows={5}
-              placeholder="Describe your question or concern in detail. We're here to help."
+              placeholder={t("contactForm.placeholders.message")}
               value={form.message}
               onChange={set("message")}
               onBlur={blur("message")}
@@ -442,7 +438,7 @@ export default function ContactForm() {
           {/* Attachment */}
           <div className="cf-field cf-anim-6">
             <label className="cf-label">
-              Attachment <span className="cf-opt">(optional)</span>
+              {t("contactForm.labels.attachment")} <span className="cf-opt">{t("contactForm.optional")}</span>
             </label>
             <div
               className="cf-attach"
@@ -480,9 +476,9 @@ export default function ContactForm() {
               ) : (
                 <div className="cf-attach__placeholder">
                   <span className="cf-attach__icon">{Icons.upload}</span>
-                  <span>Drop a file or click to upload</span>
+                  <span>{t("contactForm.placeholders.attachment")}</span>
                   <span className="cf-attach__hint">
-                    Accepted formats: PDF, DOC, JPG, PNG (Max 10MB)
+                    {t("contactForm.placeholders.attachmentHint")}
                   </span>
                 </div>
               )}
@@ -498,11 +494,11 @@ export default function ContactForm() {
             >
               {status === "loading" ? (
                 <>
-                  <span className="cf-spinner" /> Sending...
+                  <span className="cf-spinner" /> {t("contactForm.sending")}
                 </>
               ) : (
                 <>
-                  <span>Send Message</span>
+                  <span>{t("contactForm.send")}</span>
                   <span className="cf-submit__arr">→</span>
                 </>
               )}
@@ -510,8 +506,7 @@ export default function ContactForm() {
 
             <p className="cf-privacy">
               <span className="cf-privacy-icon">{Icons.lock}</span>
-              Protected by ORA Security. Your personal and medical data is
-              strictly confidential.
+              {t("contactForm.privacy")}
             </p>
           </div>
         </form>

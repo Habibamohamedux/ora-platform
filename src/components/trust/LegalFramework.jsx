@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { ShieldCheck, FileText, Scale, Lock, FileKey } from "lucide-react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import "../../pages/Trust.css";
 
 const LegalFramework = () => {
   const sectionRef = useRef(null);
+  const { t } = useLanguage();
+  const docs = t("trustLegal.docs");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -68,26 +71,24 @@ const LegalFramework = () => {
 
         {/* Right Side: Content and CTA */}
         <div className="legal-content">
-          <div className="section-label">7. Our Legal Framework</div>
-          <h2 className="legal-headline">Clear Policies, <br />No Hidden Terms</h2>
+          <div className="section-label">{t("trustLegal.sectionLabel")}</div>
+          <h2 className="legal-headline">{t("trustLegal.line1")} <br />{t("trustLegal.line2")}</h2>
           
           <p className="legal-body">
-            ORA’s legal framework is designed to be transparent, accessible, and easy to understand. We provide clear documentation covering all aspects of privacy, usage, and data handling so you can make informed decisions.
+            {t("trustLegal.body")}
           </p>
 
           <a href="/legal-center" className="legal-main-cta">
-            Explore ORA Legal Center <span className="arrow">→</span>
+            {t("trustLegal.cta")} <span className="arrow">→</span>
           </a>
 
           {/* Document list */}
           <div className="legal-documents-list">
-            <p className="doc-list-title">Included Documentation:</p>
+            <p className="doc-list-title">{t("trustLegal.docListTitle")}</p>
             <ul>
-              <li><span className="doc-bullet"></span> Privacy Policy</li>
-              <li><span className="doc-bullet"></span> Terms of Use</li>
-              <li><span className="doc-bullet"></span> Cookie Policy</li>
-              <li><span className="doc-bullet"></span> Research Ethics</li>
-              <li><span className="doc-bullet"></span> Clinical Data Handling</li>
+              {docs.map((doc) => (
+                <li key={doc}><span className="doc-bullet"></span> {doc}</li>
+              ))}
             </ul>
           </div>
         </div>

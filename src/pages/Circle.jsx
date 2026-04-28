@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/layout/Navbar';
+import Seo from '../components/seo/Seo';
 import CircleHero from '../components/circle/circle-hero';
 import CircleFind from '../components/circle/circle-find';
 import CircleConversations from '../components/circle/circle-conversations';
@@ -25,6 +26,17 @@ import './Circle.css';
 const Circle = () => {
   return (
     <main className="circle-page">
+      <Seo
+        title="ORA Circle | Community Support for Pregnancy and Postpartum"
+        description="Join ORA Circle to connect with mothers, partners, and verified doctors for trusted community support during pregnancy, postpartum, and maternal wellbeing."
+        keywords={[
+          'pregnancy community',
+          'postpartum support',
+          'maternal wellbeing community',
+          'doctor verified support',
+        ]}
+        schemaType="CollectionPage"
+      />
       <Navbar />
       <CircleHero />
       <CircleFind />

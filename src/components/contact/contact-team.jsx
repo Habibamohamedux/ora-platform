@@ -1,4 +1,5 @@
 import "./contact-team.css";
+import { useLanguage } from "../../i18n/LanguageContext";
 import nadiaImg from "../../assests/Imgs/contact/Nadia.png";
 import emyImg from "../../assests/Imgs/contact/emy.png";
 import kazemImg from "../../assests/Imgs/contact/kazem.png";
@@ -69,23 +70,22 @@ const TEAM = [
 ];
 
 export default function ContactTeam() {
+  const { t } = useLanguage();
+  const members = t("contactTeam.members");
+
   return (
     <section className="ctm-section" id="contact-team">
       <div className="ctm-ambient-glow" />
 
       <div className="ctm-inner">
         <div className="ctm-header">
-          <span className="ctm-eyebrow">Dedicated Leadership</span>
+          <span className="ctm-eyebrow">{t("contactTeam.eyebrow")}</span>
           <h2 className="ctm-title">
-            Real Experts,
+            {t("contactTeam.titleLead")}
             <br />
-            <em>Real Care</em>
+            <em>{t("contactTeam.titleEm")}</em>
           </h2>
-          <p className="ctm-desc">
-            When you reach out to ORA, your inquiries aren't handled by bots.
-            They are reviewed and resolved by our dedicated department
-            specialists.
-          </p>
+          <p className="ctm-desc">{t("contactTeam.desc")}</p>
         </div>
 
         <div className="ctm-grid">
@@ -106,7 +106,7 @@ export default function ContactTeam() {
                   <a
                     href={`mailto:${member.email}`}
                     className="ctm-mail-btn"
-                    aria-label={`Email ${member.name}`}
+                    aria-label={t("contactTeam.email", { name: member.name })}
                   >
                     {Icons.mail}
                   </a>
@@ -114,22 +114,19 @@ export default function ContactTeam() {
               </div>
 
               <div className="ctm-card__content">
-                <span className="ctm-tag">{member.tag}</span>
+                <span className="ctm-tag">{members[i].tag}</span>
                 <h3 className="ctm-name">{member.name}</h3>
-                <div className="ctm-role">{member.role}</div>
-                <p className="ctm-bio">{member.bio}</p>
+                <div className="ctm-role">{members[i].role}</div>
+                <p className="ctm-bio">{members[i].bio}</p>
               </div>
             </div>
           ))}
         </div>
 
         <div className="ctm-footer">
-          <p className="ctm-footer-text">
-            Our full support infrastructure spans 18 medical and technical
-            professionals.
-          </p>
+          <p className="ctm-footer-text">{t("contactTeam.footer")}</p>
           <a href="/team" className="ctm-full-team-btn">
-            <span>Meet the Entire Team</span>
+            <span>{t("contactTeam.meetTeam")}</span>
             <span className="ctm-full-team-icon">{Icons.arrow}</span>
           </a>
         </div>
