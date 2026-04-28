@@ -2,14 +2,12 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Seo from '../components/seo/Seo';
+import { useLanguage } from '../i18n/LanguageContext';
 import './ErrorPage.css';
 
-const ErrorPage = ({
-  eyebrow = 'Connection Interrupted',
-  title = "We couldn't find this part of your journey.",
-  message = "Something went off track, but you're not lost. ORA is still here to guide and support you every step of the way.",
-}) => {
+const ErrorPage = () => {
   const location = useLocation();
+  const { t } = useLanguage();
 
   return (
     <main className="ora-error-page">
@@ -23,33 +21,33 @@ const ErrorPage = ({
 
       <section className="ora-error-hero" aria-labelledby="ora-error-title">
         <div className="ora-error-content">
-          <p className="ora-error-eyebrow">{eyebrow}</p>
-          <h1 id="ora-error-title">{title}</h1>
-          <p className="ora-error-message">{message}</p>
+          <p className="ora-error-eyebrow">{t('errorPage.eyebrow')}</p>
+          <h1 id="ora-error-title">{t('errorPage.title')}</h1>
+          <p className="ora-error-message">{t('errorPage.message')}</p>
 
-          <div className="ora-error-actions" aria-label="Error page actions">
+          <div className="ora-error-actions" aria-label={t('errorPage.actionsLabel')}>
             <Link className="ora-error-button ora-error-button--primary" to="/">
-              Home
+              {t('errorPage.home')}
             </Link>
             <Link className="ora-error-button" to="/circle">
-              Circle
+              {t('errorPage.circle')}
             </Link>
             <Link className="ora-error-button" to="/invest">
-              Invest
+              {t('errorPage.invest')}
             </Link>
             <Link className="ora-error-button" to="/trust">
-              Trust
+              {t('errorPage.trust')}
             </Link>
             <Link className="ora-error-button" to="/contact">
-              Contact
+              {t('errorPage.contact')}
             </Link>
             <Link className="ora-error-button" to="/privacy-policy">
-              Privacy Policy
+              {t('errorPage.privacy')}
             </Link>
           </div>
 
           <p className="ora-error-path">
-            Requested route <span>{location.pathname}</span>
+            {t('errorPage.requestedRoute')} <span>{location.pathname}</span>
           </p>
         </div>
 

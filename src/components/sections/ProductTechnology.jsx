@@ -1,34 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../i18n/LanguageContext';
 import './ProductTechnology.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const techItems = [
+const techBlueprint = [
   {
-    title: 'AI Predictions',
-    description: 'Advanced machine learning models analyze health data to detect patterns, predict risks, and provide proactive recommendations.',
     number: '01',
-    facts: ['99% Anomaly Detection Rate', 'Processes 10k+ Data Points/Sec', 'Predictive Risk Scoring']
   },
   {
-    title: 'Real-Time Biometrics',
-    description: 'Continuous tracking of vital signals such as heart rate, sleep, and stress levels through wearable devices.',
     number: '02',
-    facts: ['24/7 Continuous Tracking', 'Medical-Grade Sensor Accuracy', 'Low-Energy Bluetooth Sync']
   },
   {
-    title: 'Data Integration',
-    description: 'Seamless synchronization across devices, applications, and clinical systems for a unified health profile.',
     number: '03',
-    facts: ['Connects with 50+ EHR Systems', 'Zero-Latency Synchronization', 'Unified Holistic Patient View']
   },
   {
-    title: 'Secure Infrastructure',
-    description: 'End-to-end encryption and secure cloud systems ensure privacy and protection of sensitive medical data.',
     number: '04',
-    facts: ['End-to-End AES-256 Encryption', 'Fully HIPAA & GDPR Compliant', 'Decentralized Cloud Backups']
   }
 ];
 
@@ -37,6 +26,14 @@ const ProductTechnology = () => {
   const canvasRef = useRef(null);
   const detailRef = useRef(null);
   const [activeIdx, setActiveIdx] = useState(0);
+  const { t } = useLanguage();
+  const items = t('productTechnology.items');
+  const techItems = techBlueprint.map((item, index) => ({
+    ...item,
+    title: items?.[index]?.title,
+    description: items?.[index]?.desc,
+    facts: items?.[index]?.facts || [],
+  }));
 
   // 1. Initial Scroll Reveal
   useEffect(() => {
@@ -123,12 +120,11 @@ const ProductTechnology = () => {
         
         <div className="ora-tech-header">
           <div className="ora-tech-header-left">
-            <h2 className="ora-tech-title">Built on Intelligent Technology</h2>
+            <h2 className="ora-tech-title">{t('productTechnology.title')}</h2>
           </div>
           <div className="ora-tech-header-right">
             <p className="ora-tech-intro">
-              ORA is powered by a robust technology stack that combines artificial intelligence, real-time biometric tracking, and secure data infrastructure.
-              By integrating wearable inputs, user interactions, and clinical data, ORA delivers a unified, intelligent system designed for accuracy, scalability, and reliability.
+              {t('productTechnology.intro')}
             </p>
           </div>
         </div>

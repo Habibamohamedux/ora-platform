@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../i18n/LanguageContext';
 import './TheGap.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,6 +57,8 @@ const TheGap = () => {
   const sectionRef = useRef(null);
   const gridRef = useRef(null);
   const [gridVisible, setGridVisible] = useState(false);
+  const { t } = useLanguage();
+  const cards = t('theGap.cards');
 
   useEffect(() => {
     // Normal, simple text fade-up (No masks!)
@@ -91,12 +94,12 @@ const TheGap = () => {
   }, []);
 
   const gapData = [
-    { title: 'Limited Real-Time Monitoring', description: 'Dependence on periodic visits reduces daily visibility.', icon: Icons.RealTime },
-    { title: 'Late Detection of Risks', description: '75% of maternal deaths are preventable with early care.', icon: Icons.Alert },
-    { title: 'Lack of Continuous Oversight', description: 'Doctors lack data access between visits, delaying responses.', icon: Icons.Oversight },
-    { title: 'Fragmented Healthcare Systems', description: 'Medical data is scattered, making complete pictures difficult.', icon: Icons.Fragmented },
-    { title: 'Inequality in Access', description: 'Over 90% of deaths occur in low-resource settings.', icon: Icons.Globe },
-    { title: 'Missed Warning Signs', description: 'Conditions like preeclampsia develop and go undetected between visits.', icon: Icons.Search },
+    { title: cards?.[0]?.title, description: cards?.[0]?.desc, icon: Icons.RealTime },
+    { title: cards?.[1]?.title, description: cards?.[1]?.desc, icon: Icons.Alert },
+    { title: cards?.[2]?.title, description: cards?.[2]?.desc, icon: Icons.Oversight },
+    { title: cards?.[3]?.title, description: cards?.[3]?.desc, icon: Icons.Fragmented },
+    { title: cards?.[4]?.title, description: cards?.[4]?.desc, icon: Icons.Globe },
+    { title: cards?.[5]?.title, description: cards?.[5]?.desc, icon: Icons.Search },
   ];
 
   return (
@@ -105,11 +108,11 @@ const TheGap = () => {
         
         <div className="ora-gap-intro">
           <h2 className="ora-gap-title">
-            <span className="simple-reveal">The Gap in</span>
-            <span className="simple-reveal">Maternal Monitoring</span>
+            <span className="simple-reveal">{t('theGap.title1')}</span>
+            <span className="simple-reveal">{t('theGap.title2')}</span>
           </h2>
           <p className="ora-gap-paragraph">
-            Maternal monitoring today remains fragmented and reactive, relying heavily on scheduled checkups rather than continuous tracking. This creates critical gaps where complications can develop unnoticed, limiting early detection and timely intervention.
+            {t('theGap.body')}
           </p>
         </div>
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../i18n/LanguageContext';
 import './MarketPotential.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,6 +43,10 @@ const CountUp = ({ end, suffix = "", duration = 2000 }) => {
 
 const MarketPotential = () => {
   const sectionRef = useRef(null);
+  const { t } = useLanguage();
+  const statsLabels = t('marketPotential.stats');
+  const nodes = t('marketPotential.nodes');
+  const growthSteps = t('marketPotential.growthSteps');
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -64,17 +69,17 @@ const MarketPotential = () => {
   }, []);
 
   const stats = [
-    { num: '140', suffix: 'M+', label: 'Pregnancies globally each year' },
-    { num: '600', suffix: 'B+', label: 'Global digital health market' },
-    { num: '75', suffix: '%+', label: 'Preventable complications' },
-    { num: '3', suffix: '×', label: 'Wearable health adoption growth' }
+    { num: '140', suffix: 'M+', label: statsLabels?.[0] },
+    { num: '600', suffix: 'B+', label: statsLabels?.[1] },
+    { num: '75', suffix: '%+', label: statsLabels?.[2] },
+    { num: '3', suffix: '×', label: statsLabels?.[3] }
   ];
 
   const networkNodes = [
-    { title: 'Pregnant Women', desc: 'Continuous monitoring' },
-    { title: 'Doctors', desc: 'Real-time patient insights' },
-    { title: 'Clinics & Hospitals', desc: 'Integrated systems' },
-    { title: 'Partners & Families', desc: 'Support layer' }
+    { title: nodes?.[0]?.title, desc: nodes?.[0]?.desc },
+    { title: nodes?.[1]?.title, desc: nodes?.[1]?.desc },
+    { title: nodes?.[2]?.title, desc: nodes?.[2]?.desc },
+    { title: nodes?.[3]?.title, desc: nodes?.[3]?.desc }
   ];
 
   return (
@@ -85,16 +90,16 @@ const MarketPotential = () => {
         <div className="ora-market-top">
           <div className="ora-market-badge">
             <span className="pulse-dot"></span>
-            Every Pregnancy is a Data Point. ORA Connects Them.
+            {t('marketPotential.badge')}
           </div>
-          <h2 className="ora-market-title">Scaling Maternal Health Globally</h2>
+          <h2 className="ora-market-title">{t('marketPotential.title')}</h2>
           
           <div className="ora-market-text-grid">
             <p className="ora-market-para lead">
-              ORA operates at the intersection of maternal health, artificial intelligence, and digital care—three of the fastest-growing sectors globally.
+              {t('marketPotential.lead')}
             </p>
             <p className="ora-market-para">
-              With over 140 million births each year, pregnancy represents a continuous, high-impact health journey that remains largely underserved by real-time monitoring solutions. As digital health adoption accelerates, ORA is positioned to scale globally, connecting users, healthcare providers, and data into one intelligent system.
+              {t('marketPotential.body')}
             </p>
           </div>
         </div>
@@ -117,7 +122,7 @@ const MarketPotential = () => {
           
           {/* Left: Ecosystem Nodes */}
           <div className="ora-market-network-box">
-            <h4 className="box-title">Connected Users Across the Ecosystem</h4>
+            <h4 className="box-title">{t('marketPotential.ecosystemTitle')}</h4>
             <div className="network-nodes-container">
               {networkNodes.map((node, i) => (
                 <div key={i} className="network-node">
@@ -135,17 +140,17 @@ const MarketPotential = () => {
 
           {/* Right: AI Scalability Loop */}
           <div className="ora-market-growth-box">
-            <h4 className="box-title">A Scalable Intelligence Network</h4>
-            <p className="growth-intro">As more users join the ORA ecosystem, the system becomes exponentially more intelligent.</p>
+            <h4 className="box-title">{t('marketPotential.growthTitle')}</h4>
+            <p className="growth-intro">{t('marketPotential.growthIntro')}</p>
             
             <div className="growth-loop-flow">
-              <div className="loop-step"><span>More Users</span> generate</div>
+              <div className="loop-step"><span>{growthSteps?.[0]?.[0]}</span> {growthSteps?.[0]?.[1]}</div>
               <div className="loop-arrow">↓</div>
-              <div className="loop-step"><span>More Data</span> improves</div>
+              <div className="loop-step"><span>{growthSteps?.[1]?.[0]}</span> {growthSteps?.[1]?.[1]}</div>
               <div className="loop-arrow">↓</div>
-              <div className="loop-step"><span>Better Predictions</span> lead to</div>
+              <div className="loop-step"><span>{growthSteps?.[2]?.[0]}</span> {growthSteps?.[2]?.[1]}</div>
               <div className="loop-arrow">↓</div>
-              <div className="loop-step highlight"><span>Improved Outcomes</span></div>
+              <div className="loop-step highlight"><span>{growthSteps?.[3]?.[0]}</span></div>
             </div>
           </div>
 
@@ -154,10 +159,12 @@ const MarketPotential = () => {
         {/* --- CTA & CLOSING --- */}
         <div className="ora-market-footer">
           <button className="ora-market-cta">
-            Explore ORA Ecosystem <span className="arrow">→</span>
+            {t('marketPotential.cta')} <span className="arrow">→</span>
           </button>
           <p className="ora-market-closing">
-            ORA is not just a product — it is a growing <span className="pink-text">intelligence network</span> for maternal health.
+            {t('marketPotential.closingPrefix')}{' '}
+            <span className="pink-text">{t('marketPotential.closingHighlight')}</span>{' '}
+            {t('marketPotential.closingSuffix')}
           </p>
         </div>
 

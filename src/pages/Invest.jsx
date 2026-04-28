@@ -15,6 +15,7 @@ import ProductTechnology from '../components/sections/ProductTechnology';
 import MarketPotential from '../components/sections/MarketPotential';
 import BusinessModel from '../components/sections/BusinessModel';
 import JointheFuture from '../components/sections/JointheFuture';
+import { useLanguage } from '../i18n/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,6 +23,7 @@ const Invest = () => {
     const canvasRef = useRef(null);
     const sheetRef = useRef(null);
     const containerRef = useRef(null);
+    const { t } = useLanguage();
 
     // 1. Smooth Sliding Sheet Logic
     useEffect(() => {
@@ -144,7 +146,7 @@ const Invest = () => {
     }, []);
 
     return (
-        <div className="invest-page-container2" ref={containerRef}>
+        <div className="invest-page-shell" ref={containerRef}>
             <Seo
               title="Invest in ORA | Future of Maternal Health Technology"
               description="Explore ORA's vision for AI-driven maternal care, wearable monitoring, clinical integration, and scalable women's health innovation."
@@ -159,14 +161,14 @@ const Invest = () => {
             <Navbar />
             
             {/* BACKGROUND LAYER */}
-            <section className="hero-parallax-container2">
+            <section className="invest-hero-parallax">
               <HeroInvest 
                 videoSrc={investVid}
-                titleLine1="Invest in the"
-                titleLine2="Future of Maternal Care"
-                subtitle="ORA is redefining maternal health through AI and clinical integration."
-                primaryBtnText="Request Deck"
-                secondaryBtnText="Partner With Us"
+                titleLine1={t('investPage.heroLine1')}
+                titleLine2={t('investPage.heroLine2')}
+                subtitle={t('investPage.heroSubtitle')}
+                primaryBtnText={t('investPage.heroPrimary')}
+                secondaryBtnText={t('investPage.heroSecondary')}
               />
             </section>
 

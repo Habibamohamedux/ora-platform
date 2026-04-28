@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../i18n/LanguageContext';
 import './TheSolution.css';
 
 // Image Imports (Adjust path if your folder is spelled 'assests')
@@ -11,40 +12,24 @@ import imgClinical from '../../assests/Imgs/Solution_Clinical.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ecosystemData = [
+const ecosystemItems = [
   {
     id: 'intelligence',
-    tabName: 'Intelligence',
-    title: 'Intelligence (AI System)',
-    description: 'Transforms continuous health data into predictive insights using advanced AI models. Enables early detection of risks and supports informed, real-time decision-making.',
-    cta: 'Learn More',
     link: '/intelligence',
     img: imgAI,
   },
   {
     id: 'pulse',
-    tabName: 'Pulse',
-    title: 'Pulse (Bracelet)',
-    description: 'A wearable device that continuously tracks vital health signals such as heart rate, sleep patterns, and stress levels, providing real-time biometric monitoring beyond clinical visits.',
-    cta: 'View Pulse',
     link: '/pulse',
     img: imgPulse,
   },
   {
     id: 'companion',
-    tabName: 'Companion',
-    title: 'Companion (App)',
-    description: 'A personalized digital interface that delivers daily insights, tracking tools, and guidance, helping users stay informed and supported throughout their journey.',
-    cta: 'Explore Companion',
     link: '/companion',
     img: imgCompanion,
   },
   {
     id: 'clinical',
-    tabName: 'Clinical',
-    title: 'Clinical (Doctor System)',
-    description: 'A connected dashboard for healthcare providers offering live patient data, alerts, and monitoring tools, enabling faster response and better clinical outcomes.',
-    cta: 'Discover Clinical',
     link: '/clinical',
     img: imgClinical,
   }
@@ -55,6 +40,15 @@ const TheSolution = () => {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
   const [isChanging, setIsChanging] = useState(false);
+  const { t } = useLanguage();
+  const tabs = t('theSolution.tabs');
+  const ecosystemData = ecosystemItems.map((item, index) => ({
+    ...item,
+    tabName: tabs?.[index]?.tab,
+    title: tabs?.[index]?.title,
+    description: tabs?.[index]?.desc,
+    cta: tabs?.[index]?.cta,
+  }));
 
   // Scroll Reveal Animation
   useEffect(() => {
@@ -103,17 +97,17 @@ const TheSolution = () => {
         {/* TOP HEADER (Inspired by KAIB Layout) */}
         <div className="ora-sol-header">
           <div className="ora-sol-header-left">
-            <h2 className="ora-sol-title">A Unified Health Ecosystem</h2>
+            <h2 className="ora-sol-title">{t('theSolution.title')}</h2>
           </div>
           <div className="ora-sol-header-right">
             <p className="ora-sol-intro-p highlight-p">
-              ORA brings together artificial intelligence, wearable technology, and clinical systems into a single connected ecosystem designed for continuous maternal monitoring.
+              {t('theSolution.introLead')}
             </p>
             <p className="ora-sol-intro-p">
-              By integrating real-time biometric data, predictive insights, and doctor oversight, ORA transforms fragmented healthcare into a seamless and intelligent experience.
+              {t('theSolution.introBody1')}
             </p>
             <p className="ora-sol-intro-p">
-              This unified approach enables earlier detection, proactive care, and a more connected journey for both mothers and healthcare providers.
+              {t('theSolution.introBody2')}
             </p>
           </div>
         </div>

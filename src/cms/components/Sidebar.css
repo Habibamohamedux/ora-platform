@@ -1,0 +1,268 @@
+/* Sidebar.css */
+.sb {
+  width: 242px;
+  height: 100vh;
+  background: #120b10;
+  border-right: 1px solid rgba(201, 64, 96, 0.09);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 100;
+}
+.sb-collapsed {
+  width: 62px;
+}
+
+.sb-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 260px;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(201, 64, 96, 0.13) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Logo */
+.sb-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 14px 12px;
+  border-bottom: 1px solid rgba(201, 64, 96, 0.09);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.sb-logo-inner {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.sb-logo-text {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 21px;
+  letter-spacing: 0.14em;
+  color: #faf8f9;
+  white-space: nowrap;
+}
+.sb-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(250, 248, 249, 0.4);
+  padding: 5px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition:
+    color 0.18s,
+    background 0.18s;
+}
+.sb-toggle:hover {
+  color: #faf8f9;
+  background: rgba(250, 248, 249, 0.06);
+}
+
+/* Role */
+.sb-role-wrap {
+  padding: 10px 12px 6px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.sb-role {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Nav */
+.sb-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+  z-index: 1;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 64, 96, 0.15) transparent;
+}
+.sb-nav::-webkit-scrollbar {
+  width: 3px;
+}
+.sb-nav::-webkit-scrollbar-thumb {
+  background: rgba(201, 64, 96, 0.18);
+  border-radius: 2px;
+}
+
+.sb-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-bottom: 2px;
+}
+.sb-group-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 249, 0.25);
+  padding: 8px 10px 3px;
+  white-space: nowrap;
+}
+
+.sb-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgba(250, 248, 249, 0.55);
+  font-size: 13.5px;
+  font-weight: 400;
+  font-family: "Wix Madefor Text", sans-serif;
+  transition: all 0.18s;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.sb-item:hover {
+  color: #faf8f9;
+  background: rgba(250, 248, 249, 0.05);
+}
+.sb-active {
+  color: #faf8f9 !important;
+  background: rgba(201, 64, 96, 0.13) !important;
+  font-weight: 500;
+}
+.sb-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 2.5px;
+  background: #c94060;
+  border-radius: 0 2px 2px 0;
+}
+.sb-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+.sb-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sb-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: rgba(201, 64, 96, 0.18);
+  color: #e06080;
+  flex-shrink: 0;
+}
+.sb-badge-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c94060;
+  border: 1.5px solid #120b10;
+}
+.sb-collapsed .sb-item {
+  justify-content: center;
+  padding: 10px;
+}
+.sb-collapsed .sb-group-label {
+  display: none;
+}
+
+/* User */
+.sb-user {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px;
+  border-top: 1px solid rgba(201, 64, 96, 0.09);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.sb-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+  font-family: "Wix Madefor Text", sans-serif;
+}
+.sb-user-info {
+  flex: 1;
+  overflow: hidden;
+}
+.sb-user-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #faf8f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sb-user-email {
+  font-size: 11px;
+  color: rgba(250, 248, 249, 0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sb-signout {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(250, 248, 249, 0.35);
+  padding: 5px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: color 0.18s;
+}
+.sb-signout:hover {
+  color: #c94060;
+}
+.sb-collapsed .sb-user {
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+}

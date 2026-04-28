@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../i18n/LanguageContext';
 import './JointheFuture.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -9,6 +11,7 @@ const JoinTheFuture = () => {
   const sectionRef = useRef(null);
   const leftRef = useRef(null);
   const rightRef = useRef(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -41,33 +44,27 @@ const JoinTheFuture = () => {
           
           {/* --- LEFT SIDE: EDITORIAL TEXT --- */}
           <div className="ora-join-left" ref={leftRef}>
-            <h2 className="ora-join-title">Join the Future of Maternal Care</h2>
-            <h3 className="ora-join-subtitle">To our future partners...</h3>
+            <h2 className="ora-join-title">{t('joinFuture.title')}</h2>
+            <h3 className="ora-join-subtitle">{t('joinFuture.subtitle')}</h3>
             
             <p className="ora-join-para">
-              ORA is building a smarter, safer, and more connected pregnancy experience. 
-              By seamlessly integrating artificial intelligence with real-time biometric tracking, 
-              we are creating an ecosystem where critical health data bridges the gap between 
-              mothers and healthcare providers.
+              {t('joinFuture.body1')}
             </p>
             <p className="ora-join-para">
-              We invite forward-thinking investors, medical professionals, and strategic partners 
-              who share our vision of transforming global maternal health to join us on this journey.
+              {t('joinFuture.body2')}
             </p>
 
             {/* Secondary CTA */}
             <div className="ora-join-actions">
-              <span className="ora-join-action-text">For general inquiries or partnerships:</span>
-              <a href="/access" className="ora-join-secondary-cta">
-                Contact Our Team <span className="ora-join-arrow">→</span>
-              </a>
+              <span className="ora-join-action-text">{t('joinFuture.actionText')}</span>
+              <Link to="/contact" className="ora-join-secondary-cta">
+                {t('joinFuture.actionCta')} <span className="ora-join-arrow">→</span>
+              </Link>
             </div>
 
             {/* Editorial Disclaimer (matches reference image style) */}
             <p className="ora-join-disclaimer">
-              Disclaimer: The information provided in our investor materials is intended for prospective 
-              partners and accredited investors to gain insight into ORA’s technology and business model. 
-              It does not constitute a formal solicitation.
+              {t('joinFuture.disclaimer')}
             </p>
           </div>
 
@@ -75,26 +72,26 @@ const JoinTheFuture = () => {
           <div className="ora-join-right" ref={rightRef}>
             <div className="ora-join-form-card">
               <div className="ora-join-form-content">
-                <h3 className="ora-join-form-title">Request Investment Deck</h3>
+                <h3 className="ora-join-form-title">{t('joinFuture.formTitle')}</h3>
                 <p className="ora-join-form-desc">
-                  Enter your details to receive our comprehensive investor presentation and stay updated on our progress.
+                  {t('joinFuture.formDesc')}
                 </p>
 
                 <form className="ora-join-form" onSubmit={(e) => e.preventDefault()}>
                   <div className="ora-join-input-group-row">
-                    <input type="text" className="ora-join-input" placeholder="First Name*" required />
-                    <input type="text" className="ora-join-input" placeholder="Last Name*" required />
+                    <input type="text" className="ora-join-input" placeholder={t('joinFuture.placeholders.first')} required />
+                    <input type="text" className="ora-join-input" placeholder={t('joinFuture.placeholders.last')} required />
                   </div>
-                  <input type="email" className="ora-join-input" placeholder="Email Address*" required />
-                  <input type="text" className="ora-join-input" placeholder="Company / Organization" />
+                  <input type="email" className="ora-join-input" placeholder={t('joinFuture.placeholders.email')} required />
+                  <input type="text" className="ora-join-input" placeholder={t('joinFuture.placeholders.company')} />
                   
                   <button type="submit" className="ora-join-submit-btn">
-                    Submit Request
+                    {t('joinFuture.submit')}
                   </button>
                 </form>
 
                 <p className="ora-join-form-footer">
-                  *Your information is secure and will only be used to send relevant ORA materials.
+                  {t('joinFuture.footer')}
                 </p>
               </div>
             </div>

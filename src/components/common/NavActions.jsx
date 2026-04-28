@@ -161,6 +161,13 @@ const NavActions = ({ onMenuChange }) => {
     setLanguage(code);
   };
 
+  const handleBrandClick = () => {
+    handleClose();
+    setTimeout(() => {
+      navigate('/');
+    }, 300);
+  };
+
   let globalIndex = 0;
 
   return (
@@ -203,7 +210,9 @@ const NavActions = ({ onMenuChange }) => {
 
         {/* Header */}
         <div className="mh">
-          <span className="mh-brand">{t('nav.brand')}</span>
+          <button type="button" className="mh-brand" onClick={handleBrandClick}>
+            {t('nav.brand')}
+          </button>
           <span className="mh-center">{t('nav.menuTitle')}</span>
 
           <div className="mh-actions">

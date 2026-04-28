@@ -1,11 +1,11 @@
-.invest-page-container2 {
+.invest-page-shell {
   position: relative;
   width: 100%;
-  overflow: hidden; 
-  background-color: #000;
+  overflow: hidden;
+  background: #ffffff;
 }
 
-.hero-parallax-container2 {
+.invest-hero-parallax {
   position: absolute;
   top: 0;
   left: 0;

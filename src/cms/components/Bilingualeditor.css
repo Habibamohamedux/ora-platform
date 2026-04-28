@@ -1,0 +1,193 @@
+.ble {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.ble-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+.ble-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1a1128;
+}
+.ble-req {
+  color: #c94060;
+  margin-left: 2px;
+}
+.ble-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  color: rgba(103, 102, 124, 0.6);
+}
+.ble-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(103, 102, 124, 0.25);
+  transition: background 0.2s;
+}
+.ble-partial .ble-status-dot,
+.ble-status-dot.ble-partial {
+  background: #d97706;
+}
+.ble-all-done .ble-status-dot,
+.ble-status-dot.ble-all-done {
+  background: #059669;
+}
+
+.ble-tabs {
+  display: flex;
+  border: 1.5px solid rgba(103, 102, 124, 0.15);
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  border-bottom: none;
+  background: #f8f6f9;
+}
+.ble-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 9px 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Wix Madefor Text", sans-serif;
+  transition: all 0.18s;
+  border-right: 1px solid rgba(103, 102, 124, 0.12);
+}
+.ble-tab:last-child {
+  border-right: none;
+}
+.ble-tab:hover {
+  background: rgba(201, 64, 96, 0.05);
+}
+.ble-tab-active {
+  background: #fff !important;
+  border-bottom: 2px solid #c94060;
+  margin-bottom: -1px;
+}
+.ble-lang-code {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(103, 102, 124, 0.5);
+}
+.ble-tab-active .ble-lang-code {
+  color: #c94060;
+}
+.ble-lang-name {
+  font-size: 12.5px;
+  color: #67667c;
+  font-weight: 400;
+}
+.ble-tab-active .ble-lang-name {
+  color: #1a1128;
+  font-weight: 500;
+}
+.ble-check {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(5, 150, 105, 0.12);
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ble-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 7px 10px;
+  background: #f8f6f9;
+  border: 1.5px solid rgba(103, 102, 124, 0.15);
+  border-top: none;
+}
+.ble-fmt-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #67667c;
+  font-family: "Wix Madefor Text", sans-serif;
+  transition: all 0.15s;
+}
+.ble-fmt-btn:hover {
+  background: rgba(201, 64, 96, 0.08);
+  color: #c94060;
+}
+.ble-toolbar-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(103, 102, 124, 0.15);
+  margin: 0 4px;
+}
+.ble-dir-badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: rgba(201, 64, 96, 0.08);
+  color: #c94060;
+  margin-left: auto;
+}
+.ble-char-count {
+  font-size: 11px;
+  color: rgba(103, 102, 124, 0.45);
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.ble-textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1.5px solid rgba(103, 102, 124, 0.15);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  font-family: "Wix Madefor Text", sans-serif;
+  font-size: 14px;
+  color: #1a1128;
+  background: #fff;
+  outline: none;
+  resize: vertical;
+  line-height: 1.7;
+  transition: border-color 0.18s;
+}
+.ble-textarea:focus {
+  border-color: #c94060;
+  box-shadow: 0 0 0 3px rgba(201, 64, 96, 0.08);
+}
+.ble-textarea::placeholder {
+  color: rgba(103, 102, 124, 0.4);
+  font-weight: 300;
+}
+
+.ble-progress {
+  height: 2px;
+  background: rgba(103, 102, 124, 0.1);
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  margin-top: 0;
+}
+.ble-progress-bar {
+  height: 100%;
+  background: #059669;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}

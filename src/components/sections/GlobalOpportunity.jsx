@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useLanguage } from '../../i18n/LanguageContext';
 import './GlobalOpportunity.css';
 
 const CountUp = ({ end, duration = 2000 }) => {
@@ -39,6 +40,8 @@ const CountUp = ({ end, duration = 2000 }) => {
 const GlobalOpportunity = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const { t } = useLanguage();
+  const statsLabels = t('globalOpportunity.stats');
 
   useEffect(() => {
     // Reveal Observer
@@ -50,10 +53,10 @@ const GlobalOpportunity = () => {
   }, []);
 
   const stats = [
-    { n: '700+', t: 'Women die daily from preventable pregnancy complications' },
-    { n: '90%+', t: 'Of maternal deaths occur in low-resource settings' },
-    { n: '75%', t: 'Receive adequate prenatal care (4+ visits)' },
-    { n: '3×', t: 'Higher global mortality rate vs UN target' }
+    { n: '700+', t: statsLabels?.[0] },
+    { n: '90%+', t: statsLabels?.[1] },
+    { n: '75%', t: statsLabels?.[2] },
+    { n: '3×', t: statsLabels?.[3] }
   ];
 
   return (
@@ -61,12 +64,12 @@ const GlobalOpportunity = () => {
       <div className="ora-opp-container">
         <div className="ora-opp-content-side">
           <h2 className="ora-opp-title">
-            <span className="reveal-line">A Global</span>
-            <span className="reveal-line">Opportunity</span>
+            <span className="reveal-line">{t('globalOpportunity.title1')}</span>
+            <span className="reveal-line">{t('globalOpportunity.title2')}</span>
           </h2>
           <div className="ora-opp-description">
-            <p className="ora-opp-p-lead">Maternal health remains one of the most underserved areas in global healthcare.</p>
-            <p className="ora-opp-p">ORA addresses this gap by transforming fragmented health data into real-time, actionable intelligence through AI.</p>
+            <p className="ora-opp-p-lead">{t('globalOpportunity.lead')}</p>
+            <p className="ora-opp-p">{t('globalOpportunity.body')}</p>
           </div>
         </div>
 
@@ -83,10 +86,13 @@ const GlobalOpportunity = () => {
 
       <div className="ora-opp-footer">
         <div className="footer-cta-wrapper">
-          <button className="ora-button ecosystem-btn">Explore ORA Ecosystem →</button>
-          <span className="btn-tiny-text">Join the movement toward proactive maternal care.</span>
+          <button className="ora-button ecosystem-btn">{t('globalOpportunity.cta')} →</button>
+          <span className="btn-tiny-text">{t('globalOpportunity.ctaNote')}</span>
         </div>
-        <p className="ora-opp-closing">A shift from reactive care to <span className="pink-span">continuous intelligence.</span></p>
+        <p className="ora-opp-closing">
+          {t('globalOpportunity.closingPrefix')}{' '}
+          <span className="pink-span">{t('globalOpportunity.closingHighlight')}</span>
+        </p>
       </div>
     </section>
   );

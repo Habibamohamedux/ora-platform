@@ -92,7 +92,21 @@ html[dir='rtl'] .chr-header,
 html[dir='rtl'] .ctm-header,
 html[dir='rtl'] .clc-header,
 html[dir='rtl'] .cct-hero-content,
-html[dir='rtl'] .cct-bento-card {
+html[dir='rtl'] .cct-bento-card,
+html[dir='rtl'] .ora-opp-content-side,
+html[dir='rtl'] .ora-gap-intro,
+html[dir='rtl'] .ora-sol-header-right,
+html[dir='rtl'] .ora-sol-panel-content,
+html[dir='rtl'] .ora-tech-header-right,
+html[dir='rtl'] .active-display-right,
+html[dir='rtl'] .ora-market-top,
+html[dir='rtl'] .ora-market-network-box,
+html[dir='rtl'] .ora-market-growth-box,
+html[dir='rtl'] .ora-biz-intro-container,
+html[dir='rtl'] .ora-layer-content,
+html[dir='rtl'] .ora-biz-final-summary,
+html[dir='rtl'] .ora-join-left,
+html[dir='rtl'] .ora-join-form-content {
   text-align: right;
 }
 
@@ -172,6 +186,32 @@ html[dir='rtl'] .chr-world-clocks,
 html[dir='rtl'] .clc-details__grid,
 html[dir='rtl'] .cct-social-pill,
 html[dir='rtl'] .ctm-card__content,
-html[dir='rtl'] .cch-card__actions {
+html[dir='rtl'] .cch-card__actions,
+html[dir='rtl'] .ora-market-bottom-grid,
+html[dir='rtl'] .ora-tech-facts-grid,
+html[dir='rtl'] .ora-join-input-group-row {
   direction: rtl;
+}
+
+html[dir='rtl'] .ora-sol-panel,
+html[dir='rtl'] .ora-tech-active-display,
+html[dir='rtl'] .ora-biz-layer-card,
+html[dir='rtl'] .ora-join-grid {
+  direction: rtl;
+}
+
+html[dir='rtl'] .ora-biz-layer-card.reverse-layout {
+  direction: ltr;
+}
+
+html[dir='rtl'] .ora-biz-layer-card.reverse-layout .ora-layer-content,
+html[dir='rtl'] .ora-biz-layer-card.reverse-layout .ora-layer-visual {
+  direction: rtl;
+}
+
+html[dir='rtl'] .ora-join-arrow,
+html[dir='rtl'] .arrow,
+html[dir='rtl'] .cta-circle-arrow {
+  display: inline-flex;
+  transform: scaleX(-1);
 }

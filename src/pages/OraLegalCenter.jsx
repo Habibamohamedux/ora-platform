@@ -12,9 +12,10 @@ import LegalSidebar from '../components/legal/LegalSidebar';
 import LegalSectionBlock from '../components/legal/LegalSectionBlock';
 import ErrorPage from './ErrorPage';
 
-const OraLegalCenter = () => {
+const OraLegalCenter = ({ slugOverride }) => {
     // 1️⃣ Get the slug from the URL (e.g., /terms-of-use)
-    const { slug } = useParams(); 
+    const { slug: routeSlug } = useParams();
+    const slug = slugOverride || routeSlug;
 
     const [activeSection, setActiveSection] = useState('');
     const [pageData, setPageData] = useState(null);

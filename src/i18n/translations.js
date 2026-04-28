@@ -10,7 +10,7 @@ export const translations = {
       copyright: 'ORA Health · All rights reserved',
       tagline: 'Redefining Maternal Care',
       language: 'Language',
-      languageNote: 'French is live. Arabic is next.',
+      languageNote: 'French and Arabic are live.',
       categories: {
         system: 'SYSTEM',
         experience: 'EXPERIENCE',
@@ -99,6 +99,20 @@ export const translations = {
     },
     backTop: {
       label: 'Back to top',
+    },
+    errorPage: {
+      eyebrow: 'Connection Interrupted',
+      title: "We couldn't find this part of your journey.",
+      message:
+        "Something went off track, but you're not lost. ORA is still here to guide and support you every step of the way.",
+      actionsLabel: 'Error page actions',
+      home: 'Home',
+      circle: 'Circle',
+      invest: 'Invest',
+      trust: 'Trust',
+      contact: 'Contact',
+      privacy: 'Privacy Policy',
+      requestedRoute: 'Requested route',
     },
     legal: {
       center: 'ORA Legal Center',
@@ -1141,7 +1155,7 @@ export const translations = {
       copyright: 'ORA Health · Tous droits réservés',
       tagline: 'Réinventer les soins maternels',
       language: 'Langue',
-      languageNote: "Le français est actif. L'arabe arrive ensuite.",
+      languageNote: 'Le français et l’arabe sont actifs.',
       categories: {
         system: 'SYSTÈME',
         experience: 'EXPÉRIENCE',
@@ -1230,6 +1244,20 @@ export const translations = {
     },
     backTop: {
       label: 'Revenir en haut',
+    },
+    errorPage: {
+      eyebrow: 'Connexion interrompue',
+      title: "Nous n'avons pas trouvé cette partie de votre parcours.",
+      message:
+        "Quelque chose a dévié, mais vous n'êtes pas perdue. ORA est toujours là pour vous guider et vous accompagner à chaque étape.",
+      actionsLabel: "Actions de la page d'erreur",
+      home: 'Accueil',
+      circle: 'Circle',
+      invest: 'Invest',
+      trust: 'Trust',
+      contact: 'Contact',
+      privacy: 'Politique de confidentialité',
+      requestedRoute: 'Route demandée',
     },
     legal: {
       center: 'Centre juridique ORA',
@@ -2150,6 +2178,20 @@ export const translations = {
     },
     backTop: {
       label: 'العودة إلى الأعلى',
+    },
+    errorPage: {
+      eyebrow: 'انقطع الاتصال',
+      title: 'لم نتمكن من العثور على هذا الجزء من رحلتك.',
+      message:
+        'حدث انحراف بسيط، لكنك لستِ تائهة. ما زالت ORA هنا لإرشادك ودعمك في كل خطوة.',
+      actionsLabel: 'إجراءات صفحة الخطأ',
+      home: 'الرئيسية',
+      circle: 'Circle',
+      invest: 'Invest',
+      trust: 'الثقة',
+      contact: 'تواصل',
+      privacy: 'سياسة الخصوصية',
+      requestedRoute: 'المسار المطلوب',
     },
     legal: {
       center: 'المركز القانوني ORA',
